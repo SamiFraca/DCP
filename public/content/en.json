@@ -1,0 +1,12 @@
+{
+  "Home": {
+    "title": "Internationalization(i18n) in Next.js 14",
+    "description": "Next.js 14 "
+  },
+  "Header": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "projects": "Projects"
+}
+}

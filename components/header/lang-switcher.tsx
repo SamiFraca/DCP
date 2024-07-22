@@ -49,7 +49,7 @@ const LangSwitcher: React.FC = () => {
     <div className="">
       <div className="relative text-lg w-48">
         <DropdownMenu>
-          <DropdownMenuTrigger>
+          <DropdownMenuTrigger asChild>
             <button
               className=" justify-between  gap-2 border border-gray-500 text-white focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
               onClick={() => setIsOptionsExpanded(!isOptionsExpanded)}

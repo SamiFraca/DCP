@@ -1,10 +1,13 @@
 import Image from "next/image";
 import { NavItem } from "./nav-item";
+import { useTranslations } from "next-intl";
+import LangSwitcher from "./lang-switcher";
 
 export const Header = () => {
+  const t = useTranslations("Header");
   return (
     <header className="flex flex-col p-10">
-      <nav aria-label="Main Navigation">
+      <nav aria-label="Main Navigation ">
         <ul className="flex gap-10 items-center">
           <li className="flex-shrink-0 grow">
             <a href="/" aria-label="Home">
@@ -18,8 +21,9 @@ export const Header = () => {
             </a>
           </li>
           <NavItem href="/" label="Home" />
-          <NavItem href="/projects" label="Projects" />
+          <NavItem href="/en/test" label="Projects" />
           <NavItem href="/about" label="About" />
+          <LangSwitcher />
         </ul>
       </nav>
     </header>

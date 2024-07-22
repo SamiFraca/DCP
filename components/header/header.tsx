@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import LangSwitcher from "./lang-switcher";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+import { ModeToggle } from "./mode-toggle";
 
 export const Header = () => {
   const languageCode = useSelector((state: RootState) => state.language.code);
@@ -26,6 +27,7 @@ export const Header = () => {
           <NavItem href={`/${languageCode}/projects`} label="Projects" />
           <NavItem href={`/${languageCode}/about`} label="About" />
           <LangSwitcher />
+          <ModeToggle />
         </ul>
       </nav>
     </header>

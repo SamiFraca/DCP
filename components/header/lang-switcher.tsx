@@ -14,7 +14,7 @@ export type OptionProps = {
   country: string;
   code: string;
   flag: StaticImageData;
-}
+};
 const LangSwitcher: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const language = useSelector((state: RootState) => state.language);
@@ -29,14 +29,21 @@ const LangSwitcher: React.FC = () => {
   ];
   const setOption = (option: OptionProps) => {
     dispatch(setLanguage(option));
-    router.push(`/${option.code}`);
+    const pathSegments = pathname.split("/");
+    if (pathSegments.length > 1) {
+      pathSegments[1] = option.code;
+    } else {
+      pathSegments.unshift(option.code);
+    }
+    const newPathname = pathSegments.join("/");
+    router.push(newPathname);
   };
 
   return (
     <div className="">
       <div className="relative text-lg w-48">
         <button
-          className=" justify-between border border-gray-500 text-white focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+          className=" justify-between  gap-2 border border-gray-500 text-white focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
           onClick={() => setIsOptionsExpanded(!isOptionsExpanded)}
           onBlur={() => setIsOptionsExpanded(false)}
         >
@@ -85,10 +92,10 @@ const LangSwitcher: React.FC = () => {
                   src={option.flag}
                   width={"20"}
                   height={"20"}
-                  alt="logo"
+                  alt="country flag"
                 />
                 &nbsp;&nbsp;{option.country}
-                {pathname === `/${option.code}` && (
+                {pathname.includes(`/${option.code}`) && (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

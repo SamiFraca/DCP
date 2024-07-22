@@ -8,5 +8,5 @@ const middleware = createMiddleware({
 export default middleware;
 
 export const config = {
-  matcher: ['/', '/(de|es|en)/:page*']
+  matcher: ['/', '/(es|en)/:page*']
 };

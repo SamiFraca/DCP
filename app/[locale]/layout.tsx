@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
+"use client";
 import { Inter } from "next/font/google";
 import "../globals.css";
-import { Header } from "../components/header";
-
+import { Header } from "@/components/header/header";
+import { Provider } from "react-redux";
+import store from "@/store";
 const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "DCP - Developer Collaboration Platform",
-  description: "Developer Collaboration Platform",
-};
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -17,11 +13,13 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children, locale }: RootLayoutProps) {
   return (
-    <html lang={locale}>
-      <body className={inter.className}>
-        <Header />
-        {children}
-      </body>
-    </html>
+    <Provider store={store}>
+      <html lang={locale}>
+        <body className={inter.className}>
+          <Header />
+          {children}
+        </body>
+      </html>
+    </Provider>
   );
 }

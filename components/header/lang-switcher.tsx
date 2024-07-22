@@ -7,31 +7,29 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import ukFlag from "@/assets/img/uk_flag.png";
 import esFlag from "@/assets/img/spain_flag.png";
-import { useEffect } from "react";
-
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "@/store";
+import { setLanguage } from "@/features/languageSlice";
+export type OptionProps = {
+  country: string;
+  code: string;
+  flag: StaticImageData;
+}
 const LangSwitcher: React.FC = () => {
-  interface Option {
-    country: string;
-    code: string;
-    flag: StaticImageData;
-  }
+  const dispatch = useDispatch<AppDispatch>();
+  const language = useSelector((state: RootState) => state.language);
 
   const router = useRouter();
   const pathname = usePathname();
 
   const [isOptionsExpanded, setIsOptionsExpanded] = useState(false);
-  const options: Option[] = [
+  const options: OptionProps[] = [
     { country: "English", code: "en", flag: ukFlag },
     { country: "Spanish", code: "es", flag: esFlag },
   ];
-  const [actualOption, setActualOption] = useState<Option>(options[0]);
-  const setOption = (option: Option) => {
-    console.log("Changing language to:", option);
-    setTimeout(() => {
-      setIsOptionsExpanded(false);
-      router.push(`/${option.code}`);
-    }, 300);
-    setActualOption(option);
+  const setOption = (option: OptionProps) => {
+    dispatch(setLanguage(option));
+    router.push(`/${option.code}`);
   };
 
   return (
@@ -43,9 +41,9 @@ const LangSwitcher: React.FC = () => {
           onBlur={() => setIsOptionsExpanded(false)}
         >
           <Image
-            key={actualOption.code}
-            src={actualOption.flag}
-            alt={actualOption.country}
+            key={language.code}
+            src={language.flag}
+            alt={language.country}
             width={20}
             height={20}
           />

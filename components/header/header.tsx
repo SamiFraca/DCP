@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import LangSwitcher from "./lang-switcher";
 
 export const Header = () => {
-  const t = useTranslations("Header");
+
   return (
     <header className="flex flex-col p-10">
       <nav aria-label="Main Navigation ">

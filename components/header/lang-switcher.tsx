@@ -32,7 +32,7 @@ const LangSwitcher: React.FC = () => {
   const [isOptionsExpanded, setIsOptionsExpanded] = useState(false);
   const options: OptionProps[] = [
     { country: "English", code: "en", flag: ukFlag },
-    { country: "Spanish", code: "es", flag: esFlag },
+    { country: "Español", code: "es", flag: esFlag },
   ];
   const setOption = (option: OptionProps) => {
     dispatch(setLanguage(option));
@@ -45,7 +45,6 @@ const LangSwitcher: React.FC = () => {
     const newPathname = pathSegments.join("/");
     router.push(newPathname);
   };
-  console.log(language.flag);
   return (
     <div className="">
       <div className="relative text-lg">

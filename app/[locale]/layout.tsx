@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import store from "@/store";
 const inter = Inter({ subsets: ["latin"] });
 import { ThemeProvider } from "@/components/theme-provider";
+import { HeaderMobile } from "@/components/header/mobile/header-mobile";
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -19,11 +20,12 @@ export default function RootLayout({ children, locale }: RootLayoutProps) {
         <body className={inter.className}>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
           >
             <Header />
+            <HeaderMobile />
             {children}
           </ThemeProvider>
         </body>

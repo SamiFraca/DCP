@@ -5,15 +5,16 @@ import LangSwitcher from "./lang-switcher";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { ModeToggle } from "./mode-toggle";
+import Link from "next/link";
 
 export const Header = () => {
   const languageCode = useSelector((state: RootState) => state.language.code);
   return (
-    <header className="flex flex-col p-10">
+    <header className="md:flex flex-col p-10 hidden">
       <nav aria-label="Main Navigation ">
         <ul className="flex gap-10 items-center">
           <li className="flex-shrink-0 grow">
-            <a href="/" aria-label="Home">
+            <Link href={`/${languageCode}`} aria-label="Home">
               <Image
                 src="/logo.svg"
                 alt="web logo"
@@ -21,13 +22,17 @@ export const Header = () => {
                 height={40}
                 priority
               />
-            </a>
+            </Link>
           </li>
           <NavItem href={`/${languageCode}`} label="Home" />
           <NavItem href={`/${languageCode}/projects`} label="Projects" />
           <NavItem href={`/${languageCode}/about`} label="About" />
-          <LangSwitcher />
-          <ModeToggle />
+          <li>
+            <LangSwitcher />
+          </li>
+          <li>
+            <ModeToggle />
+          </li>
         </ul>
       </nav>
     </header>

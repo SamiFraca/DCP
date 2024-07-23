@@ -29,6 +29,8 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    --font-roboto: "Roboto", sans-serif;
+    --font-space-grotesk: "Space Grotesk", sans-serif;
   }
 
   .dark {
@@ -65,5 +67,12 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  .roboto {
+    font-family: var(--font-roboto);
+  }
+  .space-grotesk {
+    font-family: var(--font-space-grotesk);
   }
 }

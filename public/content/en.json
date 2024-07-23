@@ -1,6 +1,6 @@
 {
   "Home": {
-    "title": "Internationalization(i18n) in Next.js 14",
+    "title": "Developer Collaboration Platform",
     "description": "Next.js 14 "
   },
   "Header": {
@@ -8,5 +8,5 @@
     "about": "About",
     "contact": "Contact",
     "projects": "Projects"
-}
+  }
 }

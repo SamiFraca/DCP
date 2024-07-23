@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import ukFlag from "@/assets/img/uk_flag.png";
 import esFlag from "@/assets/img/spain_flag.png";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "@/store";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store";
 import { setLanguage } from "@/features/languageSlice";
 import store from "@/store";
 import {
@@ -17,6 +17,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useTheme } from "next-themes";
+
 export type OptionProps = {
   country: string;
   code: string;
@@ -25,6 +27,8 @@ export type OptionProps = {
 const LangSwitcher: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const language = store.getState().language;
+
+  const { theme } = useTheme();
 
   const router = useRouter();
   const pathname = usePathname();
@@ -65,7 +69,7 @@ const LangSwitcher: React.FC = () => {
               <svg
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
+                stroke={theme === "dark"  ? "currentColor" : "black"}
                 className={`h-4 w-4 transform transition-transform duration-200 ease-in-out ${
                   isOptionsExpanded ? "rotate-180" : "rotate-0"
                 }`}
@@ -80,7 +84,10 @@ const LangSwitcher: React.FC = () => {
             </button>
           </DropdownMenuTrigger>
 
-          <DropdownMenuContent align="end" className=" divide-y rounded-lg shadow-lg overflow-hidden">
+          <DropdownMenuContent
+            align="end"
+            className=" divide-y rounded-lg shadow-lg overflow-hidden"
+          >
             {options.map((option, index) => (
               <DropdownMenuItem
                 key={index}

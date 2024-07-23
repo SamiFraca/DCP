@@ -16,6 +16,7 @@ import LangSwitcher from "../lang-switcher";
 import { ModeToggle } from "../mode-toggle";
 import Link from "next/link";
 import Image from "next/image";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 
 export function HeaderMobile() {
   const [open, setOpen] = useState(false);
@@ -52,9 +53,13 @@ export function HeaderMobile() {
 
           <SheetContent>
             <SheetHeader>
-              <SheetDescription className="hidden">Mobile menu header</SheetDescription>
+              <SheetDescription>
+                <VisuallyHidden.Root>Mobile menu header</VisuallyHidden.Root>
+              </SheetDescription>
             </SheetHeader>
-            <SheetTitle>Menu</SheetTitle>
+            <SheetTitle>
+              <VisuallyHidden.Root>Menu</VisuallyHidden.Root>
+            </SheetTitle>
             <ul className="flex flex-col items-start">
               <div className="flex">
                 <li>

@@ -29,7 +29,7 @@ export default function RootLayout({ children, locale }: RootLayoutProps) {
   return (
     <Provider store={store}>
       <html lang={locale} suppressHydrationWarning={true}>
-        <body className={`${spaceGrotesk.variable} ${roboto.variable}`}>
+        <body className={`${spaceGrotesk.variable} ${roboto.variable} mx-12` }>
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"

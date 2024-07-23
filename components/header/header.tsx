@@ -10,7 +10,7 @@ import Link from "next/link";
 export const Header = () => {
   const languageCode = useSelector((state: RootState) => state.language.code);
   return (
-    <header className="md:flex flex-col p-10 hidden">
+    <header className="md:flex flex-col py-10 hidden">
       <nav aria-label="Main Navigation ">
         <ul className="flex gap-10 items-center">
           <li className="flex-shrink-0 grow">

@@ -1,7 +1,8 @@
 {
   "Home": {
-    "title": "Developer Collaboration Platform",
-    "description": "Next.js 14 "
+    "title": "Empower your projects",
+    "subtitle": "Research Hub",
+    "description": "Research Hub facilitates meaningful connections by helping you find and connect with potential collaborators who have complementary skills and expertise. By using our page, you can identify and reach out to other researchers, scholars, and professionals who can contribute to your project, providing valuable insights and support."
   },
   "Header": {
     "home": "Home",

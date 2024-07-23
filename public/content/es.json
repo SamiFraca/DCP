@@ -1,7 +1,7 @@
 {
   "Home": {
-    "title": "Plataforma de Colaboración de Desarrolladores",
-    "description": "Next.js 14 introduce características avanzadas de internacionalización (i18n), capacitando a los desarrolladores para gestionar fácilmente traducciones, enrutamiento basado en localización y localización de contenido para aplicaciones web globalmente accesibles. <br /> <br />Esto también aprovecha el soporte incorporado para múltiples locales, carga dinámica de contenido y manejo de respaldo robusto."
+    "title": "Potencia tus proyectos",
+    "description": "Research Hub facilita conexiones significativas al ayudarte a encontrar y conectar con posibles colaboradores que tienen habilidades y conocimientos complementarios. Usando nuestra página, puedes identificar y contactar a otros investigadores, académicos y profesionales que pueden contribuir a tu proyecto, proporcionando valiosos conocimientos y apoyo."
   },
   "Header": {
     "home": "Inicio",

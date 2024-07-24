@@ -1,14 +1,15 @@
 import Image from "next/image";
 import { NavItem } from "./nav-item";
-import { useTranslations } from "next-intl";
 import LangSwitcher from "./lang-switcher";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { ModeToggle } from "./mode-toggle";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export const Header = () => {
   const languageCode = useSelector((state: RootState) => state.language.code);
+  const t = useTranslations("Header");
   return (
     <header className="md:flex flex-col py-10 hidden">
       <nav aria-label="Main Navigation ">
@@ -24,9 +25,9 @@ export const Header = () => {
               />
             </Link>
           </li>
-          <NavItem href={`/${languageCode}`} label="Home" />
-          <NavItem href={`/${languageCode}/projects`} label="Projects" />
-          <NavItem href={`/${languageCode}/about`} label="About" />
+          <NavItem href={`/${languageCode}`} label={t("home")} />
+          <NavItem href={`/${languageCode}/projects`} label={t("projects")} />
+          <NavItem href={`/${languageCode}/about`} label={t("about")} />
           <li>
             <LangSwitcher />
           </li>

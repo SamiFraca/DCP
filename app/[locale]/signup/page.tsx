@@ -1,31 +1,30 @@
-"use client";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { signUp } from "@/lib/auth";
-import { RootState } from "@/store";
-import { setUser, setError } from "@/features/authSlice";
-import { useRouter } from "next/navigation";
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { signIn } from '@/lib/auth'; 
+import { RootState } from '@/store';
+import { setUser, setError } from '@/features/authSlice';
+import { useRouter } from 'next/navigation';
 
-export default function Login() {
+export default function SignUp() {
   const dispatch = useDispatch();
   const { user, error } = useSelector((state: RootState) => state.auth);
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    const { user: signedInUser, error: signInError } = await signUp(
-      email,
-      password
-    );
+    const { user: signedInUser, error: signInError } = await signIn(email, password);
+
 
     if (signInError) {
       dispatch(setError(signInError));
     } else {
       dispatch(setUser(signedInUser));
-      router.push("/?registration=success");
+      router.push('/?registration=success');
     }
+    console.log(user);
   };
 
   return (

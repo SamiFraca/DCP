@@ -6,6 +6,7 @@ import { RootState } from "@/store";
 import { ModeToggle } from "./mode-toggle";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { UserAccount } from "@/components/header/user-account";
 
 export const Header = () => {
   const languageCode = useSelector((state: RootState) => state.language.code);
@@ -28,6 +29,9 @@ export const Header = () => {
           <NavItem href={`/${languageCode}`} label={t("home")} />
           <NavItem href={`/${languageCode}/projects`} label={t("projects")} />
           <NavItem href={`/${languageCode}/about`} label={t("about")} />
+          <li>
+            <UserAccount />
+          </li>
           <li>
             <LangSwitcher />
           </li>

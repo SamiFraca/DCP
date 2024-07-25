@@ -6,10 +6,13 @@ import { RootState } from "@/store";
 import { ModeToggle } from "./mode-toggle";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { UserAccount } from "@/components/header/user-account";
+import { UserRound } from "lucide-react";
 
 export const Header = () => {
   const languageCode = useSelector((state: RootState) => state.language.code);
+
+  const user = useSelector((state: RootState) => state.auth.user);
+
   const t = useTranslations("Header");
   return (
     <header className="md:flex flex-col py-10 hidden">
@@ -26,12 +29,12 @@ export const Header = () => {
               />
             </Link>
           </li>
-          <NavItem href={`/${languageCode}`} label={t("home")} />
-          <NavItem href={`/${languageCode}/projects`} label={t("projects")} />
-          <NavItem href={`/${languageCode}/about`} label={t("about")} />
-          <li>
-            <UserAccount />
-          </li>
+          <NavItem href={`/${languageCode}`}>{t("home")} </NavItem>
+          <NavItem href={`/${languageCode}/projects`}>{t("projects")}</NavItem>
+          <NavItem href={`/${languageCode}/about`}>{t("about")}</NavItem>
+          <NavItem href={`/${languageCode}/${user ? "account" : "login"}`}>
+            <UserRound />
+          </NavItem>
           <li>
             <LangSwitcher />
           </li>

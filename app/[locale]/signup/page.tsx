@@ -24,7 +24,6 @@ export default function SignUp() {
       dispatch(setUser(signedInUser));
       router.push('/?registration=success');
     }
-    console.log(user);
   };
 
   return (

@@ -6,7 +6,8 @@ import { RootState } from "@/store";
 import { ModeToggle } from "./mode-toggle";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { UserRound } from "lucide-react";
+import { User } from "lucide-react";
+import { UserAccountDropdown } from "@/components/header/user-account-dropdown";
 
 export const Header = () => {
   const languageCode = useSelector((state: RootState) => state.language.code);
@@ -29,12 +30,26 @@ export const Header = () => {
               />
             </Link>
           </li>
-          <NavItem href={`/${languageCode}`}>{t("home")} </NavItem>
-          <NavItem href={`/${languageCode}/projects`}>{t("projects")}</NavItem>
-          <NavItem href={`/${languageCode}/about`}>{t("about")}</NavItem>
-          <NavItem href={`/${languageCode}/${user ? "account" : "login"}`}>
-            <UserRound />
-          </NavItem>
+          <li>
+            <NavItem href={`/${languageCode}`}>{t("home")} </NavItem>
+          </li>
+          <li>
+            <NavItem href={`/${languageCode}/projects`}>
+              {t("projects")}
+            </NavItem>
+          </li>
+          <li>
+            <NavItem href={`/${languageCode}/about`}>{t("about")}</NavItem>
+          </li>
+          <li>
+            {user ? (
+              <UserAccountDropdown />
+            ) : (
+              <NavItem href={`/${languageCode}/login`}>
+                <User />
+              </NavItem>
+            )}
+          </li>
           <li>
             <LangSwitcher />
           </li>

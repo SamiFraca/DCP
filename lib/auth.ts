@@ -30,6 +30,8 @@ export async function signIn(email: string, password: string) {
 
 export async function signOut() {
   const { error } = await supabase.auth.signOut();
+  
+
 
   if (error) {
     console.error("Sign out error:", error.message);

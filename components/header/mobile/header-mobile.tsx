@@ -8,7 +8,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Menu as MenuIcon } from "lucide-react";
+import { Menu as MenuIcon, User } from "lucide-react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { NavItem } from "@/components/header/nav-item";
@@ -17,15 +17,19 @@ import { ModeToggle } from "../mode-toggle";
 import Link from "next/link";
 import Image from "next/image";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
+import { useTranslations } from "next-intl";
+import { UserAccountDropdown } from "../user-account-dropdown";
 
 export function HeaderMobile() {
   const [open, setOpen] = useState(false);
   const languageCode = useSelector((state: RootState) => state.language.code);
+  const user = useSelector((state: RootState) => state.auth.user);
+  const t = useTranslations("Header");
 
   const mobileItems = [
-    { href: `/${languageCode}`, label: "Home" },
-    { href: `/${languageCode}/projects`, label: "Projects" },
-    { href: `/${languageCode}/about`, label: "About" },
+    { href: `/${languageCode}`, label: "home" },
+    { href: `/${languageCode}/projects`, label: "projects" },
+    { href: `/${languageCode}/about`, label: "about" },
   ];
 
   return (
@@ -61,7 +65,21 @@ export function HeaderMobile() {
               <VisuallyHidden.Root>Menu</VisuallyHidden.Root>
             </SheetTitle>
             <ul className="flex flex-col items-start">
-              <div className="flex">
+              <div className="flex items-center p-4 w-full">
+                <li className="flex grow">
+                  {user ? (
+                    <UserAccountDropdown />
+                  ) : (
+                    <NavItem
+                      href={`/${languageCode}/login`}
+                      onClick={() => {
+                        setOpen(false);
+                      }}
+                    >
+                      <User />
+                    </NavItem>
+                  )}
+                </li>
                 <li>
                   <LangSwitcher />
                 </li>
@@ -76,8 +94,9 @@ export function HeaderMobile() {
                     onClick={() => {
                       setOpen(false);
                     }}
-                    label={item.label}
-                  ></NavItem>
+                  >
+                    {t(item.label)}
+                  </NavItem>
                 </li>
               ))}
             </ul>

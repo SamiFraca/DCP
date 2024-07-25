@@ -15,7 +15,7 @@ export const LogOutModalPopup: React.FC<{
   isOpen: boolean;
   onClose: () => void;
 }> = ({ isOpen, onClose }) => {
-    const t = useTranslations("Header");
+    const t = useTranslations();
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
@@ -42,7 +42,7 @@ export const LogOutModalPopup: React.FC<{
             onClick={() => signOut()}
             aria-describedby="logout-action"
           >
-            {t("logout")}
+            {t("Header.logout")}
           </Button>
         </div>
         <VisuallyHidden id="logout-actions">Logout actions</VisuallyHidden>

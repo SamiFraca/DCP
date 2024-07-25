@@ -18,11 +18,7 @@ export const UserAccountDropdown: React.FC = () => {
   const t = useTranslations("Header");
   const languageCode = useSelector((state: RootState) => state.language.code);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleLogOut = () => {
-    setIsModalOpen(true);
-  };
-
+  
   const closeModal = () => {
     setIsModalOpen(false);
   };
@@ -47,7 +43,6 @@ export const UserAccountDropdown: React.FC = () => {
               className="w-full h-full"
               onClick={() => {
                 setIsModalOpen(!isModalOpen);
-                console.log(isModalOpen);
               }}
             >
               {t("logout")}

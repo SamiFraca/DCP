@@ -8,8 +8,6 @@ import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
-import { MoveRight } from "lucide-react";
-import Link from "next/link";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -17,8 +15,8 @@ export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const t = useTranslations("Login");
-  const languageCode = useSelector((state: RootState) => state.language.code);
+  const t = useTranslations();
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const { user: signedInUser, error: signInError } = await signUp(
@@ -35,12 +33,9 @@ export default function Login() {
   };
 
   return (
-    <div className="flex flex-col justify-center gap-4 items-center max-w-screen-sm mx-auto">
-      <h1 className="text-5xl mb-4">{t("login")}</h1>
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col gap-4  w-full"
-      >
+    <div className="flex flex-col justify-center gap-4 items-center">
+      <h1 className="text-5xl mb-4">{t('register')}</h1>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-screen-sm w-full">
         <Input
           className="p-3 "
           type="email"
@@ -50,24 +45,16 @@ export default function Login() {
           required
         />
         <Input
-          className="p-3 "
+         className="p-3 "
           type="password"
-          placeholder={t('password')}
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <Button type="submit" aria-label={t("login")}>
-          <MoveRight />
-        </Button>
+        <Button type="submit" className="">{t('signIn')}</Button>
         {error && <p>{error}</p>}
       </form>
-      <Link
-        href={`/${languageCode}/register`}
-        className="hover:text-blue-500 transition-colors text-start w-full"
-      >
-        {t('newAccount')}
-      </Link>
     </div>
   );
 }

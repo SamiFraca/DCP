@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signUp } from "@/lib/auth";
+import { signIn } from "@/lib/auth";
 import { RootState } from "@/store";
 import { setUser, setError } from "@/features/authSlice";
 import { useRouter } from "next/navigation";
@@ -21,7 +21,7 @@ export default function Login() {
   const languageCode = useSelector((state: RootState) => state.language.code);
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    const { user: signedInUser, error: signInError } = await signUp(
+    const { user: signedInUser, error: signInError } = await signIn(
       email,
       password
     );

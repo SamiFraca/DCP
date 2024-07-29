@@ -15,7 +15,7 @@ export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const t = useTranslations();
+  const t = useTranslations('Login');
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();

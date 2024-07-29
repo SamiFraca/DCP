@@ -1,7 +1,12 @@
 {
   "cancel": "Cancel",
-  "signIn": "Sign in",
-  "register":"Register",
+  "Login":{
+    "signIn": "Sign in",
+    "register":"Register",
+    "login":"Log In",
+    "newAccount":"Don't have an account?",
+    "password":"Password"
+  },
   "Home": {
     "title": "Empower your projects",
     "subtitle": "Research Hub",

@@ -1,5 +1,7 @@
 {
   "cancel": "Cancel",
+  "signIn": "Sign in",
+  "register":"Register",
   "Home": {
     "title": "Empower your projects",
     "subtitle": "Research Hub",

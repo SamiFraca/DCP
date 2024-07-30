@@ -1,5 +1,8 @@
 import { useTranslations } from "next-intl";
 import { Metadata } from "next";
+import { SliderWrapper } from "@/components/slider/slider-wrapper";
+import { SliderCard } from "@/components/slider/slider-card";
+import {  Handshake } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Research Hub",
@@ -21,9 +24,28 @@ export default function Home() {
             </h2>
           </div>
         </div>
-        <div className="text-start w-full mt-8 flex gap-6">
-          <p className="dark:text-gray-300 w-1/2">{t("description")}</p>
-        </div>
+        <SliderWrapper>
+          <SliderCard
+            text={t('cooperationTitle')}
+            description={t('cooperation')}
+            icon={<Handshake/>}
+          />
+          <SliderCard
+            text={t('cooperationTitle')}
+            description={t('cooperation')}
+            icon={<Handshake/>}
+          />
+          <SliderCard
+            text={t('cooperationTitle')}
+            description={t('cooperation')}
+            icon={<Handshake/>}
+          />
+          <SliderCard
+            text={t('cooperationTitle')}
+            description={t('cooperation')}
+            icon={<Handshake/>}
+          />
+        </SliderWrapper>
       </main>
     </>
   );

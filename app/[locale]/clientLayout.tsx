@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useWindowSize } from "@/hooks/useWindowSize";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/header/header";
 import { HeaderMobile } from "@/components/header/mobile/header-mobile";
-import {Loader} from "@/components/loader/loader";
+import { Loader } from "@/components/loader/loader";
+import Loading from "./loading";
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -37,7 +38,7 @@ export function ClientLayout({ children, locale }: ClientLayoutProps) {
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       {width >= 768 ? <Header /> : <HeaderMobile />}
-      {children}
+      <Suspense fallback={<Loading />}>{children}</Suspense>
     </NextIntlClientProvider>
   );
 }

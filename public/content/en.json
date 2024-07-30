@@ -10,7 +10,9 @@
   "Home": {
     "title": "Empower your projects",
     "subtitle": "Research Hub",
-    "description": "Research Hub facilitates meaningful connections by helping you find and connect with potential collaborators who have complementary skills and expertise. By using our page, you can identify and reach out to other researchers, scholars, and professionals who can contribute to your project, providing valuable insights and support."
+    "description": "Research Hub facilitates meaningful connections by helping you find and connect with potential collaborators who have complementary skills and expertise. By using our page, you can identify and reach out to other researchers, scholars, and professionals who can contribute to your project, providing valuable insights and support.",
+    "cooperationTitle":"Transform Your Vision into Reality",
+    "cooperation":"Collaborate with experts to bring your dream app or project to life. Whether you're looking to build an innovative mobile application or develop a groundbreaking project, teaming up with skilled professionals can make all the difference."
   },
   "Header": {
     "home": "Home",

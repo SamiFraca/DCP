@@ -78,7 +78,7 @@
 @property --border-angle {
   inherits: false;
   initial-value: 0deg;
-  syntax: '<angle>';
+  syntax: "<angle>";
 }
 
 @layer base {
@@ -113,10 +113,10 @@
     cursor: pointer;
     border: 1px solid rgb(192, 132, 252);
   }
-  .animate-border{
+  .animate-border {
     animation: border 4s linear infinite;
   }
-  
+
   .border-animation {
     background: linear-gradient(45deg, #172033, #1e293b 50%, #172033)
         padding-box,
@@ -129,5 +129,14 @@
           rgb(71 85 105 / 0.48)
         )
         border-box;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .no-scrollbar {
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
   }
 }

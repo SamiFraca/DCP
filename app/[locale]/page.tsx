@@ -2,7 +2,22 @@ import { useTranslations } from "next-intl";
 import { Metadata } from "next";
 import { SliderWrapper } from "@/components/slider/slider-wrapper";
 import { SliderCard } from "@/components/slider/slider-card";
-import {  Handshake, Lightbulb ,Network, Rocket} from "lucide-react";
+import {
+  BriefcaseBusiness,
+  Calculator,
+  Cog,
+  Cpu,
+  FlaskConical,
+  Handshake,
+  Lightbulb,
+  Megaphone,
+  Network,
+  Palette,
+  Rocket,
+  Trophy,
+} from "lucide-react";
+import { GridWrapper } from "@/components/grid/grid-wrapper";
+import { GridCard } from "@/components/grid/grid-card";
 
 export const metadata: Metadata = {
   title: "Research Hub",
@@ -26,26 +41,63 @@ export default function Home() {
         </div>
         <SliderWrapper>
           <SliderCard
-            text={t('cooperationTitle')}
-            description={t('cooperation')}
-            icon={<Handshake/>}
+            text={t("cooperationTitle")}
+            description={t("cooperation")}
+            icon={<Handshake />}
           />
           <SliderCard
-            text={t('ideasExpertiseTitle')}
-            description={t('ideasExpertise')}
-            icon={<Lightbulb/>}
+            text={t("ideasExpertiseTitle")}
+            description={t("ideasExpertise")}
+            icon={<Lightbulb />}
           />
           <SliderCard
-            text={t('contactNetworkTitle')}
-            description={t('contactNetwork')}
-            icon={<Network/>}
+            text={t("contactNetworkTitle")}
+            description={t("contactNetwork")}
+            icon={<Network />}
           />
           <SliderCard
-            text={t('existingProjectTitle')}
-            description={t('existingProject')}
-            icon={<Rocket/>}
+            text={t("existingProjectTitle")}
+            description={t("existingProject")}
+            icon={<Rocket />}
           />
         </SliderWrapper>
+        <h3 className="text-center mt-20 text-3xl space-grotesk">
+          What are you interested in?
+        </h3>
+        <GridWrapper className="mt-20">
+          <GridCard
+            icon={<FlaskConical width={100} height={100} />}
+            text="Science"
+          />
+          <GridCard
+            icon={<Cpu width={100} height={100} />}
+            text="Computer & IT"
+          />
+          <GridCard
+            icon={<Trophy width={100} height={100} />}
+            text="Sports"
+          />
+          <GridCard
+            icon={<Palette width={100} height={100} />}
+            text="Arts"
+          />
+          <GridCard
+            icon={<BriefcaseBusiness width={100} height={100} />}
+            text="Business"
+          />
+          <GridCard
+            icon={<Calculator width={100} height={100} />}
+            text="Mathematics"
+          />
+          <GridCard
+            icon={<Cog width={100} height={100} />}
+            text="Engineering"
+          />
+          <GridCard
+            icon={<Megaphone width={100} height={100} />}
+            text="Communication"
+          />
+        </GridWrapper>
       </main>
     </>
   );

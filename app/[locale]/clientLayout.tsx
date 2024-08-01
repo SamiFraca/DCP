@@ -38,7 +38,7 @@ export function ClientLayout({ children, locale }: ClientLayoutProps) {
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       {width >= 768 ? <Header /> : <HeaderMobile />}
-      <Suspense fallback={<Loading />}>{children}</Suspense>
+      <Suspense fallback={<Loading />}><main className="mx-12">{children}</main></Suspense>
     </NextIntlClientProvider>
   );
 }

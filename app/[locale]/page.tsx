@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { GridWrapper } from "@/components/grid/grid-wrapper";
 import { GridCard } from "@/components/grid/grid-card";
+import { ProjectCard } from "@/components/project-card";
 
 export const metadata: Metadata = {
   title: "Research Hub",
@@ -27,7 +28,7 @@ export default function Home() {
   const t = useTranslations("Home");
   return (
     <>
-      <main className="flex flex-col  w-full">
+      <div className="flex flex-col  w-full max-w-[1440px]">
         <div className="relative flex items-center justify-center w-full h-[300px] ">
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="bg-gradient-to-bl from-purple-500/50 via-purple-500/30 to-transparent blur-2xl rounded-full w-[400px] h-[200px]" />
@@ -62,43 +63,85 @@ export default function Home() {
           />
         </SliderWrapper>
         <h3 className="text-center mt-20 text-3xl space-grotesk">
-          {t('gridTitle')}
+          {t("gridTitle")}
         </h3>
-        <GridWrapper className="mt-20">
+        <GridWrapper className="mt-20 max-w-screen-[1440px]">
           <GridCard
             icon={<FlaskConical width={100} height={100} />}
-            text={t('CategoryGrid.Science')}
+            text={t("CategoryGrid.Science")}
           />
           <GridCard
             icon={<Cpu width={100} height={100} />}
-            text={t('CategoryGrid.IT')}
+            text={t("CategoryGrid.IT")}
           />
           <GridCard
             icon={<Trophy width={100} height={100} />}
-            text={t('CategoryGrid.Sports')}
+            text={t("CategoryGrid.Sports")}
           />
           <GridCard
             icon={<Palette width={100} height={100} />}
-            text={t('CategoryGrid.Arts')}
+            text={t("CategoryGrid.Arts")}
           />
           <GridCard
             icon={<BriefcaseBusiness width={100} height={100} />}
-            text={t('CategoryGrid.Business')}
+            text={t("CategoryGrid.Business")}
           />
           <GridCard
             icon={<Calculator width={100} height={100} />}
-            text={t('CategoryGrid.Mathematics')}
+            text={t("CategoryGrid.Mathematics")}
           />
           <GridCard
             icon={<Cog width={100} height={100} />}
-            text={t('CategoryGrid.Engineering')}
+            text={t("CategoryGrid.Engineering")}
           />
           <GridCard
             icon={<Megaphone width={100} height={100} />}
-            text={t('CategoryGrid.Communication')}
+            text={t("CategoryGrid.Communication")}
           />
         </GridWrapper>
-      </main>
+        <h3 className="text-3xl space-grotesk mt-20 mb-2">Featured Projects</h3>
+        <span className="h-1 w-12 bg-purple-500"></span>
+        <ul className="flex flex-wrap gap-4 mt-10">
+          <ProjectCard
+            title="Python chatbot"
+            author="Mesmer"
+            category="Computer & IT"
+            description="Python chatbot for discord to play games"
+          />
+          <ProjectCard title="Travel Blog Website" author="Wanderlust" category="Travel" description="Share your travel experiences and tips with fellow travelers"/>
+          
+          <ProjectCard
+            title="Web Development Course"
+            author="CodeGeek"
+            category="Education"
+            description="Learn HTML, CSS, and JavaScript in this interactive course"
+          />
+          <ProjectCard
+            title="Mobile App for Fitness"
+            author="FitTech"
+            category="Health & Wellness"
+            description="Track your fitness progress and get personalized workout routines"
+          />
+          <ProjectCard
+            title="E-commerce Platform"
+            author="ShopifyMaster"
+            category="Business"
+            description="Build your own online store with customizable features"
+          />
+          <ProjectCard
+            title="Recipe Sharing App"
+            author="FoodieDev"
+            category="Food & Drink"
+            description="Discover and share delicious recipes with other food enthusiasts"
+          />
+          <ProjectCard
+            title="Online Event Management System"
+            author="EventPlanner"
+            category="Event Planning"
+            description="Organize and manage events with ease using this platform"
+          />
+        </ul>
+      </div>
     </>
   );
 }

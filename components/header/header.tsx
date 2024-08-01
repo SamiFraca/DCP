@@ -16,7 +16,7 @@ export const Header = () => {
 
   const t = useTranslations("Header");
   return (
-    <header className="md:flex flex-col py-10 hidden sticky top-0 dark:bg-black bg-white  z-20 w-full px-12">
+    <header className="md:flex flex-col py-10 hidden sticky top-0 bg-[hsl(var(--background))]  z-20 w-full px-12">
       <nav aria-label="Main Navigation ">
         <ul className="flex gap-10 items-center">
           <li className="flex-shrink-0 grow">

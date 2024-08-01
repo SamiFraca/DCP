@@ -40,13 +40,9 @@ export function HeaderMobile() {
           aria-label="Home"
           className="grow flex shrink-0"
         >
-          <Image
-            src="/logo.svg"
-            alt="web logo"
-            width={100}
-            height={40}
-            priority
-          />
+           <Link href={`/${languageCode}`} aria-label="Home" className="text-3xl space-grotesk">
+              ResearchHub
+            </Link>
         </Link>
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>

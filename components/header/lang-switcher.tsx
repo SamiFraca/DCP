@@ -52,12 +52,10 @@ const LangSwitcher: React.FC = () => {
   return (
     <div className="">
       <div className="relative text-lg">
-        <DropdownMenu>
+        <DropdownMenu onOpenChange={() =>setIsOptionsExpanded(!isOptionsExpanded)}>
           <DropdownMenuTrigger asChild>
             <button
               className="justify-between  gap-2   text-white focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
-              onClick={() => setIsOptionsExpanded(!isOptionsExpanded)}
-              onBlur={() => setIsOptionsExpanded(false)}
             >
               <Image
                 key={language.code}

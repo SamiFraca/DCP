@@ -20,14 +20,8 @@ export const Header = () => {
       <nav aria-label="Main Navigation ">
         <ul className="flex gap-10 items-center">
           <li className="flex-shrink-0 grow">
-            <Link href={`/${languageCode}`} aria-label="Home">
-              <Image
-                src="/logo.svg"
-                alt="web logo"
-                width={100}
-                height={40}
-                priority
-              />
+            <Link href={`/${languageCode}`} aria-label="Home" className="text-3xl space-grotesk">
+              ResearchHub
             </Link>
           </li>
           <li>

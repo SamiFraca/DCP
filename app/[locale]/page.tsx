@@ -112,7 +112,7 @@ export default function Home({
             text={t("CategoryGrid.Communication")}
           />
         </GridWrapper>
-        <h3 className="text-3xl space-grotesk mt-20 mb-2">Featured Projects</h3>
+        <h3 className="text-3xl space-grotesk mt-20 mb-2">{t('featuredProjects')}</h3>
         <span className="h-1 w-12 bg-purple-500"></span>
         <ul className="flex flex-wrap gap-4 mt-10">
           <ProjectCard

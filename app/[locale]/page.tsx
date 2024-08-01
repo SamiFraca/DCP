@@ -42,7 +42,7 @@ export default function Home({
           </div>
         )}
         
-        <div className="relative flex items-center justify-center w-full h-[300px] ">
+        <div className="relative flex items-center justify-center w-full h-[300px] mt-12">
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="bg-gradient-to-bl from-purple-500/50 via-purple-500/30 to-transparent blur-2xl rounded-full w-[400px] h-[200px]" />
           </div>

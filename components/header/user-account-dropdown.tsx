@@ -14,11 +14,12 @@ import Link from "next/link";
 import { RootState } from "@/store";
 import { LogOutModalPopup } from "@/components/header/log-out-popup";
 import { useState } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 export const UserAccountDropdown: React.FC = () => {
   const t = useTranslations("Header");
   const languageCode = useSelector((state: RootState) => state.language.code);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+
   const closeModal = () => {
     setIsModalOpen(false);
   };
@@ -27,8 +28,11 @@ export const UserAccountDropdown: React.FC = () => {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="h-8 w-8 p-0">
-            <User className="" />
+          <Button variant="ghost" className="p-0">
+            <Avatar className="w-8 h-8">
+              <AvatarImage src="https://github.com/shadcn.png"  />
+              <AvatarFallback><User/></AvatarFallback>
+            </Avatar>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" forceMount className="cursor-pointer">

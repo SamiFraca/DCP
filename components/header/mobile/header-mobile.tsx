@@ -33,7 +33,7 @@ export function HeaderMobile() {
   ];
 
   return (
-    <header className="md:hidden flex p-5">
+    <header className="md:hidden flex p-5 sticky top-0 dark:bg-black z-20">
       <nav className="flex items-center w-full">
         <Link
           href={`/${languageCode}`}

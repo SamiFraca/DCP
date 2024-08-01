@@ -33,7 +33,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex flex-col justify-center gap-4 items-center">
+    <div className="flex flex-col justify-center gap-4 items-center mt-12">
       <h1 className="text-5xl mb-4">{t('register')}</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-screen-sm w-full">
         <Input
@@ -52,7 +52,7 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <Button type="submit" className="">{t('signIn')}</Button>
+        <Button type="submit">{t('signIn')}</Button>
         {error && <p>{error}</p>}
       </form>
     </div>

@@ -30,12 +30,12 @@ export default function Login() {
       dispatch(setError(signInError));
     } else {
       dispatch(setUser(signedInUser));
-      router.push("/?registration=success");
+      router.push("/?login=success");
     }
   };
 
   return (
-    <div className="flex flex-col justify-center gap-4 items-center max-w-screen-sm mx-auto">
+    <div className="flex flex-col justify-center gap-4 items-center max-w-screen-sm mx-auto mt-12">
       <h1 className="text-5xl mb-4">{t("login")}</h1>
       <form
         onSubmit={handleSubmit}

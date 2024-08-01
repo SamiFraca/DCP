@@ -20,6 +20,8 @@
     "existingProjectTitle": "Impulsa un Proyecto Existente",
     "existingProject": "Revitaliza tu proyecto actual con ideas frescas y mejoras en las características existentes. Descubre nuevas formas de optimizar y potenciar tu proyecto, añadiendo innovaciones que aumenten su funcionalidad y atractivo. Lleva tu proyecto al siguiente nivel con estrategias que promuevan su éxito y crecimiento continuo, asegurando que siempre esté a la vanguardia.",
     "gridTitle":"¿En qué estas interesado?",
+    "registerSuccess":"Registrado exitosamente!",
+    "loginSuccess":"Bienvenido de vuelta!",
     "CategoryGrid": {
       "Science": "Ciencia",
       "IT": "Informática",

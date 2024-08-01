@@ -62,40 +62,40 @@ export default function Home() {
           />
         </SliderWrapper>
         <h3 className="text-center mt-20 text-3xl space-grotesk">
-          What are you interested in?
+          {t('gridTitle')}
         </h3>
         <GridWrapper className="mt-20">
           <GridCard
             icon={<FlaskConical width={100} height={100} />}
-            text="Science"
+            text={t('CategoryGrid.Science')}
           />
           <GridCard
             icon={<Cpu width={100} height={100} />}
-            text="Computer & IT"
+            text={t('CategoryGrid.IT')}
           />
           <GridCard
             icon={<Trophy width={100} height={100} />}
-            text="Sports"
+            text={t('CategoryGrid.Sports')}
           />
           <GridCard
             icon={<Palette width={100} height={100} />}
-            text="Arts"
+            text={t('CategoryGrid.Arts')}
           />
           <GridCard
             icon={<BriefcaseBusiness width={100} height={100} />}
-            text="Business"
+            text={t('CategoryGrid.Business')}
           />
           <GridCard
             icon={<Calculator width={100} height={100} />}
-            text="Mathematics"
+            text={t('CategoryGrid.Mathematics')}
           />
           <GridCard
             icon={<Cog width={100} height={100} />}
-            text="Engineering"
+            text={t('CategoryGrid.Engineering')}
           />
           <GridCard
             icon={<Megaphone width={100} height={100} />}
-            text="Communication"
+            text={t('CategoryGrid.Communication')}
           />
         </GridWrapper>
       </main>

@@ -17,7 +17,6 @@ import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 export const UserAccountDropdown: React.FC = () => {
   const t = useTranslations("Header");
-  const languageCode = useSelector((state: RootState) => state.language.code);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const closeModal = () => {
@@ -37,7 +36,7 @@ export const UserAccountDropdown: React.FC = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" forceMount className="cursor-pointer">
           <DropdownMenuItem>
-            <Link href={`/${languageCode}/profile`} className="w-full h-full">
+            <Link href={`/profile`} className="w-full h-full">
               {t("profile")}
             </Link>
           </DropdownMenuItem>

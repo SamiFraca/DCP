@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store";
 
 const footerLinks = [
   { href: "about", title: "About Us" },
@@ -14,7 +12,6 @@ const footerLinks = [
 ];
 
 export const Footer: React.FC = () => {
-  const languageCode = useSelector((state: RootState) => state.language.code);
 
   return (
     <footer className="w-full mt-12 flex flex-col justify-center dark:text-gray-400 text-gray-600 ">
@@ -26,7 +23,7 @@ export const Footer: React.FC = () => {
         {footerLinks.map(({ href, title }) => (
           <li key={href}>
             <Link
-              href={`/${languageCode}/${href}`}
+              href={`/${href}`}
               className="dark:hover:text-white hover:text-black text-sm flex gap"
             >
               {title}

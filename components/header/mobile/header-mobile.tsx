@@ -15,35 +15,27 @@ import { NavItem } from "@/components/header/nav-item";
 import LangSwitcher from "../lang-switcher";
 import { ModeToggle } from "../mode-toggle";
 import Link from "next/link";
-import Image from "next/image";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { useTranslations } from "next-intl";
 import { UserAccountDropdown } from "../user-account-dropdown";
 
 export function HeaderMobile() {
   const [open, setOpen] = useState(false);
-  const languageCode = useSelector((state: RootState) => state.language.code);
   const user = useSelector((state: RootState) => state.auth.user);
   const t = useTranslations("Header");
 
   const mobileItems = [
-    { href: `/${languageCode}`, label: "home" },
-    { href: `/${languageCode}/projects`, label: "projects" },
-    { href: `/${languageCode}/about`, label: "about" },
+    { href: `/`, label: "home" },
+    { href: `/projects`, label: "projects" },
+    { href: `/about`, label: "about" },
   ];
 
   return (
     <header className="md:hidden flex p-5 sticky top-0 dark:bg-black z-20">
       <nav className="flex items-center w-full">
-        <Link
-          href={`/${languageCode}`}
-          aria-label="Home"
-          className="grow flex shrink-0"
-        >
-           <Link href={`/${languageCode}`} aria-label="Home" className="text-3xl space-grotesk">
+           <Link aria-label="Home" href='/' className="text-3xl space-grotesk">
               ResearchHub
             </Link>
-        </Link>
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon" className="md:hidden">
@@ -67,7 +59,7 @@ export function HeaderMobile() {
                     <UserAccountDropdown />
                   ) : (
                     <NavItem
-                      href={`/${languageCode}/login`}
+                      href={`/login`}
                       onClick={() => {
                         setOpen(false);
                       }}

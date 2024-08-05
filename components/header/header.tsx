@@ -9,7 +9,6 @@ import { User } from "lucide-react";
 import { UserAccountDropdown } from "@/components/header/user-account-dropdown";
 
 export const Header = () => {
-  const languageCode = useSelector((state: RootState) => state.language.code);
 
   const user = useSelector((state: RootState) => state.auth.user);
 
@@ -19,26 +18,26 @@ export const Header = () => {
       <nav aria-label="Main Navigation ">
         <ul className="flex gap-10 items-center">
           <li className="flex-shrink-0 grow">
-            <Link href={`/${languageCode}`} aria-label="Home" className="text-3xl space-grotesk">
+            <Link href={``} aria-label="Home" className="text-3xl space-grotesk">
               ResearchHub
             </Link>
           </li>
           <li>
-            <NavItem href={`/${languageCode}`}>{t("home")} </NavItem>
+            <NavItem href={``}>{t("home")} </NavItem>
           </li>
           <li>
-            <NavItem href={`/${languageCode}/projects`}>
+            <NavItem href={`/projects`}>
               {t("projects")}
             </NavItem>
           </li>
           <li>
-            <NavItem href={`/${languageCode}/about`}>{t("about")}</NavItem>
+            <NavItem href={`/about`}>{t("about")}</NavItem>
           </li>
           <li>
             {user ? (
               <UserAccountDropdown />
             ) : (
-              <NavItem href={`/${languageCode}/login`}>
+              <NavItem href={`/login`}>
                 <User />
               </NavItem>
             )}

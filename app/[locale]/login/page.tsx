@@ -18,7 +18,6 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const t = useTranslations("Login");
-  const languageCode = useSelector((state: RootState) => state.language.code);
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const { user: signedInUser, error: signInError } = await signIn(
@@ -63,7 +62,7 @@ export default function Login() {
         {error && <p>{error}</p>}
       </form>
       <Link
-        href={`/${languageCode}/register`}
+        href={`/register`}
         className="hover:text-blue-500 transition-colors text-start w-full"
       >
         {t('newAccount')}

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { NavItem } from "./nav-item";
 import LangSwitcher from "./lang-switcher";
 import { useSelector } from "react-redux";

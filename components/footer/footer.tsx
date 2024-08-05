@@ -17,7 +17,7 @@ export const Footer: React.FC = () => {
   const languageCode = useSelector((state: RootState) => state.language.code);
 
   return (
-    <footer className="border-t border-gray-800 w-full mt-12 flex flex-col justify-center dark:text-gray-400 text-gray-600 ">
+    <footer className="w-full mt-12 flex flex-col justify-center dark:text-gray-400 text-gray-600 ">
       <div className="text-center p-4 flex gap-4 justify-center  text-sm mt-8">
         ResearchHub
         <span className="w-1 h-auto border-r"></span>© 2024 - PRESENT

@@ -8,6 +8,7 @@ import { Header } from "@/components/header/header";
 import { HeaderMobile } from "@/components/header/mobile/header-mobile";
 import { Loader } from "@/components/loader/loader";
 import Loading from "./loading";
+import { Footer } from "@/components/footer/footer";
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -41,6 +42,7 @@ export function ClientLayout({ children, locale }: ClientLayoutProps) {
       <Suspense fallback={<Loading />}>
         <main className="mx-12">{children}</main>
       </Suspense>
+      <Footer/>
     </NextIntlClientProvider>
   );
 }

@@ -163,6 +163,9 @@
   .notification {
     animation: slideIn 0.5s ease-in-out, fadeOut 0.5s ease-in-out 3s forwards;
   }
+  .alert-notification{
+    animation: slideIn 0.5s ease-in-out;
+  }
 
   .hidden {
     display: none;

@@ -9,7 +9,6 @@ const i18nMiddleware = createMiddleware({
 });
 
 export async function middleware(request: NextRequest) {
-  console.log('Request URL:', request.nextUrl.pathname);
   const i18nResponse = i18nMiddleware(request);
 
   if (i18nResponse) {

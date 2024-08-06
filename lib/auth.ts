@@ -1,4 +1,3 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import { supabase } from "./supabaseClient";
 
 export async function signUp(email: string, password: string) {

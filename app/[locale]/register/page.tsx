@@ -8,6 +8,8 @@ import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
+import { signup } from "./actions";
+import { AlertInput } from "@/components/alert/alert-input";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -17,25 +19,27 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const t = useTranslations('Login');
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleFormSubmitRegister = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { user: signedInUser, error: signInError } = await signUp(
-      email,
-      password
-    );
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("password", password);
 
-    if (signInError) {
-      dispatch(setError(signInError));
-    } else {
-      dispatch(setUser(signedInUser));
-      router.push("/?registration=success");
+    const { error, success } = await signup(formData);
+
+    if (error) {
+      setError(error);
+    }
+    if(success){
+      router.push('/?login=success');
+      window.location.reload();
     }
   };
 
   return (
     <div className="flex flex-col justify-center gap-4 items-center mt-12">
       <h1 className="text-5xl mb-4">{t('register')}</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-screen-sm w-full">
+      <form onSubmit={handleFormSubmitRegister} className="flex flex-col gap-4 max-w-screen-sm w-full">
         <Input
           className="p-3 "
           type="email"
@@ -53,7 +57,7 @@ export default function Login() {
           required
         />
         <Button type="submit">{t('signIn')}</Button>
-        {error && <p>{error}</p>}
+        {error && <AlertInput message={error} variant="error" />}
       </form>
     </div>
   );

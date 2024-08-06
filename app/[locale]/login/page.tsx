@@ -16,7 +16,7 @@ export default function Login() {
   const t = useTranslations("Login");
   const router = useRouter();
 
-  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmitLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData();
     formData.append("email", email);
@@ -36,7 +36,7 @@ export default function Login() {
   return (
     <div className="flex flex-col justify-center gap-4 items-center max-w-screen-sm mx-auto mt-12">
       <h1 className="text-5xl mb-4">{t("login")}</h1>
-      <form className="flex flex-col gap-4 w-full" onSubmit={handleFormSubmit}>
+      <form className="flex flex-col gap-4 w-full" onSubmit={handleFormSubmitLogin}>
         <Input
           className="p-3"
           type="email"

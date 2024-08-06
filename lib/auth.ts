@@ -1,3 +1,4 @@
+import { NextApiRequest, NextApiResponse } from "next";
 import { supabase } from "./supabaseClient";
 
 export async function signUp(email: string, password: string) {
@@ -28,15 +29,22 @@ export async function signIn(email: string, password: string) {
   return { user };
 }
 
-export async function signOut() {
-  const { error } = await supabase.auth.signOut();
-  
+export async function signOutUser() {
+  try {
+    const response = await fetch("/api/auth/signout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-
-  if (error) {
-    console.error("Sign out error:", error.message);
-    return { error: error.message };
+    if (response.ok) {
+      window.location.href = "/"; 
+    } else {
+      const errorData = await response.json();
+      console.error("Failed to sign out:", errorData.error);
+    }
+  } catch (error) {
+    console.error("An unexpected error occurred during sign out:", error);
   }
-
-  return {};
 }

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { supabase } from '../lib/supabaseClient';
 import { setUser, setLoading, setError, signOut } from '@/features/authSlice';
 import { RootState } from '@/store';
+import { Loader } from './loader/loader';
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [dispatch]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className='bg-[hsl(var(--background))]'><Loader/></div>;
   }
 
   return <>{children}</>;

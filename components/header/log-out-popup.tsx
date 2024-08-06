@@ -6,16 +6,18 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { signOut } from "@/lib/auth";
 import { Button } from "../ui/button";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useTranslations } from "next-intl";
-
+import { signOutUser } from "@/lib/auth";
 export const LogOutModalPopup: React.FC<{
   isOpen: boolean;
   onClose: () => void;
 }> = ({ isOpen, onClose }) => {
-    const t = useTranslations();
+  const logoutHandler = () => {
+    signOutUser();
+  }
+  const t = useTranslations();
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
@@ -39,7 +41,7 @@ export const LogOutModalPopup: React.FC<{
           </Button>
           <Button
             variant={"default"}
-            onClick={() => signOut()}
+            onClick={() => logoutHandler()}
             aria-describedby="logout-action"
           >
             {t("Header.logout")}

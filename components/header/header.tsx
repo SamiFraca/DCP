@@ -50,7 +50,7 @@ export const Header = () => {
             <NavItem href={`/about`}>{t("about")}</NavItem>
           </li>
           <li>
-            {userData !== null ? (
+            {userData ? (
               <UserAccountDropdown />
             ) : (
               <NavItem href={`/login`}>

@@ -7,23 +7,29 @@ import { MoveRight } from "lucide-react";
 import Link from "next/link";
 import { login } from "./actions";
 import { AlertInput } from "@/components/alert/alert-input";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const t = useTranslations("Login");
+  const router = useRouter();
 
-  const handleFormSubmit = async (event:React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData();
     formData.append("email", email);
     formData.append("password", password);
 
-    const message = await login(formData);
+    const { error, success } = await login(formData);
 
-    if (message) {
-      setError(message);
+    if (error) {
+      setError(error);
+    }
+    if(success){
+      router.push('/?login=success');
+      window.location.reload();
     }
   };
 

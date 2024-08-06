@@ -6,33 +6,31 @@ import { useTranslations } from "next-intl";
 import { MoveRight } from "lucide-react";
 import Link from "next/link";
 import { login } from "./actions";
+import { AlertInput } from "@/components/alert/alert-input";
 
 export default function Login() {
-
-  const [error,setError] = useState('');
+  const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const t = useTranslations("Login");
 
-  // Wrapper function to handle form data
-  const handleFormSubmit = async () => {
-    // Assuming `login` is an async function
+  const handleFormSubmit = async (event:React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     const formData = new FormData();
     formData.append("email", email);
     formData.append("password", password);
 
-    const message  = await login(formData);
-    console.log(message);
+    const message = await login(formData);
 
     if (message) {
-      setError(message)
+      setError(message);
     }
   };
 
   return (
     <div className="flex flex-col justify-center gap-4 items-center max-w-screen-sm mx-auto mt-12">
       <h1 className="text-5xl mb-4">{t("login")}</h1>
-      <form className="flex flex-col gap-4 w-full">
+      <form className="flex flex-col gap-4 w-full" onSubmit={handleFormSubmit}>
         <Input
           className="p-3"
           type="email"
@@ -49,14 +47,10 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <Button
-          type="button"
-          aria-label={t("login")}
-          onClick={handleFormSubmit}
-        >
+        <Button type="submit" aria-label={t("login")}>
           <MoveRight />
         </Button>
-        {error && <p>{error}</p>}
+        {error && <AlertInput message={error} variant="error" />}
       </form>
       <Link
         href={`/register`}

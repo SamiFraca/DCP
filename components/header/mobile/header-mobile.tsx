@@ -33,7 +33,7 @@ export function HeaderMobile() {
   return (
     <header className="md:hidden flex p-5 sticky top-0 dark:bg-black z-20">
       <nav className="flex items-center w-full">
-           <Link aria-label="Home" href='/' className="text-3xl space-grotesk">
+           <Link aria-label="Home" href='/' className="text-3xl space-grotesk grow">
               ResearchHub
             </Link>
         <Sheet open={open} onOpenChange={setOpen}>

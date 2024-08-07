@@ -1,12 +1,9 @@
-// app/api/auth/signout/route.ts
-
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabaseClient"; // Import your Supabase client
+import { supabase } from "@/lib/supabaseClient";
 import { serialize } from "cookie";
 import { cookies } from "next/headers";
 
 export async function POST() {
-  // Sign out from Supabase
   const { error } = await supabase.auth.signOut();
 
   if (error) {
@@ -28,7 +25,7 @@ export async function POST() {
         secure: process.env.NODE_ENV === "production",
         sameSite: "strict",
         path: "/",
-        maxAge: -1, // Expire the cookie
+        maxAge: -1,
       });
     });
 

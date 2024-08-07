@@ -1,12 +1,10 @@
 import { useTranslations } from "next-intl";
 import { Metadata } from "next";
-import { SliderWrapper } from "@/components/slider/slider-wrapper";
-import { SliderCard } from "@/components/slider/slider-card";
-import { Handshake, Lightbulb, Network, Rocket } from "lucide-react";
+
 
 import GridHome from "@/components/grid/grid-home";
-import ProjectList from "@/components/card/project-list-home";
 import SliderListHome from "@/components/slider/slider-list-home";
+import ProjectListHome from "@/components/card/project-list-home";
 
 export const metadata: Metadata = {
   title: "Research Hub",
@@ -55,7 +53,7 @@ export default function Home({
           {t("featuredProjects")}
         </h3>
         <span className="h-1 w-12 bg-purple-500"></span>
-        <ProjectList />
+        <ProjectListHome />
       </div>
     </>
   );

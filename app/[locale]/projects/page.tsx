@@ -1,7 +1,11 @@
-import { useTranslations } from "next-intl";
-export default function Test() {
-  const t = useTranslations("Home");
+import ProjectList  from "@/components/project/project-list";
+
+const Projects = () => {
+
+
   return (
-    <main className="flex  flex-col">{t("title")}</main>
+    <ProjectList />
   );
-}
+};
+
+export default Projects;

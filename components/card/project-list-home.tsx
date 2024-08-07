@@ -47,7 +47,7 @@ const projectData = [
 ];
 
 
-const ProjectList = () => (
+const ProjectListHome = () => (
   <ul className="flex flex-wrap gap-4 mt-10">
     {projectData.map((project, index) => (
       <ProjectCard
@@ -61,4 +61,4 @@ const ProjectList = () => (
   </ul>
 );
 
-export default ProjectList;
+export default ProjectListHome;

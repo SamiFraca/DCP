@@ -15,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Link from "next/link";
 export type RegisterInputs = {
   email: string;
   password: string;
@@ -27,36 +28,16 @@ export type RegisterInputs = {
     };
   };
 };
+
 const interestCategories = [
-  {
-    name: "Sports",
-    value: "sports",
-  },
-  {
-    name: "Science",
-    value: "science",
-  },
-  {
-    name: "Arts",
-    value: "arts",
-  },
-  {
-    name: "Engineering",
-    value: "engineering",
-  },
-  {
-    name: "Computer & IT",
-    value: "computer-it",
-  },
-  {
-    name: "Business",
-    value: "business",
-  },
-  {
-    name: "Communication",
-    value: "communication",
-  },
-];
+  "interestCategories.sports",
+  "interestCategories.science",
+  "interestCategories.arts",
+  "interestCategories.engineering",
+  "interestCategories.computer-it",
+  "interestCategories.business",
+  "interestCategories.communication",
+ ];
 export default function Register() {
   const [supabaseError, setSupabaseError] = useState("");
   const {
@@ -66,7 +47,7 @@ export default function Register() {
     formState: { errors },
   } = useForm<RegisterInputs>();
   const router = useRouter();
-  const t = useTranslations("Login");
+  const t = useTranslations("Register");
   const handleFormSubmitRegister: SubmitHandler<RegisterInputs> = async (
     data
   ) => {
@@ -81,7 +62,7 @@ export default function Register() {
   };
 
   return (
-    <div className="flex flex-col justify-center gap-4 items-center mt-12">
+    <div className="flex flex-col justify-center gap-4 items-center mt-12 ">
       <h1 className="text-5xl mb-4">{t("register")}</h1>
       <form
         onSubmit={handleSubmit(handleFormSubmitRegister)}
@@ -90,9 +71,9 @@ export default function Register() {
         <Input
           className="p-3 "
           type="email"
-          placeholder="Email *"
+          placeholder={`${t('email')} *`}
           {...register("email", {
-            required: "Email is required",
+            required: `${t('email')} ${t('required')}`,
           })}
         />
         {errors.email && (
@@ -101,9 +82,9 @@ export default function Register() {
         <Input
           className="p-3 "
           type="password"
-          placeholder="Password *"
+          placeholder={`${t('password')} *`}
           {...register("password", {
-            required: "Password is required",
+            required: `${t('password')} ${t('required')}`,
           })}
         />
         {errors.password && (
@@ -114,9 +95,9 @@ export default function Register() {
             <Input
               className="p-3 "
               type="text"
-              placeholder="Name *"
+              placeholder={`${t('name')} *`}
               {...register("options.data.name", {
-                required: "Name is required",
+                required: `${t('name')} ${t('required')}`,
               })}
             />
             {errors.options?.data?.name && (
@@ -129,7 +110,7 @@ export default function Register() {
           <Input
             className="p-3 w-1/2 "
             type="text"
-            placeholder="Last name"
+            placeholder={`${t('lastName')} *`}
             {...register("options.data.lastName")}
           />
         </div>
@@ -138,9 +119,9 @@ export default function Register() {
             <Input
               className="p-3 "
               type="text"
-              placeholder="Country *"
+              placeholder={`${t('country')} *`}
               {...register("options.data.country", {
-                required: "Country is required",
+                required: `${t('country')} ${t('required')}`,
               })}
               aria-invalid={errors.options?.data?.country ? "true" : "false"}
             />
@@ -155,7 +136,7 @@ export default function Register() {
             <Controller
               name="options.data.mainField"
               control={control}
-              rules={{ required: "Email address is required" }}
+              rules={{ required: `${t('category')} ${t('required')}`}}
               aria-invalid={errors.email ? "true" : "false"}
               render={({ field }) => (
                 <Select
@@ -164,13 +145,13 @@ export default function Register() {
                   onValueChange={field.onChange}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="What's your main interest?" />
+                    <SelectValue placeholder={t('mainInterest')} />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
                       {interestCategories.map((category, index) => (
-                        <SelectItem key={index} value={category.value}>
-                          {category.name}
+                        <SelectItem key={index} value={category}>
+                          {t(category)}
                         </SelectItem>
                       ))}
                     </SelectGroup>
@@ -191,6 +172,10 @@ export default function Register() {
           <AlertInput message={supabaseError} variant="error" />
         )}
       </form>
+
+      <Link href={"/login"} className="text-start max-w-screen-sm w-full hover:text-blue-500 transition-colors ">
+        {t("alreadyAccount")}
+      </Link>
     </div>
   );
 }

@@ -1,15 +1,31 @@
 {
   "cancel": "Cancel",
   "Login": {
-    "signIn": "Sign in",
-    "register": "Register",
     "login": "Log In",
     "newAccount": "Don't have an account?",
     "password": "Password"
   },
   "Register": {
     "password": "Password",
-    "signIn": "Sign in"
+    "register": "Register",
+    "signIn": "Sign in",
+    "alreadyAccount": "Do you already have an account?",
+    "email": "Email",
+    "country": "Country",
+    "lastName": "Last name",
+    "mainInterest": "What's your main interest?",
+    "required": "is required",
+    "category": "Category",
+    "name": "Name",
+    "interestCategories": {
+      "sports": "Sports",
+      "science": "Science",
+      "arts": "Arts",
+      "engineering": "Engineering",
+      "computer-it": "Computer & IT",
+      "business": "Business",
+      "communication": "Communication"
+    }
   },
   "Home": {
     "title": "Empower your projects",

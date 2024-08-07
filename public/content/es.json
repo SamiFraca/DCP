@@ -7,7 +7,28 @@
     "newAccount": "Aún no tienes una cuenta?",
     "password": "Contraseña"
   },
-
+  "Register": {
+    "password": "Contraseña",
+    "register": "Registrarse",
+    "signIn": "Iniciar sesión",
+    "alreadyAccount": "¿Ya tienes una cuenta?",
+    "email": "Correo electrónico",
+    "country": "País",
+    "lastName": "Apellido",
+    "mainInterest": "¿Cuál es tu principal interés?",
+    "required": "es requerido",
+    "category": "Categoría",
+    "name": "Nombre",
+    "interestCategories": {
+      "sports": "Deportes",
+      "science": "Ciencia",
+      "arts": "Artes",
+      "engineering": "Ingeniería",
+      "computer-it": "Informática y TI",
+      "business": "Negocios",
+      "communication": "Comunicación"
+    }
+  },
   "Home": {
     "title": "Potencia tus proyectos",
     "description": "Research Hub facilita conexiones significativas al ayudarte a encontrar y conectar con posibles colaboradores que tienen habilidades y conocimientos complementarios. Usando nuestra página, puedes identificar y contactar a otros investigadores, académicos y profesionales que pueden contribuir a tu proyecto, proporcionando valiosos conocimientos y apoyo.",
@@ -19,10 +40,10 @@
     "contactNetwork": "Amplía tu red de contactos y colabora con expertos para crear tu proyecto soñado, o tal vez busques a gente para aprender juntos algo nuevo. Todo es posible con Research Hub",
     "existingProjectTitle": "Impulsa un Proyecto Existente",
     "existingProject": "Revitaliza tu proyecto actual con ideas frescas y mejoras en las características existentes. Descubre nuevas formas de optimizar y potenciar tu proyecto, añadiendo innovaciones que aumenten su funcionalidad y atractivo. Lleva tu proyecto al siguiente nivel con estrategias que promuevan su éxito y crecimiento continuo, asegurando que siempre esté a la vanguardia.",
-    "gridTitle":"¿En qué estas interesado?",
-    "registerSuccess":"Registrado exitosamente!",
-    "loginSuccess":"Bienvenido de vuelta!",
-    "featuredProjects":"Proyectos destacados",
+    "gridTitle": "¿En qué estas interesado?",
+    "registerSuccess": "Registrado exitosamente!",
+    "loginSuccess": "Bienvenido de vuelta!",
+    "featuredProjects": "Proyectos destacados",
     "CategoryGrid": {
       "Science": "Ciencia",
       "IT": "Informática",

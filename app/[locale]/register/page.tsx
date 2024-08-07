@@ -127,7 +127,7 @@ export default function Register() {
             )}
           </div>
           <Input
-            className="p-3 "
+            className="p-3 w-1/2 "
             type="text"
             placeholder="Last name"
             {...register("options.data.lastName")}

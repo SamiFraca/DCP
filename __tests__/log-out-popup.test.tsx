@@ -2,12 +2,12 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { LogOutModalPopup } from '@/components/header/log-out-popup';
-import { signOut } from '@/lib/auth';
+import { signOutUser } from '@/lib/auth';
 import { useTranslations } from 'next-intl';
 
 // Mock the signOut function and useTranslations hook
 jest.mock('@/lib/auth', () => ({
-  signOut: jest.fn(),
+  signOutUser: jest.fn(),
 }));
 
 jest.mock('next-intl', () => ({
@@ -44,7 +44,7 @@ describe('LogOutModalPopup', () => {
     fireEvent.click(screen.getByText('Header.logout'));
 
     // Verify signOut is called
-    expect(signOut).toHaveBeenCalled();
+    expect(signOutUser).toHaveBeenCalled();
   });
 
   it('does not render modal content when isOpen is false', () => {

@@ -4,7 +4,7 @@ type AlertVariant = "error" | "info" | "warning";
 
 interface AlertInputProps {
   variant: AlertVariant;
-  message: string;
+  message?: string;
 }
 
 const variantStyles = {

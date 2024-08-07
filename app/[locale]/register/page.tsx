@@ -57,7 +57,7 @@ const interestCategories = [
     value: "communication",
   },
 ];
-export default function Login() {
+export default function Register() {
   const [supabaseError, setSupabaseError] = useState("");
   const {
     register,
@@ -92,7 +92,7 @@ export default function Login() {
           type="email"
           placeholder="Email *"
           {...register("email", {
-            required: "Password is required",
+            required: "Email is required",
           })}
         />
         {errors.email && (

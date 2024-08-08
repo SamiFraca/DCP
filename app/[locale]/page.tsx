@@ -25,7 +25,7 @@ export default function Home({
     : null;
   return (
     <>
-      <div className="flex flex-col  w-full max-w-[1440px] relative">
+      <div className="flex flex-col  w-full relative">
         {successMessage && (
           <div className="fixed top-30 bg-green-500  text-white text-center p-2 rounded-b-md transition-transform duration-500 notification w-max z-20 ">
             {successMessage}

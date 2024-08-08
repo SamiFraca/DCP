@@ -1,10 +1,14 @@
-import { Database } from '@/database.types';
-
-export type Project = Database['public']['Tables']['projects']['Row'];
-export type UserProject = {
-  project_id: number;
-  projects: Project;
+type Project = {
+  id: number;
+  name: string;
+  description: string;
+  category: string;
+  created_at: string; 
 };
-export type User = Database['public']['Tables']['users']['Row'] & {
-  user_projects: UserProject[];
+
+type UserProject = {
+  id?: number;
+  user_id: number;
+  project_id: number;
+  created_at: string; 
 };

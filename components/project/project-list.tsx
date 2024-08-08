@@ -20,7 +20,6 @@ const ProjectList: React.FC = () => {
   useEffect(() => {
     const loadData = async () => {
       const { data, error } = await fetchUserProjectDetails('user_projects','users (username),projects(name,description,category)');
-      console.log(data);
 
       if (error) {
         setError('Failed to fetch data');

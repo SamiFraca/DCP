@@ -2,16 +2,13 @@
 import React, { useEffect, useState } from 'react';
 import { fetchUserProjectDetails } from '@/lib/fetchSupabaseData';  // Adjust the import path if necessary
 
-interface UserProjectDetail {
-  user: {
+export interface UserProjectDetail {
+  users: {
     username: string;
   };
-  project: {
+  projects: {
     name: string;
     description:string;
-  };
-  country: {
-    name: string;
   };
 }
 
@@ -22,16 +19,15 @@ const ProjectList: React.FC = () => {
 
   useEffect(() => {
     const loadData = async () => {
-      const { data, error } = await fetchUserProjectDetails();
+      const { data, error } = await fetchUserProjectDetails('user_projects','users (username),projects(name,description,category)');
       console.log(data);
 
       if (error) {
         setError('Failed to fetch data');
         console.error(error);
       } else {
-        // setProjects(data || []);
+        setProjects(data || []);
       }
-      
       setLoading(false);
     };
 
@@ -47,9 +43,9 @@ const ProjectList: React.FC = () => {
       <ul>
         {projects.map((item, index) => (
           <li key={index}>
-            <p>Username: {item.user.username}</p>
-            <p>Project: {item.project.name}</p>
-            <p>Country: {item.country.name}</p>
+            <p>Username: {item.users.username}</p>
+            <p>Project: {item.projects.name}</p>
+            <p>Description: {item.projects.description}</p>
           </li>
         ))}
       </ul>

@@ -115,7 +115,7 @@ export default function Register() {
           <Input
             className="p-3 w-1/2 "
             type="text"
-            placeholder={`${t("lastName")} *`}
+            placeholder={`${t("lastName")}`}
             {...register("options.data.lastName")}
           />
         </div>

@@ -13,7 +13,7 @@ interface CustomUserMetadata {
   mainField?:string;
 }
 
-interface CustomUser extends User {
+export interface CustomUser extends User {
   user_metadata: CustomUserMetadata;
 }
 

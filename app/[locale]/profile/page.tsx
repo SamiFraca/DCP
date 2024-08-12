@@ -1,14 +1,20 @@
-import { redirect } from "next/navigation";
+'use client';
 
-import { createClient } from "@/utils/supabase/server";
+import { useUser } from '@/context/user-context';
 
-export default async function PrivatePage() {
-  const supabase = createClient();
-
-  const { data, error } = await supabase.auth.getUser();
-  if (error || !data?.user) {
-    redirect("/login");
+export default function Profile() {
+  const { user, isLoading, error } = useUser();
+  console.log(user)
+  
+  if (!user) {
+    return <p>No user data available.</p>;
   }
 
-  return <p>Hello {data.user.email}</p>;
+  
+  return (
+    <div>
+      <h1 >Profile</h1>
+      {/* Render other user details here */}
+    </div>
+  );
 }

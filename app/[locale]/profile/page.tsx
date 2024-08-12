@@ -4,7 +4,6 @@ import { useUser } from "@/context/user-context";
 
 export default function Profile() {
   const { user, isLoading, error } = useUser();
-  console.log(user);
 
   if (isLoading) {
     return <div>klk</div>;

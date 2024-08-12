@@ -1,16 +1,14 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { createClient } from "@/utils/supabase/client";
-import { User } from "@supabase/supabase-js"; 
-
-
+import { User } from "@supabase/supabase-js";
+import getUser from "@/lib/getUser";
 
 interface CustomUserMetadata {
   name?: string;
   lastName?: string;
   country?: string;
-  mainField?:string;
+  mainField?: string;
 }
 
 export interface CustomUser extends User {
@@ -40,12 +38,8 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     const fetchUser = async () => {
-      const supabase = createClient();
       try {
-        const {
-          data: { user },
-          error,
-        } = await supabase.auth.getUser();
+        const { user, error } = await getUser();
         if (error || !user) {
           setError("Unable to fetch user");
           window.location.href = "/login";

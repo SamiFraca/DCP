@@ -53,11 +53,7 @@ export const createProjectAndLinkToUser = async (
       throw new Error("Failed to retrieve project ID");
     }
 
-    // Step 2: Link the project to the user
-    const {
-      data: userProjectData,
-      error: userProjectError,
-    }: PostgrestResponse<UserProject> = await supabase
+    const { error: userProjectError } = await supabase
       .from("user_projects")
       .insert([
         {

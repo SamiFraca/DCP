@@ -1,6 +1,9 @@
 import ProjectList from "@/components/project/project-list";
 import { SearchInput } from "@/components/search/search-input";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Projects"
+};
 const Projects = () => {
   return (
     <>

@@ -15,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { LoaderCircle } from "lucide-react";
 import Link from "next/link";
 export type RegisterInputs = {
   email: string;
@@ -37,9 +38,10 @@ const interestCategories = [
   "interestCategories.computer-it",
   "interestCategories.business",
   "interestCategories.communication",
- ];
+];
 export default function Register() {
   const [supabaseError, setSupabaseError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -51,9 +53,12 @@ export default function Register() {
   const handleFormSubmitRegister: SubmitHandler<RegisterInputs> = async (
     data
   ) => {
+    setIsLoading(true);
     const { error, success } = await signup(data);
+
     if (error) {
       setSupabaseError(error);
+      setIsLoading(false);
     }
     if (success) {
       router.push("/?register=success");
@@ -71,9 +76,9 @@ export default function Register() {
         <Input
           className="p-3 "
           type="email"
-          placeholder={`${t('email')} *`}
+          placeholder={`${t("email")} *`}
           {...register("email", {
-            required: `${t('email')} ${t('required')}`,
+            required: `${t("email")} ${t("required")}`,
           })}
         />
         {errors.email && (
@@ -82,9 +87,9 @@ export default function Register() {
         <Input
           className="p-3 "
           type="password"
-          placeholder={`${t('password')} *`}
+          placeholder={`${t("password")} *`}
           {...register("password", {
-            required: `${t('password')} ${t('required')}`,
+            required: `${t("password")} ${t("required")}`,
           })}
         />
         {errors.password && (
@@ -95,9 +100,9 @@ export default function Register() {
             <Input
               className="p-3 "
               type="text"
-              placeholder={`${t('name')} *`}
+              placeholder={`${t("name")} *`}
               {...register("options.data.name", {
-                required: `${t('name')} ${t('required')}`,
+                required: `${t("name")} ${t("required")}`,
               })}
             />
             {errors.options?.data?.name && (
@@ -110,7 +115,7 @@ export default function Register() {
           <Input
             className="p-3 w-1/2 "
             type="text"
-            placeholder={`${t('lastName')} *`}
+            placeholder={`${t("lastName")} *`}
             {...register("options.data.lastName")}
           />
         </div>
@@ -119,9 +124,9 @@ export default function Register() {
             <Input
               className="p-3 "
               type="text"
-              placeholder={`${t('country')} *`}
+              placeholder={`${t("country")} *`}
               {...register("options.data.country", {
-                required: `${t('country')} ${t('required')}`,
+                required: `${t("country")} ${t("required")}`,
               })}
               aria-invalid={errors.options?.data?.country ? "true" : "false"}
             />
@@ -136,7 +141,7 @@ export default function Register() {
             <Controller
               name="options.data.mainField"
               control={control}
-              rules={{ required: `${t('category')} ${t('required')}`}}
+              rules={{ required: `${t("category")} ${t("required")}` }}
               aria-invalid={errors.email ? "true" : "false"}
               render={({ field }) => (
                 <Select
@@ -145,12 +150,12 @@ export default function Register() {
                   onValueChange={field.onChange}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder={t('mainInterest')} />
+                    <SelectValue placeholder={t("mainInterest")} />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
                       {interestCategories.map((category, index) => (
-                        <SelectItem key={index} value={category}>
+                        <SelectItem key={index} value={t(category)}>
                           {t(category)}
                         </SelectItem>
                       ))}
@@ -167,13 +172,23 @@ export default function Register() {
             )}
           </div>
         </div>
-        <Button type="submit">{t("signIn")}</Button>
+        <Button type="submit" disabled={isLoading}>
+        {isLoading ? (
+            <LoaderCircle className="w-6 h-6 animate-rotate mr-2" />
+          ) : (
+            ""
+          )}
+          {t("signIn")}
+        </Button>
         {supabaseError && (
           <AlertInput message={supabaseError} variant="error" />
         )}
       </form>
 
-      <Link href={"/login"} className="text-start max-w-screen-sm w-full hover:text-blue-500 transition-colors ">
+      <Link
+        href={"/login"}
+        className="text-start max-w-screen-sm w-full hover:text-blue-500 transition-colors "
+      >
         {t("alreadyAccount")}
       </Link>
     </div>

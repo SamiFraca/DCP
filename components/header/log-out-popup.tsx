@@ -10,13 +10,16 @@ import { Button } from "../ui/button";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useTranslations } from "next-intl";
 import { signOutUser } from "@/lib/auth";
+import { LoaderCircle } from "lucide-react";
 export const LogOutModalPopup: React.FC<{
   isOpen: boolean;
   onClose: () => void;
 }> = ({ isOpen, onClose }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const logoutHandler = () => {
+    setIsLoading(true);
     signOutUser();
-  }
+  };
   const t = useTranslations();
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -42,8 +45,14 @@ export const LogOutModalPopup: React.FC<{
           <Button
             variant={"default"}
             onClick={() => logoutHandler()}
+            disabled={isLoading}
             aria-describedby="logout-action"
           >
+            {isLoading ? (
+              <LoaderCircle className="w-6 h-6 animate-rotate mr-2" />
+            ) : (
+              ""
+            )}
             {t("Header.logout")}
           </Button>
         </div>

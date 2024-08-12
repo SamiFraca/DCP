@@ -1,8 +1,6 @@
 "use client";
 import { NavItem } from "./nav-item";
 import LangSwitcher from "./lang-switcher";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store";
 import { ModeToggle } from "./mode-toggle";
 import Link from "next/link";
 import { useTranslations } from "next-intl";

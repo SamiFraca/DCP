@@ -15,6 +15,7 @@ import { RootState } from "@/store";
 import { LogOutModalPopup } from "@/components/header/log-out-popup";
 import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import defaultProfileImage from "@/assets/img/default-profile.png"
 export const UserAccountDropdown: React.FC = () => {
   const t = useTranslations("Header");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,7 +30,7 @@ export const UserAccountDropdown: React.FC = () => {
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="p-0">
             <Avatar className="w-8 h-8">
-              <AvatarImage src="https://github.com/shadcn.png"  />
+              <AvatarImage src={defaultProfileImage.src}  alt="User image"/>
               <AvatarFallback><User/></AvatarFallback>
             </Avatar>
           </Button>

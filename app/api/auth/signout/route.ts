@@ -5,7 +5,6 @@ import { cookies } from "next/headers";
 
 export async function POST() {
   const { error } = await supabase.auth.signOut();
-
   if (error) {
     return NextResponse.json({ error: "Failed to sign out" }, { status: 500 });
   }

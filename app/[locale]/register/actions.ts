@@ -1,13 +1,13 @@
 'use server'
 import { createClient } from '@/utils/supabase/server'
-import { RegisterInputs } from './page';
+import { UserInputs } from './page';
 
 
-export async function signup(data: RegisterInputs ) {
+export async function signup(data: UserInputs ) {
     const supabase = createClient()
 
   
-    const { data: user, error } = await supabase.auth.signUp({
+    const { data: user, error } = await (await supabase).auth.signUp({
       email: data.email,
       password: data.password,
       options:{
@@ -25,7 +25,7 @@ export async function signup(data: RegisterInputs ) {
     }
 
     if (user) {
-      const { error: insertError } = await supabase.from('users').insert([
+      const { error: insertError } = await (await supabase).from('users').insert([
         {
           auth_user_id: user.user?.id,
           email: data.email,

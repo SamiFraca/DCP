@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/select";
 import { LoaderCircle } from "lucide-react";
 import Link from "next/link";
-export type RegisterInputs = {
+export type UserInputs = {
   email: string;
   password: string;
   options: {
@@ -47,10 +47,10 @@ export default function Register() {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<RegisterInputs>();
+  } = useForm<UserInputs>();
   const router = useRouter();
   const t = useTranslations("Register");
-  const handleFormSubmitRegister: SubmitHandler<RegisterInputs> = async (
+  const handleFormSubmitRegister: SubmitHandler<UserInputs> = async (
     data
   ) => {
     setIsLoading(true);

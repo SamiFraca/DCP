@@ -1,6 +1,6 @@
 import { UserProjectDetail } from "@/components/project/project-list";
 import { supabase } from "@/lib/supabaseClient"; // Adjust the import path if necessary
-import { PostgrestResponse } from "@supabase/supabase-js";
+import { PostgrestError, PostgrestResponse } from "@supabase/supabase-js";
 import getUser from "./getUser";
 
 export const getRandomProjectList = async (limit: number) => {
@@ -72,32 +72,46 @@ export const createProjectAndLinkToUser = async (
   }
 };
 
-export const fetchUserProjects = async () => {
+export type UserPinnedProject = {
+  id:number;
+  name: string;
+  category: string;
+  description: string | null; // description can be null
+};
+
+type UserProject = {
+  user_projects: {
+    projects: UserPinnedProject[];
+  }[];
+};
+
+
+export const fetchUserProjects = async (): Promise<{ data: UserProject[] | null; error: PostgrestError | null }> => {
   try {
-    const userId = await getUser();
+    const authUserId = (await getUser()).user?.id;
 
     const { data, error } = await supabase
-      .from('user_projects')
+      .from("users")
       .select(`
-        projects (
-          id,
-          name,
-          description,
-          category,
-          start_date,
-          end_date
+        user_projects (
+          projects (
+            id,
+            name,
+            description,
+            category
+          )
         )
       `)
-      .eq('user_id', userId);  
+      .eq("auth_user_id", authUserId);
 
     if (error) {
-      console.error('Error fetching projects:', error);
+      console.error("Error fetching projects:", error);
       return { data: null, error };
     }
 
-    return { data, error: null };
+    return { data: data as UserProject[], error: null };
   } catch (err) {
-    console.error('Unexpected error:', err);
-    return { data: null, error: err as Error };
+    console.error("Unexpected error:", err);
+    return { data: null, error: err as PostgrestError };
   }
 };

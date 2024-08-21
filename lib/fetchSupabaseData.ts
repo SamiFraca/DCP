@@ -76,7 +76,8 @@ export type UserPinnedProject = {
   id:number;
   name: string;
   category: string;
-  description: string | null; // description can be null
+  description: string | null;
+  is_pinned: boolean;
 };
 
 type UserProject = {
@@ -98,7 +99,8 @@ export const fetchUserProjects = async (): Promise<{ data: UserProject[] | null;
             id,
             name,
             description,
-            category
+            category,
+            is_pinned
           )
         )
       `)

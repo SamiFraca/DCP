@@ -8,13 +8,14 @@ import {
 } from "./ui/dialog";
 import { useTranslations } from "next-intl";
 
-type ModalPopupProps = {
+type ModalPopupProps<T = void> = {
   isOpen: boolean;
-  onClose: () => void;
+  onClose: () => T | void;
   children: React.ReactNode;
   dialogTitle?: string;
   dialogDescription?: string;
   ButtonAcceptText?:string;
+  onAccept?: () => T | void;
 };
 
 export const ModalPopup: React.FC<ModalPopupProps> = ({
@@ -23,7 +24,8 @@ export const ModalPopup: React.FC<ModalPopupProps> = ({
   children,
   dialogDescription,
   dialogTitle,
-  ButtonAcceptText
+  ButtonAcceptText,
+  onAccept
 }) => {
   const t = useTranslations();
   
@@ -43,7 +45,7 @@ export const ModalPopup: React.FC<ModalPopupProps> = ({
           >
             {t("cancel")}
           </Button>
-          <Button variant={"default"}>{ButtonAcceptText ?? t('Accept')}</Button>
+          <Button variant={"default"} onClick={() => onAccept?.()}>{ButtonAcceptText ?? t('Accept')}</Button>
         </div>
       </DialogContent>
     </Dialog>

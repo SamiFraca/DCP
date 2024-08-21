@@ -1,5 +1,6 @@
 {
   "cancel": "Cancelar",
+  "save":"Guardar",
   "Login": {
     "signIn": "Registrate",
     "register": "Registrarse",
@@ -62,5 +63,8 @@
     "projects": "Proyectos",
     "profile": "Perfil",
     "logout": "Cerrar sesión"
+  },
+  "Profile":{
+    "editPinned": "Edita tus projectos anclados "
   }
 }

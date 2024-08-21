@@ -1,5 +1,6 @@
 {
   "cancel": "Cancel",
+  "save":"Save",
   "Login": {
     "login": "Log In",
     "newAccount": "Don't have an account?",
@@ -61,5 +62,8 @@
     "projects": "Projects",
     "profile": "Profile",
     "logout": "Logout"
+  },
+  "Profile":{
+    "editPinned": "Edit your pinned projects"
   }
 }

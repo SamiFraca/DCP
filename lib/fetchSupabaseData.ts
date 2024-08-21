@@ -1,6 +1,7 @@
 import { UserProjectDetail } from "@/components/project/project-list";
 import { supabase } from "@/lib/supabaseClient"; // Adjust the import path if necessary
 import { PostgrestResponse } from "@supabase/supabase-js";
+import getUser from "./getUser";
 
 export const getRandomProjectList = async (limit: number) => {
   try {
@@ -14,7 +15,6 @@ export const getRandomProjectList = async (limit: number) => {
 
     return { data: data as unknown as UserProjectDetail[] | null, error: null };
   } catch (err) {
-    // Handle unexpected errors
     console.error("Unexpected error:", err);
     return { data: [], error: err as Error };
   }
@@ -27,7 +27,6 @@ export const createProjectAndLinkToUser = async (
   category: string
 ) => {
   try {
-    // Step 1: Insert the new project
     const {
       data: projectData,
       error: projectError,
@@ -70,5 +69,35 @@ export const createProjectAndLinkToUser = async (
     }
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const fetchUserProjects = async () => {
+  try {
+    const userId = await getUser();
+
+    const { data, error } = await supabase
+      .from('user_projects')
+      .select(`
+        projects (
+          id,
+          name,
+          description,
+          category,
+          start_date,
+          end_date
+        )
+      `)
+      .eq('user_id', userId);  
+
+    if (error) {
+      console.error('Error fetching projects:', error);
+      return { data: null, error };
+    }
+
+    return { data, error: null };
+  } catch (err) {
+    console.error('Unexpected error:', err);
+    return { data: null, error: err as Error };
   }
 };

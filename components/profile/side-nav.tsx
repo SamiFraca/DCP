@@ -1,24 +1,19 @@
 import Image from "next/image";
 import defaultImageAvatar from "@/assets/img/default-profile.png";
 import getUser from "@/lib/getUser";
-import { MapPinIcon, Pencil } from "lucide-react";
+import { Bell, Book, Info, MapPinIcon, User } from "lucide-react";
 import Link from "next/link";
 export async function SideNav() {
   const { user } = await getUser();
   return (
-    <aside className="p-4 pt-0 flex flex-col gap-2 w-64">
-      <div className="flex w-full justify-center items-center ">
-        <div className="w-max relative">
-          <Image
-            src={defaultImageAvatar.src}
-            width={120}
-            height={120}
-            alt="profile"
-            className="mx-auto"
-          />
-          <div className="absolute bottom-0 right-0 rounded-full bg-gray-800 bg-opacity-80 p-2 hover:bg-opacity-100 cursor-pointer">          <Pencil width={20} height={20} className="text-white"  /></div>
-        </div>
-      </div>
+    <aside className="p-4 pt-0 flex flex-col gap-2 w-80">
+      <Image
+        src={defaultImageAvatar.src}
+        width={120}
+        height={120}
+        alt="profile"
+        className="mx-auto"
+      />
 
       <p className="font-semibold text-xl capitalize">
         {user?.user_metadata.lastName && (
@@ -33,12 +28,24 @@ export async function SideNav() {
       <span className="border-b border-gray-800 w-full my-4"></span>
 
       <nav>
-        <ul className="flex flex-col gap-2">
-          <li>
+        <ul className="flex flex-col gap-4">
+          <li className="flex gap-2">
+            <User width={20} height={20} />
             <Link href={"/profile"}>Profile</Link>
           </li>
-          <li>
+          <li className="flex gap-2">
+            <Book width={20} height={20} />
             <Link href={"/profile/projects"}>Your projects</Link>
+          </li>
+          <li className="flex gap-2">
+            <Bell width={20} height={20} />
+            <Link href={"/profile/notifications"}>Notifications</Link>
+          </li>
+          <li className="flex gap-2">
+            <Info width={20} height={20} />
+            <Link href={"/profile/personal-information"}>
+              Personal information
+            </Link>
           </li>
         </ul>
       </nav>

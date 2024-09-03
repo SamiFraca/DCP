@@ -1,3 +1,5 @@
+"use client";
+import { useState } from "react";
 import { Button } from "./ui/button";
 import {
   Dialog,
@@ -7,6 +9,8 @@ import {
   DialogTitle,
 } from "./ui/dialog";
 import { useTranslations } from "next-intl";
+import { Loader } from "./loader/loader";
+import { LoaderCircle } from "lucide-react";
 
 type ModalPopupProps<T = void> = {
   isOpen: boolean;
@@ -25,12 +29,14 @@ export const ModalPopup: React.FC<ModalPopupProps> = ({
   dialogDescription,
   dialogTitle,
   ButtonAcceptText,
-  onAccept
+  onAccept,
 }) => {
   const t = useTranslations();
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const handleAcceptClick = async () => {
     if (onAccept) {
+      setIsDisabled(true);
       await onAccept();
       onClose();
     }
@@ -51,7 +57,16 @@ export const ModalPopup: React.FC<ModalPopupProps> = ({
           >
             {t("cancel")}
           </Button>
-          <Button variant={"default"} onClick={handleAcceptClick}>
+          <Button
+            variant={"default"}
+            onClick={handleAcceptClick}
+            disabled={isDisabled}
+          >
+            {isDisabled ? (
+              <LoaderCircle className="w-6 h-6 animate-rotate mr-2" />
+            ) : (
+              ""
+            )}
             {ButtonAcceptText ?? t("Accept")}
           </Button>
         </div>

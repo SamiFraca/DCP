@@ -29,6 +29,7 @@ export const CustomPinProjectsModal: React.FC = () => {
           ? { ...pinnedProject, isPinned: !pinnedProject.isPinned }
           : pinnedProject
       );
+      console.log(updatedProjects);
 
       return updatedProjects;
     });
@@ -56,7 +57,6 @@ export const CustomPinProjectsModal: React.FC = () => {
       setPinnedProjects(() => {
         return flattenedProjects.flatMap((userProject) =>
           userProject.user_projects
-            .filter((userProject) => userProject.is_pinned)
             .flatMap((userProject) => ({
               id: userProject.projects.id,
               isPinned: userProject.is_pinned,

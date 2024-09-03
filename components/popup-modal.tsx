@@ -39,6 +39,7 @@ export const ModalPopup: React.FC<ModalPopupProps> = ({
       setIsDisabled(true);
       await onAccept();
       onClose();
+      setIsDisabled(false);
     }
   };
   return (

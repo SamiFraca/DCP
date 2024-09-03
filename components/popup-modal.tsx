@@ -14,7 +14,7 @@ type ModalPopupProps<T = void> = {
   children: React.ReactNode;
   dialogTitle?: string;
   dialogDescription?: string;
-  ButtonAcceptText?:string;
+  ButtonAcceptText?: string;
   onAccept?: () => T | void;
 };
 
@@ -28,7 +28,13 @@ export const ModalPopup: React.FC<ModalPopupProps> = ({
   onAccept
 }) => {
   const t = useTranslations();
-  
+
+  const handleAcceptClick = async () => {
+    if (onAccept) {
+      await onAccept();
+      onClose();
+    }
+  };
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
@@ -45,7 +51,9 @@ export const ModalPopup: React.FC<ModalPopupProps> = ({
           >
             {t("cancel")}
           </Button>
-          <Button variant={"default"} onClick={() => onAccept?.()}>{ButtonAcceptText ?? t('Accept')}</Button>
+          <Button variant={"default"} onClick={handleAcceptClick}>
+            {ButtonAcceptText ?? t("Accept")}
+          </Button>
         </div>
       </DialogContent>
     </Dialog>

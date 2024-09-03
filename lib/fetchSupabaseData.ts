@@ -1,7 +1,8 @@
 import { UserProjectDetail } from "@/components/project/project-list";
 import { supabase } from "@/lib/supabaseClient"; // Adjust the import path if necessary
-import { PostgrestResponse } from "@supabase/supabase-js";
+import { PostgrestError, PostgrestResponse } from "@supabase/supabase-js";
 import getUser from "./getUser";
+import { PinnedProject } from "@/components/profile/custom-pin-projects-modal";
 
 export const getRandomProjectList = async (limit: number) => {
   try {
@@ -72,32 +73,114 @@ export const createProjectAndLinkToUser = async (
   }
 };
 
-export const fetchUserProjects = async () => {
+export type UserPinnedProject = {
+  id: number;
+  name: string;
+  category: string;
+  description: string | null;
+};
+
+export type UserSpecificProject = {
+  user_projects: {
+    is_pinned: boolean;
+    projects: UserPinnedProject;
+  }[];
+};
+
+export const fetchUserProjects = async (): Promise<{
+  data: UserSpecificProject[] | null;
+  error: PostgrestError | null;
+}> => {
   try {
-    const userId = await getUser();
+    const authUserId = (await getUser()).user?.id;
 
     const { data, error } = await supabase
-      .from('user_projects')
-      .select(`
-        projects (
-          id,
-          name,
-          description,
-          category,
-          start_date,
-          end_date
+      .from("users")
+      .select(
+        `
+        user_projects (
+          is_pinned,
+          projects (
+            id,
+            name,
+            description,
+            category
+          )
         )
-      `)
-      .eq('user_id', userId);  
+      `
+      )
+      .eq("auth_user_id", authUserId);
 
     if (error) {
-      console.error('Error fetching projects:', error);
+      console.error("Error fetching projects:", error);
       return { data: null, error };
     }
-
-    return { data, error: null };
+    // @ts-ignore
+    // TODO: Fix ts error
+    return { data: data as UserSpecificProject[], error: null };
   } catch (err) {
-    console.error('Unexpected error:', err);
-    return { data: null, error: err as Error };
+    console.error("Unexpected error:", err);
+    return { data: null, error: err as PostgrestError };
   }
+};
+
+export const saveUserPinnedProjects = async (
+  pinnedProjects: PinnedProject[]
+) => {
+  try {
+    const authUserId = (await getUser()).user?.id;
+
+    if (!authUserId) {
+      throw new Error("User is not authenticated");
+    }
+    const userId = await getUserId(authUserId);
+
+    const results = await Promise.all(
+      pinnedProjects.map(async (project) => {
+        const { data, error } = await supabase
+          .from("user_projects")
+          .update({ is_pinned: project.isPinned })
+          .eq("project_id", project.id)
+          .eq("user_id", userId);
+
+        if (error) {
+          console.error(`Error saving project ${project.id}:`, error);
+          return { id: project.id, success: false, error };
+        }
+
+        return { id: project.id, success: true, data };
+      })
+    );
+
+    const hasError = results.some((result) => !result.success);
+
+    if (hasError) {
+      console.error(
+        "Some projects failed to save:",
+        results.filter((result) => !result.success)
+      );
+      return { success: false, errors: results };
+    }
+
+    return { success: true, results };
+  } catch (err) {
+    console.error("Unexpected error:", err);
+    return { success: false, error: err as Error };
+  }
+};
+
+export const getUserId = async (userAuthId: string) => {
+  const { data: userProjectData, error: fetchError } = await supabase
+    .from("users")
+    .select("id")
+    .eq("auth_user_id", userAuthId)
+    .single();
+
+  if (fetchError) {
+    console.error("Error fetching user_project data:", fetchError);
+    return;
+  }
+
+  const userId = userProjectData?.id;
+  return userId;
 };

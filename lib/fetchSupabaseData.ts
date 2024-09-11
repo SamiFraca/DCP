@@ -125,7 +125,7 @@ export const fetchUserProjects = async (): Promise<{
 };
 
 export const saveUserPinnedProjects = async (
-  pinnedProjects: PinnedProject[]
+  savedPinnedProjects: PinnedProject[]
 ) => {
   try {
     const authUserId = (await getUser()).user?.id;
@@ -136,7 +136,7 @@ export const saveUserPinnedProjects = async (
     const userId = await getUserId(authUserId);
 
     const results = await Promise.all(
-      pinnedProjects.map(async (project) => {
+      savedPinnedProjects.map(async (project) => {
         const { data, error } = await supabase
           .from("user_projects")
           .update({ is_pinned: project.isPinned })
@@ -183,4 +183,44 @@ export const getUserId = async (userAuthId: string) => {
 
   const userId = userProjectData?.id;
   return userId;
+};
+
+export const getPinnedProjectsFromUser = async () => {
+  try {
+    const authUserId = (await getUser()).user?.id;
+
+    if (!authUserId) {
+      throw new Error("User is not authenticated");
+    }
+
+    const { data, error } = await supabase
+      .from("users")
+      .select(
+        `
+        user_projects (
+          is_pinned,
+          projects (
+            id,
+            name,
+            description,
+            category
+          )
+        )
+      `
+      )
+      .eq("auth_user_id", authUserId)
+      .eq("user_projects.is_pinned", true);
+
+    if (error) {
+      throw error;
+    }
+
+    const pinnedProjects =
+      data?.[0]?.user_projects.map((userProject) => userProject.projects) || [];
+
+    return { data: pinnedProjects.flat() }; 
+  } catch (err) {
+    console.log(err);
+    return { error: err };
+  }
 };

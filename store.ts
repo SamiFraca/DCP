@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import languageReducer from "./features/languageSlice";
 import { saveLanguageState, loadLanguageState } from "@/utils/localStorage";
 import authReducer from "@/features/authSlice";
+import pinnedProjectsReducer from "@/features/pinnedProjectsSlice";
 const preloadedState = loadLanguageState();
 const store = configureStore({
   reducer: {
     language: languageReducer,
-    auth: authReducer
+    auth: authReducer,
+    pinnedProjects: pinnedProjectsReducer
   },
   preloadedState: {
     language: preloadedState,

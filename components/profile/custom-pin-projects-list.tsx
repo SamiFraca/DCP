@@ -1,10 +1,14 @@
-import {
-  getPinnedProjectsFromUser,
-  UserSpecificProject,
-} from "@/lib/fetchSupabaseData";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { ProjectCard } from "../card/project-card";
 import { Skeleton } from "../ui/skeleton";
+import {
+  setError,
+  setLoading,
+  setPinnedProjects,
+} from "@/features/pinnedProjectsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store";
+import { getPinnedProjectsFromUser } from "@/lib/fetchSupabaseData";
 
 export type UserPinnedProjects = {
   id: string;
@@ -13,33 +17,28 @@ export type UserPinnedProjects = {
   category: string;
 };
 const CustomPinProjectsList = () => {
-  const [pinnedProjects, setPinnedProjects] = useState<UserPinnedProjects[]>(
-    []
+  const dispatch: AppDispatch = useDispatch();
+  const { pinnedProjects, loading, error } = useSelector(
+    (state: RootState) => state.pinnedProjects
   );
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadPinnedProjects = async () => {
+    const loadProjects = async () => {
+      dispatch(setLoading(true));
       try {
-        const { data, error } = await getPinnedProjectsFromUser();
-
-        if (error) {
-          setError("Failed to fetch data");
-          console.error(error);
-        } else {
-          setPinnedProjects(data || []);
+        const { data } = await getPinnedProjectsFromUser();
+        if (data) {
+          dispatch(setPinnedProjects(data));
         }
       } catch (err) {
-        setError("An unexpected error occurred");
-        console.error(err);
+        dispatch(setError("Failed to fetch projects"));
       } finally {
-        setLoading(false);
+        dispatch(setLoading(false));
       }
     };
 
-    loadPinnedProjects();
-  }, []);
+    loadProjects();
+  }, [dispatch]);
 
   if (loading) {
     return (
@@ -65,7 +64,7 @@ const CustomPinProjectsList = () => {
           title={project.name}
           description={project.description}
           key={project.id}
-          className="max-w-80 h-20 w-72"
+          className="max-w-80 "
         />
       ))}
     </ul>

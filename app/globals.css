@@ -124,6 +124,9 @@
   header {
     position: relative;
   }
+  .underline-animation{
+    @apply relative before:absolute before:bottom-[-2px] before:left-0 before:right-0 before:h-[2px] before:bg-[#c084fc80] before:origin-bottom-right before:scale-x-0 before:transition-transform before:duration-500 hover:before:origin-bottom-left hover:before:scale-x-100
+  }
 
   header::after {
     content: "";

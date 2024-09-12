@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { ProjectCard } from "../card/project-card";
 import { Skeleton } from "../ui/skeleton";
 import {
-  setError,
-  setLoading,
+  setUserPinnedProjectsError,
   setUserPinnedProjects,
+  setUserPinnedProjectsLoading,
 } from "@/features/pinnedProjectsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
@@ -18,29 +18,29 @@ export type UserPinnedProjects = {
 };
 const CustomPinProjectsList = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { userPinnedProjects, loading, error } = useSelector(
+  const { userPinnedProjects, userPinnedProjectsLoading, userPinnedProjectsError } = useSelector(
     (state: RootState) => state.pinnedProjects
   );
 
   useEffect(() => {
     const loadProjects = async () => {
-      dispatch(setLoading(true));
+      dispatch(setUserPinnedProjectsLoading(true));
       try {
         const { data } = await getPinnedProjectsFromUser();
         if (data) {
           dispatch(setUserPinnedProjects(data));
         }
       } catch (err) {
-        dispatch(setError("Failed to fetch projects"));
+        dispatch(setUserPinnedProjectsError("Failed to fetch projects"));
       } finally {
-        dispatch(setLoading(false));
+        dispatch(setUserPinnedProjectsLoading(false));
       }
     };
 
     loadProjects();
   }, [dispatch]);
 
-  if (loading) {
+  if (userPinnedProjectsLoading) {
     return (
       <div className="flex flex-wrap mt-10 gap-4">
         <Skeleton className="h-20 w-72" />
@@ -53,8 +53,8 @@ const CustomPinProjectsList = () => {
     );
   }
 
-  if (error) {
-    return <div>{error}</div>;
+  if (userPinnedProjectsError) {
+    return <div>{userPinnedProjectsError}</div>;
   }
 
   return (

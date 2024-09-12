@@ -3,14 +3,14 @@ import { UserPinnedProjects } from "@/components/profile/custom-pin-projects-lis
 
 interface PinnedProjectsState {
   userPinnedProjects: UserPinnedProjects[];
-  loading: boolean;
-  error: string | null;
+  userPinnedProjectsLoading: boolean;
+  userPinnedProjectsError: string | null;
 }
 
 const initialState: PinnedProjectsState = {
   userPinnedProjects: [],
-  loading: false,
-  error: null,
+  userPinnedProjectsLoading: false,
+  userPinnedProjectsError: null,
 };
 
 const pinnedProjectsSlice = createSlice({
@@ -21,15 +21,15 @@ const pinnedProjectsSlice = createSlice({
       state.userPinnedProjects = action.payload;
     },
 
-    setLoading(state, action: PayloadAction<boolean>) {
-      state.loading = action.payload;
+    setUserPinnedProjectsLoading(state, action: PayloadAction<boolean>) {
+      state.userPinnedProjectsLoading = action.payload;
     },
 
-    setError(state, action: PayloadAction<string | null>) {
-      state.error = action.payload;
+    setUserPinnedProjectsError(state, action: PayloadAction<string | null>) {
+      state.userPinnedProjectsError = action.payload;
     },
   },
 });
 
-export const { setUserPinnedProjects, setLoading, setError } = pinnedProjectsSlice.actions;
+export const { setUserPinnedProjects, setUserPinnedProjectsLoading, setUserPinnedProjectsError } = pinnedProjectsSlice.actions;
 export default pinnedProjectsSlice.reducer;

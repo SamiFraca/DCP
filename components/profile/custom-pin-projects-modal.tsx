@@ -12,7 +12,11 @@ import {
 } from "@/lib/fetchSupabaseData";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
-import { setUserPinnedProjects } from "@/features/pinnedProjectsSlice";
+import {
+  setUserPinnedProjects,
+  setUserPinnedProjectsError,
+  setUserPinnedProjectsLoading,
+} from "@/features/pinnedProjectsSlice";
 
 export type PinnedProject = {
   id: number;
@@ -27,7 +31,7 @@ export const CustomPinProjectsModal: React.FC = () => {
   const [pinnedProjects, setPinnedProjects] = useState<PinnedProject[]>([]);
   const dispatch: AppDispatch = useDispatch();
 
-  const { userPinnedProjects } = useSelector(
+  const { userPinnedProjectsError, userPinnedProjectsLoading } = useSelector(
     (state: RootState) => state.pinnedProjects
   );
 
@@ -78,10 +82,27 @@ export const CustomPinProjectsModal: React.FC = () => {
     setIsModalOpen(true);
     fetchProjects();
   };
+  
   const handleSaveUserPinnedProjects = async () => {
-    await saveUserPinnedProjects(pinnedProjects);
-    const { data, error } = await getPinnedProjectsFromUser();
-    data ? dispatch(setUserPinnedProjects(data)) : console.log(error);
+    try {
+      dispatch(setUserPinnedProjectsLoading(true));
+
+      await saveUserPinnedProjects(pinnedProjects);
+      const { data, error } = await getPinnedProjectsFromUser();
+
+      if (error) {
+        throw new Error("Failed to fetch projects");
+      }
+
+      if (data) {
+        dispatch(setUserPinnedProjects(data));
+      }
+    } catch (error) {
+      console.error(error);
+      dispatch(setUserPinnedProjectsError("Failed to fetch or save projects"));
+    } finally {
+      dispatch(setUserPinnedProjectsLoading(false));
+    }
   };
 
   return (

@@ -212,7 +212,7 @@ export const getPinnedProjectsFromUser = async () => {
       .eq("user_projects.is_pinned", true);
 
     if (error) {
-      throw error;
+      throw error.message;
     }
 
     const pinnedProjects =

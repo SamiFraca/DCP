@@ -31,19 +31,19 @@ export async function SideNav() {
         <ul className="flex flex-col gap-4">
           <li className="flex gap-2">
             <User width={20} height={20} />
-            <Link href={"/profile"}>Profile</Link>
+            <Link href={"/profile"} className="underline-animation">Profile</Link>
           </li>
           <li className="flex gap-2">
             <Book width={20} height={20} />
-            <Link href={"/profile/projects"}>Your projects</Link>
+            <Link href={"/profile/projects"} className="underline-animation">Your projects</Link>
           </li>
           <li className="flex gap-2">
             <Bell width={20} height={20} />
-            <Link href={"/profile/notifications"}>Notifications</Link>
+            <Link href={"/profile/notifications"} className="underline-animation">Notifications</Link>
           </li>
           <li className="flex gap-2">
             <Info width={20} height={20} />
-            <Link href={"/profile/personal-information"}>
+            <Link href={"/profile/personal-information"} className="underline-animation">
               Personal information
             </Link>
           </li>

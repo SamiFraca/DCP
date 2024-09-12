@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 
 type NavItemProps = {
@@ -11,9 +8,8 @@ type NavItemProps = {
 }
 
 export const NavItem: React.FC<NavItemProps> = ({ href, onClick, children }) => {
-  const urlPathname = usePathname();
   return (
-      <Link href={href} className={urlPathname === href ? "underline" : ""} onClick={onClick}>
+      <Link href={href}  className="underline-animation" onClick={onClick}>
         {children}
       </Link>
   );

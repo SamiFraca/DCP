@@ -2,13 +2,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserPinnedProjects } from "@/components/profile/custom-pin-projects-list";
 
 interface PinnedProjectsState {
-  pinnedProjects: UserPinnedProjects[];
+  userPinnedProjects: UserPinnedProjects[];
   loading: boolean;
   error: string | null;
 }
 
 const initialState: PinnedProjectsState = {
-  pinnedProjects: [],
+  userPinnedProjects: [],
   loading: false,
   error: null,
 };
@@ -17,8 +17,8 @@ const pinnedProjectsSlice = createSlice({
   name: "pinnedProjects",
   initialState,
   reducers: {
-    setPinnedProjects(state, action: PayloadAction<UserPinnedProjects[]>) {
-      state.pinnedProjects = action.payload;
+    setUserPinnedProjects(state, action: PayloadAction<UserPinnedProjects[]>) {
+      state.userPinnedProjects = action.payload;
     },
 
     setLoading(state, action: PayloadAction<boolean>) {
@@ -31,5 +31,5 @@ const pinnedProjectsSlice = createSlice({
   },
 });
 
-export const { setPinnedProjects, setLoading, setError } = pinnedProjectsSlice.actions;
+export const { setUserPinnedProjects, setLoading, setError } = pinnedProjectsSlice.actions;
 export default pinnedProjectsSlice.reducer;

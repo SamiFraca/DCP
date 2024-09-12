@@ -6,9 +6,13 @@ import { Link, LoaderCircle, Pin } from "lucide-react";
 import { useTranslations } from "next-intl";
 import {
   fetchUserProjects,
+  getPinnedProjectsFromUser,
   saveUserPinnedProjects,
   UserSpecificProject,
 } from "@/lib/fetchSupabaseData";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store";
+import { setUserPinnedProjects } from "@/features/pinnedProjectsSlice";
 
 export type PinnedProject = {
   id: number;
@@ -21,6 +25,11 @@ export const CustomPinProjectsModal: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [projects, setProjects] = useState<UserSpecificProject[]>([]);
   const [pinnedProjects, setPinnedProjects] = useState<PinnedProject[]>([]);
+  const dispatch: AppDispatch = useDispatch();
+
+  const { userPinnedProjects } = useSelector(
+    (state: RootState) => state.pinnedProjects
+  );
 
   const handleTogglePin = (projectId: number) => {
     setPinnedProjects((prev) => {
@@ -29,7 +38,6 @@ export const CustomPinProjectsModal: React.FC = () => {
           ? { ...pinnedProject, isPinned: !pinnedProject.isPinned }
           : pinnedProject
       );
-      console.log(updatedProjects);
 
       return updatedProjects;
     });
@@ -46,7 +54,6 @@ export const CustomPinProjectsModal: React.FC = () => {
     setError(null);
 
     const { data, error } = await fetchUserProjects();
-    console.log(data);
 
     if (error) {
       setError("Failed to fetch projects");
@@ -54,13 +61,13 @@ export const CustomPinProjectsModal: React.FC = () => {
     } else {
       const flattenedProjects = data?.[0] ? [data[0]] : [];
       setProjects(flattenedProjects);
+
       setPinnedProjects(() => {
         return flattenedProjects.flatMap((userProject) =>
-          userProject.user_projects
-            .flatMap((userProject) => ({
-              id: userProject.projects.id,
-              isPinned: userProject.is_pinned,
-            }))
+          userProject.user_projects.flatMap((userProject) => ({
+            id: userProject.projects.id,
+            isPinned: userProject.is_pinned,
+          }))
         );
       });
     }
@@ -70,6 +77,11 @@ export const CustomPinProjectsModal: React.FC = () => {
   const handleButtonClick = () => {
     setIsModalOpen(true);
     fetchProjects();
+  };
+  const handleSaveUserPinnedProjects = async () => {
+    await saveUserPinnedProjects(pinnedProjects);
+    const { data, error } = await getPinnedProjectsFromUser();
+    data ? dispatch(setUserPinnedProjects(data)) : console.log(error);
   };
 
   return (
@@ -87,7 +99,7 @@ export const CustomPinProjectsModal: React.FC = () => {
         isOpen={isModalOpen}
         onClose={closeModal}
         ButtonAcceptText={t("save")}
-        onAccept={() => saveUserPinnedProjects(pinnedProjects)}
+        onAccept={() => handleSaveUserPinnedProjects()}
       >
         {loading && <LoaderCircle className="w-6 h-6 animate-rotate mr-2" />}
         {projects.length > 0 && !loading

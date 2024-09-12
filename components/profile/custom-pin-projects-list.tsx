@@ -4,7 +4,7 @@ import { Skeleton } from "../ui/skeleton";
 import {
   setError,
   setLoading,
-  setPinnedProjects,
+  setUserPinnedProjects,
 } from "@/features/pinnedProjectsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
@@ -18,7 +18,7 @@ export type UserPinnedProjects = {
 };
 const CustomPinProjectsList = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { pinnedProjects, loading, error } = useSelector(
+  const { userPinnedProjects, loading, error } = useSelector(
     (state: RootState) => state.pinnedProjects
   );
 
@@ -28,7 +28,7 @@ const CustomPinProjectsList = () => {
       try {
         const { data } = await getPinnedProjectsFromUser();
         if (data) {
-          dispatch(setPinnedProjects(data));
+          dispatch(setUserPinnedProjects(data));
         }
       } catch (err) {
         dispatch(setError("Failed to fetch projects"));
@@ -59,7 +59,7 @@ const CustomPinProjectsList = () => {
 
   return (
     <ul className="mt-10 flex flex-wrap gap-4">
-      {pinnedProjects.map((project) => (
+      {userPinnedProjects.map((project) => (
         <ProjectCard
           title={project.name}
           description={project.description}

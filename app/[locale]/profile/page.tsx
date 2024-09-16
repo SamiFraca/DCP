@@ -4,7 +4,7 @@ import { Divider } from "@/components/divider";
 import CustomPinProjectsList from "@/components/profile/custom-pin-projects-list";
 import { CustomPinProjectsModal } from "@/components/profile/custom-pin-projects-modal";
 import { useUser } from "@/context/user-context";
-import { Link, Pin } from "lucide-react";
+import { Pin } from "lucide-react";
 
 export default function Profile() {
   const { user, isLoading } = useUser();
@@ -12,16 +12,20 @@ export default function Profile() {
   if (isLoading) {
     return <div>Loading..</div>;
   }
-  
+
   return (
     <div>
-      <h1 className="text-6xl font-bold  sm:text-5xl text-start sr-only">
+      <h1 className="text-6xl font-bold  sm:text-4xl text-start mb-6 ">
         Profile
       </h1>
       <p className="text-3xl ">
         Hi, <span className="capitalize">{user?.user_metadata.name}</span>
       </p>
-      <Divider className="my-8" />
+      <Divider className="my-4" />
+      <div className="mb-8">
+        <p className="text-xl mb-4">About yourself</p>
+        <p>{user?.user_metadata.description ?? 'test'}</p>
+      </div>
       <div className="flex">
         <div className="flex flex-col grow">
           <div className="flex grow">

@@ -11,6 +11,7 @@ interface CustomUserMetadata {
   lastName?: string;
   country?: string;
   mainField?:string;
+  description?:string;
 }
 
 export interface CustomUser extends User {
@@ -50,6 +51,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
           setError("Unable to fetch user");
           window.location.href = "/login";
         } else {
+          console.log(user);
           setUser(user);
         }
       } catch (err) {

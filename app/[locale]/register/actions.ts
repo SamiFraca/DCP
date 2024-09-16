@@ -15,7 +15,8 @@ export async function signup(data: UserInputs ) {
           name:data.options.data.name,
           lastName:data.options.data.lastName,
           country:data.options.data.country,
-          mainField:data.options.data.mainField
+          mainField:data.options.data.mainField,
+          user_description:''
         }
       }
     });
@@ -33,6 +34,7 @@ export async function signup(data: UserInputs ) {
           last_name: data.options.data.lastName || null,
           country: data.options.data.country,
           main_field: data.options.data.mainField,
+          user_description: '',
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString(),
         },

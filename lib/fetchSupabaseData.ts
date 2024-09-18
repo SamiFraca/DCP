@@ -218,9 +218,36 @@ export const getPinnedProjectsFromUser = async () => {
     const pinnedProjects =
       data?.[0]?.user_projects.map((userProject) => userProject.projects) || [];
 
-    return { data: pinnedProjects.flat() }; 
+    return { data: pinnedProjects.flat() };
   } catch (err) {
     console.log(err);
     return { error: err };
+  }
+};
+
+
+export const updateUserDescription = async (newDescriptionText: string) => {
+  const user = await supabase.auth.getSession(); 
+
+  if (!user) {
+    return { error: 'User not authenticated.', success: false };
+  }
+  console.log(user.data);
+
+  try {
+    const { error } = await supabase.auth.updateUser({
+      data: {
+        description: newDescriptionText, // Update your custom user metadata field
+      },
+    });
+
+    if (error) {
+      return { error: error.message, success: false };
+    } else {
+      return { error: null, success: true };
+    }
+  } catch (err) {
+    console.error(err);
+    return { error: 'An unexpected error occurred.', success: false };
   }
 };

@@ -1,8 +1,9 @@
 import { FC, useRef, useState } from "react";
 import { Button } from "../ui/button";
-import { Pencil } from "lucide-react";
+import { LoaderCircle, Pencil } from "lucide-react";
 import { Textarea } from "../ui/textarea";
 import { createClient } from "@/utils/supabase/client";
+import { SuccessNotification } from "../global/success-notification";
 
 type ModifyDescriptionProps = {
   descriptionValue: string;
@@ -18,7 +19,7 @@ export const ModifyDescription: FC<ModifyDescriptionProps> = ({
     useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [description, setDescription] = useState<string>(descriptionValue);
-  const [isSuccess,setIsSuccess] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const sendNewUserDescriptionData = async () => {
     const supabase = createClient();
@@ -42,7 +43,7 @@ export const ModifyDescription: FC<ModifyDescriptionProps> = ({
           setDescription(descriptionTextAreaRef.current.value);
           setIsShowAreaDescriptionEnabled(false);
           setIsSuccess(true);
-          setError(null); 
+          setError(null);
         }
         setIsLoadingCustomDescription(false);
       } catch (err) {
@@ -66,7 +67,7 @@ export const ModifyDescription: FC<ModifyDescriptionProps> = ({
           aria-label="Edit description"
           onClick={() => {
             setIsShowAreaDescriptionEnabled(!isShowAreaDescriptionEnabled);
-            setError(null); // Clear error message when toggling edit mode
+            setError(null);
           }}
         >
           <Pencil width={20} height={20} aria-hidden="true" />
@@ -98,11 +99,14 @@ export const ModifyDescription: FC<ModifyDescriptionProps> = ({
               aria-label="Save new description"
             >
               Save
+              {isLoadingCustomDescription ? (
+                <LoaderCircle className="w-6 h-6 animate-rotate mr-2" />
+              ) : (
+                ""
+              )}
             </Button>
           </div>
-          {isSuccess &&(
-            <div>Description updated succesfully</div>
-          )}
+
           {error && (
             <p id="description-error" className="text-red-500 mt-4">
               {error}
@@ -111,6 +115,9 @@ export const ModifyDescription: FC<ModifyDescriptionProps> = ({
         </>
       ) : (
         <p>{description}</p>
+      )}
+      {isSuccess && (
+        <SuccessNotification successMessage='Description updated succesfully'/>
       )}
     </div>
   );

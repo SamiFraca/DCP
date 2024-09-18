@@ -39,6 +39,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+
   useEffect(() => {
     const fetchUser = async () => {
       const supabase = createClient();

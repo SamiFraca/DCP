@@ -19,6 +19,7 @@ export async function signIn(email: string, password: string) {
     email,
     password,
   });
+  console.log(user);
 
   if (error) {
     console.error("Sign in error:", error.message);

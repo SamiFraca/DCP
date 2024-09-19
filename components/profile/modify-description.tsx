@@ -26,7 +26,6 @@ export const ModifyDescription: FC<ModifyDescriptionProps> = ({
     const supabase = createClient();
     const descriptionValue = descriptionTextAreaRef.current?.value;
 
-    // Validate description
     if (!descriptionValue || descriptionValue.length > 300) {
       setError("Description is required and should not exceed 300 characters.");
       return;

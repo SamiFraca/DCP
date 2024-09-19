@@ -4,6 +4,7 @@ import { LoaderCircle, Pencil } from "lucide-react";
 import { Textarea } from "../ui/textarea";
 import { createClient } from "@/utils/supabase/client";
 import { SuccessNotification } from "../global/success-notification";
+import { updateUserDescriptionUserTable } from "@/lib/fetchSupabaseData";
 
 type ModifyDescriptionProps = {
   descriptionValue: string;
@@ -17,44 +18,47 @@ export const ModifyDescription: FC<ModifyDescriptionProps> = ({
   const descriptionTextAreaRef = useRef<HTMLTextAreaElement>(null);
   const [isLoadingCustomDescription, setIsLoadingCustomDescription] =
     useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | undefined>(undefined);
   const [description, setDescription] = useState<string>(descriptionValue);
   const [isSuccess, setIsSuccess] = useState(false);
 
   const sendNewUserDescriptionData = async () => {
     const supabase = createClient();
-    if (
-      descriptionTextAreaRef.current?.value &&
-      descriptionTextAreaRef.current.value.length <= 300
-    ) {
-      setIsLoadingCustomDescription(true);
-      try {
-        const { error } = await supabase.auth.updateUser({
-          data: {
-            description: descriptionTextAreaRef.current.value,
-          },
-        });
+    const descriptionValue = descriptionTextAreaRef.current?.value;
 
-        if (error) {
-          setError(error.message);
-          setIsLoadingCustomDescription(false);
-          return;
-        } else {
-          setDescription(descriptionTextAreaRef.current.value);
-          setIsShowAreaDescriptionEnabled(false);
-          setIsSuccess(true);
-          setError(null);
-        }
-        setIsLoadingCustomDescription(false);
-      } catch (err) {
-        console.error(err);
-        setError("An unexpected error occurred.");
-      }
-    } else {
+    // Validate description
+    if (!descriptionValue || descriptionValue.length > 300) {
       setError("Description is required and should not exceed 300 characters.");
+      return;
+    }
+
+    setIsLoadingCustomDescription(true);
+    setError(undefined); 
+
+    try {
+      const { error: authError } = await supabase.auth.updateUser({
+        data: { description: descriptionValue },
+      });
+
+      const { error: userTableError } = await updateUserDescriptionUserTable(
+        descriptionValue
+      );
+
+      if (authError || userTableError) {
+        setError(authError?.message || userTableError);
+        return;
+      }
+
+      setDescription(descriptionValue);
+      setIsShowAreaDescriptionEnabled(false);
+      setIsSuccess(true);
+    } catch (err) {
+      console.error(err);
+      setError("An unexpected error occurred.");
+    } finally {
+      setIsLoadingCustomDescription(false);
     }
   };
-
   return (
     <div className="mb-8">
       <div className="flex gap-4 items-center mb-4">
@@ -67,7 +71,7 @@ export const ModifyDescription: FC<ModifyDescriptionProps> = ({
           aria-label="Edit description"
           onClick={() => {
             setIsShowAreaDescriptionEnabled(!isShowAreaDescriptionEnabled);
-            setError(null);
+            setError(undefined);
           }}
         >
           <Pencil width={20} height={20} aria-hidden="true" />
@@ -81,6 +85,7 @@ export const ModifyDescription: FC<ModifyDescriptionProps> = ({
             aria-labelledby="description-header"
             aria-invalid={!!error}
             aria-describedby="description-error"
+            defaultValue={descriptionValue}
           />
           <div className="flex gap-4">
             <Button
@@ -117,7 +122,7 @@ export const ModifyDescription: FC<ModifyDescriptionProps> = ({
         <p>{description}</p>
       )}
       {isSuccess && (
-        <SuccessNotification successMessage='Description updated succesfully'/>
+        <SuccessNotification successMessage="Description updated succesfully" />
       )}
     </div>
   );

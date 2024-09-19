@@ -225,29 +225,23 @@ export const getPinnedProjectsFromUser = async () => {
   }
 };
 
+export const updateUserDescriptionUserTable = async (
+  newDescriptionText: string
+) => {
+  const authUserId = (await getUser()).user?.id;
 
-export const updateUserDescription = async (newDescriptionText: string) => {
-  const user = await supabase.auth.getSession(); 
-
-  if (!user) {
-    return { error: 'User not authenticated.', success: false };
+  if (!authUserId) {
+    throw new Error("User is not authenticated");
   }
-  console.log(user.data);
 
-  try {
-    const { error } = await supabase.auth.updateUser({
-      data: {
-        description: newDescriptionText, // Update your custom user metadata field
-      },
-    });
-
-    if (error) {
-      return { error: error.message, success: false };
-    } else {
-      return { error: null, success: true };
-    }
-  } catch (err) {
-    console.error(err);
-    return { error: 'An unexpected error occurred.', success: false };
+  const { error } = await supabase
+    .from("users")
+    .update({ user_description: newDescriptionText })
+    .eq("auth_user_id", authUserId);
+  if (error) {
+    console.log(error);
+    return { error: error.message, success: false };
+  } else {
+    return { success: true };
   }
 };

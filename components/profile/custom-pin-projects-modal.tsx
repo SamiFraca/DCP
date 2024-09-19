@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useCallback } from "react";
-import { ModalPopup } from "../popup-modal";
+import { ModalPopup } from "../global/popup-modal";
 import { Button } from "../ui/button";
 import { Link, LoaderCircle, Pin } from "lucide-react";
 import { useTranslations } from "next-intl";

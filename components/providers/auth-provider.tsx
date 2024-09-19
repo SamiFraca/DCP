@@ -2,10 +2,10 @@
 
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { supabase } from '../lib/supabaseClient';
+import { supabase } from '@/lib/supabaseClient';
 import { setUser, setLoading, setError, signOut } from '@/features/authSlice';
 import { RootState } from '@/store';
-import { Loader } from './loader/loader';
+import { Loader } from '@/components/loader/loader';
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const dispatch = useDispatch();

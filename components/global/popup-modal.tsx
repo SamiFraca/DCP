@@ -1,15 +1,15 @@
 "use client";
 import { useState } from "react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "./ui/dialog";
+} from "../ui/dialog";
 import { useTranslations } from "next-intl";
-import { Loader } from "./loader/loader";
+import { Loader } from "../loader/loader";
 import { LoaderCircle } from "lucide-react";
 
 type ModalPopupProps<T = void> = {

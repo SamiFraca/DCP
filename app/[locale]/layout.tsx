@@ -3,10 +3,10 @@ import { Space_Grotesk, Roboto } from "next/font/google";
 import "../globals.css";
 import { Provider } from "react-redux";
 import store from "@/store";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ClientLayout } from "@/app/[locale]/clientLayout";
 import React from "react";
-import { AuthProvider } from "@/components/auth-provider";
+import { AuthProvider } from "@/components/providers/auth-provider";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],

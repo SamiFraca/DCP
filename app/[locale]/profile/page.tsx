@@ -1,6 +1,6 @@
 "use client";
 
-import { Divider } from "@/components/divider";
+import { Divider } from "@/components/global/divider";
 import CustomPinProjectsList from "@/components/profile/custom-pin-projects-list";
 import { CustomPinProjectsModal } from "@/components/profile/custom-pin-projects-modal";
 import { ModifyDescription } from "@/components/profile/modify-description";

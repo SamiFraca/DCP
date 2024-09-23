@@ -109,7 +109,6 @@ export const CustomPinProjectsModal: React.FC = () => {
     <>
       <Button
         variant={"ghost"}
-        className="dark:text-gray-400"
         onClick={handleButtonClick}
       >
         <Link />

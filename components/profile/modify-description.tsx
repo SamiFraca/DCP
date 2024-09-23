@@ -68,7 +68,7 @@ export const ModifyDescription: FC<ModifyDescriptionProps> = ({
         </p>
         <Button
           variant={"ghost"}
-          className="dark:text-gray-400 p-2"
+          className="p-2"
           aria-label="Edit description"
           onClick={() => {
             setIsShowAreaDescriptionEnabled(!isShowAreaDescriptionEnabled);

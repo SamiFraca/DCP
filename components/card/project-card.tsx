@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 type ProjectCardProps = {
@@ -17,7 +18,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 }) => {
   return (
     <li
-      className={`border dark:border-gray-800 border-black bg-opacity-40 p-4 transition-transform hover:transform hover:scale-105 cursor-pointer ${className}`}
+      className={cn(`border dark:border-gray-800 border-black bg-opacity-40 p-4 transition-transform hover:transform hover:scale-105 cursor-pointer`,className)}
     >
       <Link href="">
         <h4 className="font-bold">

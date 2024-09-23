@@ -27,8 +27,8 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children, params }: RootLayoutProps) {
   return (
-    <html lang={params.locale} suppressHydrationWarning={true}>
-      <body className={`${spaceGrotesk.variable} ${roboto.variable} `}>
+    <html lang={params.locale} suppressHydrationWarning={true} className="h-full">
+      <body className={`${spaceGrotesk.variable} ${roboto.variable} h-full flex flex-col `}>
         <Provider store={store}>
           <AuthProvider>
             <ThemeProvider

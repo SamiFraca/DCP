@@ -50,9 +50,7 @@ export default function Register() {
   } = useForm<UserInputs>();
   const router = useRouter();
   const t = useTranslations("Register");
-  const handleFormSubmitRegister: SubmitHandler<UserInputs> = async (
-    data
-  ) => {
+  const handleFormSubmitRegister: SubmitHandler<UserInputs> = async (data) => {
     setIsLoading(true);
     const { error, success } = await signup(data);
 
@@ -142,7 +140,6 @@ export default function Register() {
               name="options.data.mainField"
               control={control}
               rules={{ required: `${t("category")} ${t("required")}` }}
-              aria-invalid={errors.email ? "true" : "false"}
               render={({ field }) => (
                 <Select
                   {...field}
@@ -173,7 +170,7 @@ export default function Register() {
           </div>
         </div>
         <Button type="submit" disabled={isLoading}>
-        {isLoading ? (
+          {isLoading ? (
             <LoaderCircle className="w-6 h-6 animate-rotate mr-2" />
           ) : (
             ""

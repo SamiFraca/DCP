@@ -16,7 +16,7 @@ export default function Home({
   searchParams?: { [key: string]: string | undefined };
 }) {
   const t = useTranslations("Home");
-  const registrationSuccess = searchParams?.registration;
+  const registrationSuccess = searchParams?.register;
   const loginSuccess = searchParams?.login;
   const successMessage = registrationSuccess
     ? t("registerSuccess")

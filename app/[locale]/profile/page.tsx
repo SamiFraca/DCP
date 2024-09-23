@@ -7,6 +7,8 @@ import { ModifyDescription } from "@/components/profile/modify-description";
 import { useUser } from "@/context/user-context";
 import { Pin } from "lucide-react";
 
+
+ 
 export default function Profile() {
   const { user, isLoading } = useUser();
 

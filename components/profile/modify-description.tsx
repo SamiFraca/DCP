@@ -3,12 +3,14 @@ import { Button } from "../ui/button";
 import { LoaderCircle, Pencil } from "lucide-react";
 import { Textarea } from "../ui/textarea";
 import { createClient } from "@/utils/supabase/client";
-import { SuccessNotification } from "../global/success-notification";
+
 import { updateUserDescriptionUserTable } from "@/lib/fetchSupabaseData";
+import dynamic from "next/dynamic";
 
 type ModifyDescriptionProps = {
   descriptionValue: string;
 };
+const SuccessNotificationComponent = dynamic(() => import('@/components/global/success-notification'));
 
 export const ModifyDescription: FC<ModifyDescriptionProps> = ({
   descriptionValue,
@@ -121,7 +123,7 @@ export const ModifyDescription: FC<ModifyDescriptionProps> = ({
         <p>{description}</p>
       )}
       {isSuccess && (
-        <SuccessNotification successMessage="Description updated succesfully" />
+        <SuccessNotificationComponent successMessage="Description updated succesfully" />
       )}
     </div>
   );

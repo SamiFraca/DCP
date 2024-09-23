@@ -4,7 +4,7 @@ type SuccessNotificationProps<T extends ReactNode> = {
   successMessage: T;
 };
 
-export const SuccessNotification = <T extends ReactNode>({
+const SuccessNotification = <T extends ReactNode>({
   successMessage,
 }: SuccessNotificationProps<T>) => {
   return (
@@ -13,3 +13,5 @@ export const SuccessNotification = <T extends ReactNode>({
     </div>
   );
 };
+
+export default SuccessNotification;

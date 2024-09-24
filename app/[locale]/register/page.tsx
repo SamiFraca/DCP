@@ -17,6 +17,10 @@ import {
 } from "@/components/ui/select";
 import { LoaderCircle } from "lucide-react";
 import Link from "next/link";
+import { z } from "zod";
+import { registrationSchema } from "@/schemas/registrationSchema";
+import { zodResolver } from "@hookform/resolvers/zod"
+
 export type UserInputs = {
   email: string;
   password: string;
@@ -30,7 +34,7 @@ export type UserInputs = {
   };
 };
 
-const interestCategories = [
+export const interestCategories = [
   "interestCategories.sports",
   "interestCategories.science",
   "interestCategories.arts",
@@ -38,10 +42,14 @@ const interestCategories = [
   "interestCategories.computer-it",
   "interestCategories.business",
   "interestCategories.communication",
-];
+] as const;
 export default function Register() {
   const [supabaseError, setSupabaseError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const form = useForm<z.infer<typeof registrationSchema>>({
+    resolver: zodResolver(registrationSchema),
+    
+  })
   const {
     register,
     handleSubmit,

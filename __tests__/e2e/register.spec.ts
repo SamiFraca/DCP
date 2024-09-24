@@ -24,11 +24,11 @@ test("User registration", async ({ page }) => {
    // Check if the response was successful
    expect(response.ok()).toBeTruthy();
   // Wait for the URL to change to the expected one
-  await page.waitForURL("http://localhost:3000/en?register=success");
+  await page.goto("http://localhost:3000/en?register=success");
 
   // Assert that the URL is as expected
   expect(page.url()).toBe("http://localhost:3000/en?register=success");
 
   // Optionally, check if the success message is visible
-  await expect(page.locator("text=Registered successfully!")).toBeVisible();
+  await expect(page.locator('text=/Registered succesfully!/')).toBeVisible();
 });

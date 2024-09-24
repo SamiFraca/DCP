@@ -3,9 +3,8 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
   testDir:'./__tests__/e2e',
   use: {
-    baseURL:'http://localhost:3000',
-    // Browser settings, like headless mode or viewport size
-    headless: false,  // Set to true for running tests without a UI
+    baseURL:process.env.BASE_URL || 'http://localhost:3000',
+    headless: false,  
     viewport: { width: 1280, height: 720 },
   },
   projects: [

@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-
+const baseUrl = process.env.BASE_URL || "http://localhost:3000";
 test("User registration", async ({ page }) => {
   // Navigate to the registration page
   await page.goto("/register");
@@ -24,10 +24,10 @@ test("User registration", async ({ page }) => {
    // Check if the response was successful
    expect(response.ok()).toBeTruthy();
   // Wait for the URL to change to the expected one
-  await page.goto("http://localhost:3000/en?register=success");
+  await page.goto(`/en?register=success`);
 
   // Assert that the URL is as expected
-  expect(page.url()).toBe("http://localhost:3000/en?register=success");
+  expect(page.url()).toBe(`${baseUrl}/en?register=success`);
 
   // Optionally, check if the success message is visible
   await expect(page.locator('text=/Registered succesfully!/')).toBeVisible();

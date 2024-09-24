@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "test:playwright": "BASE_URL=http://test2.com bun  playwright test"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.0",
@@ -23,6 +24,7 @@
     "@types/jest": "^29.5.13",
     "class-variance-authority": "^0.7.0",
     "cookie": "^0.6.0",
+    "dotenv": "^16.4.5",
     "lucide-react": "^0.414.0",
     "next": "^14.2.13",
     "next-intl": "^3.19.4",

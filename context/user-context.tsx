@@ -9,6 +9,7 @@ interface CustomUserMetadata {
   lastName?: string;
   country?: string;
   mainField?:string;
+  main_field?:string;
   description?:string;
 }
 

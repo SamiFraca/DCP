@@ -91,14 +91,6 @@ export const ModifyDescription: FC<ModifyDescriptionProps> = ({
           <div className="flex gap-4">
             <Button
               className="mt-4"
-              variant="destructive"
-              onClick={() => setIsShowAreaDescriptionEnabled(false)}
-              aria-label="Cancel editing description"
-            >
-              Cancel
-            </Button>
-            <Button
-              className="mt-4"
               variant="default"
               onClick={sendNewUserDescriptionData}
               disabled={isLoadingCustomDescription}
@@ -110,6 +102,14 @@ export const ModifyDescription: FC<ModifyDescriptionProps> = ({
               ) : (
                 ""
               )}
+            </Button>
+            <Button
+              className="mt-4"
+              variant="destructive"
+              onClick={() => setIsShowAreaDescriptionEnabled(false)}
+              aria-label="Cancel editing description"
+            >
+              Cancel
             </Button>
           </div>
 

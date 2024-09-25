@@ -3,6 +3,7 @@ import { supabase } from "@/lib/supabaseClient"; // Adjust the import path if ne
 import { PostgrestError, PostgrestResponse } from "@supabase/supabase-js";
 import getUser from "./getUser";
 import { PinnedProject } from "@/components/profile/custom-pin-projects-modal";
+import { createClient } from "@/utils/supabase/client";
 
 export const getRandomProjectList = async (limit: number) => {
   try {
@@ -244,4 +245,38 @@ export const updateUserDescriptionUserTable = async (
   } else {
     return { success: true };
   }
+};
+
+export const updateUserSideNavData = async (updatedFields: {
+  name?: string;
+  lastName?: string;
+  country?: string;
+  mainField?: string;
+}) => {
+  const supabase = createClient();
+  const authUserId = (await getUser()).user?.id;
+  const { error: authError } = await supabase.auth.updateUser({
+    data: updatedFields,
+  });
+  if(authError){
+    console.log(authError);
+    return { error: authError.message, success: false };
+  }
+
+  if (!authUserId) {
+    throw new Error("User is not authenticated");
+  }
+  console.log(updatedFields);
+
+  const { error } = await supabase
+    .from("users")
+    .update(updatedFields)  
+    .eq("auth_user_id", authUserId);
+
+  if (error) {
+    console.log(error);
+    return { error: error.message, success: false };
+  }
+  
+  return { success: true };
 };

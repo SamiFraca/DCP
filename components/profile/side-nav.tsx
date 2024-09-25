@@ -1,10 +1,10 @@
+
 import Image from "next/image";
 import defaultImageAvatar from "@/assets/img/default-profile.png";
-import getUser from "@/lib/getUser";
-import { Bell, Book, Info, MapPinIcon, User } from "lucide-react";
+import { Bell, Book, Info, User } from "lucide-react";
 import Link from "next/link";
+import { ProfileSideNavData } from "./profile-side-nav-data";
 export async function SideNav() {
-  const { user } = await getUser();
   return (
     <aside className="md:p-4 pt-0 flex flex-col gap-2 md:w-80 w-full mt-4 mb-4 md:mt-0">
       <Image
@@ -15,16 +15,7 @@ export async function SideNav() {
         className="md:mx-auto"
       />
       <div className="flex gap-4 w-full md:w-auto md:gap-2 md:flex-col flex-wrap">
-        <p className="font-semibold text-xl capitalize">
-          {user?.user_metadata.lastName && (
-            <span> {user.user_metadata.lastName}, </span>
-          )}
-          {user?.user_metadata.name}
-        </p>
-        <div className="flex gap-2">
-          <MapPinIcon /> <p>{user?.user_metadata.country},</p>
-        </div>
-        <p>Main interest: {user?.user_metadata.mainField}</p>
+        <ProfileSideNavData/>
       </div>
       <span className="border-b border-gray-800 w-full my-4"></span>
       <nav>

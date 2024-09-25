@@ -30,7 +30,7 @@ export type UserInputs = {
   };
 };
 
-const interestCategories = [
+export const interestCategories = [
   "interestCategories.sports",
   "interestCategories.science",
   "interestCategories.arts",

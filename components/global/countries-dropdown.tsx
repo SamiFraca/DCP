@@ -12,44 +12,58 @@ import Image from "next/image";
 interface CountryProps {
   name: string;
   flag: string;
-  cca3: string;
 }
-type CountryDropdownProps = {
+
+type CountryDropdownProps<T = string> = {
   placeholderText?: string;
+  onChange: (name: T, selectedCountry: T) => void;
+  selectorText?: string;
 };
 
-export const CountryDropdown: React.FC<CountryDropdownProps> = ({
+let cachedCountries: CountryProps[] | null = null;
+
+export const CountryDropdown = <T extends unknown>({
   placeholderText,
-}) => {
+  onChange,
+  selectorText = "country",
+}: CountryDropdownProps<T>) => {
   const [countries, setCountries] = useState<CountryProps[]>([]);
   const t = useTranslations("Register");
+
   useEffect(() => {
     const fetchCountries = async () => {
+      if (cachedCountries) {
+        setCountries(cachedCountries);
+        return;
+      }
+
       const response = await fetch("https://restcountries.com/v3.1/all");
       const data = await response.json();
       const countryData: CountryProps[] = data.map((country: any) => ({
         name: country.name.common,
         flag: country.flags.svg,
-        cca3: country.cca3,
       }));
+
       countryData.sort((a, b) => a.name.localeCompare(b.name));
+      cachedCountries = countryData;
       setCountries(countryData);
     };
 
     fetchCountries();
   }, []);
 
+  const handleValueChange = (value: string) => {
+    onChange(selectorText as unknown as T, value as unknown as T);
+  };
+
   return (
-    <Select name="country">
+    <Select name={selectorText} onValueChange={handleValueChange}>
       <SelectTrigger>
         <SelectValue placeholder={placeholderText || t("ChooseCountry")} />
       </SelectTrigger>
       <SelectContent>
         {countries.map((country) => (
-          <SelectItem
-            key={country.cca3}
-            value={country.name}
-          >
+          <SelectItem key={country.name} value={country.name}>
             <div className="flex gap-2">
               {country.flag && (
                 <Image

@@ -53,9 +53,9 @@ export const ProfileSideNavData = () => {
     console.log(value);
     setEditedData((prevData) => ({ ...prevData, [name]: value }));
   };
-  const handleSelectChange = (value:string) => {
-    console.log(value);
-    setEditedData((prevData) => ({ ...prevData, ["main_field"]: value }));
+  const handleSelectChange = (name:string,value:string) => {
+    console.log(name,value);
+    setEditedData((prevData) => ({ ...prevData, [name]: value }));
   };
   
 
@@ -76,7 +76,6 @@ export const ProfileSideNavData = () => {
           ...prevUser,
           user_metadata: { ...prevUser.user_metadata, ...updatedFields },
         }));
-        console.log(user);
         setToggleEditData(false);
       }
       if (error) {
@@ -146,7 +145,7 @@ export const ProfileSideNavData = () => {
               <Label htmlFor="country" className="text-sm">
                 Country
               </Label>
-              <CountryDropdown placeholderText={editedData.country}/>
+              <CountryDropdown placeholderText={editedData.country} onChange={handleSelectChange}/>
               {/* <Input
                 value={editedData.country}
                 onChange={handleInputChange}
@@ -156,12 +155,6 @@ export const ProfileSideNavData = () => {
               <Label htmlFor="main_field" className="text-sm">
                 Main Interest
               </Label>
-              {/* <Input
-                value={editedData.main_field}
-                onChange={handleInputChange}
-                name="main_field"
-                placeholder="Main Interest"
-              /> */}
               <MainInterestDropdown  placeholder={editedData.main_field} onChange={handleSelectChange} selectorName="main_field"   />
               <div className="flex gap-2 mt-4">
                 <Button

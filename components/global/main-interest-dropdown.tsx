@@ -12,7 +12,7 @@ import { useTranslations } from "next-intl";
 
 interface MainInterestDropdownProps<T> {
   placeholder?: string;
-  onChange: (value: T) => void;
+  onChange: (name:T,value: T) => void;
   selectorName?: string;
 }
 
@@ -26,7 +26,7 @@ export const MainInterestDropdown = <T,>({
 
   const handleValueChange = (value: string) => {
     setSelectedValue(value);
-    onChange(value as unknown as T);
+    onChange(selectorName as unknown as T,value as unknown as T);
   };
 
   return (

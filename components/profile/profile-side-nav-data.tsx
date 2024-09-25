@@ -10,6 +10,7 @@ import { Label } from "@radix-ui/react-label";
 import { updateUserSideNavData } from "@/lib/fetchSupabaseData";
 import { AlertInput } from "../alert/alert-input";
 import { MainInterestDropdown } from "../global/main-interest-dropdown";
+import { CountryDropdown } from "../global/countries-dropdown";
 
 export const ProfileSideNavData = () => {
   const [user, setUser] = useState<any>(null);
@@ -56,6 +57,7 @@ export const ProfileSideNavData = () => {
     console.log(value);
     setEditedData((prevData) => ({ ...prevData, ["main_field"]: value }));
   };
+  
 
   const handleSave = async () => {
     const updatedFields: Partial<typeof editedData> = {};
@@ -144,12 +146,13 @@ export const ProfileSideNavData = () => {
               <Label htmlFor="country" className="text-sm">
                 Country
               </Label>
-              <Input
+              <CountryDropdown placeholderText={editedData.country}/>
+              {/* <Input
                 value={editedData.country}
                 onChange={handleInputChange}
                 name="country"
                 placeholder="Country"
-              />
+              /> */}
               <Label htmlFor="main_field" className="text-sm">
                 Main Interest
               </Label>

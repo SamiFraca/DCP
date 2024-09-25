@@ -48,13 +48,10 @@ export const ProfileSideNavData = () => {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e);
     const { name, value } = e.target;
-    console.log(value);
     setEditedData((prevData) => ({ ...prevData, [name]: value }));
   };
   const handleSelectChange = (name:string,value:string) => {
-    console.log(name,value);
     setEditedData((prevData) => ({ ...prevData, [name]: value }));
   };
   

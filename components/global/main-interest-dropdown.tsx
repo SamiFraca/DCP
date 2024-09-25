@@ -26,7 +26,7 @@ export const MainInterestDropdown = <T,>({
 
   const handleValueChange = (value: string) => {
     setSelectedValue(value);
-    onChange(selectorName as unknown as T,value as unknown as T);
+    onChange(value as unknown as T,selectorName as unknown as T);
   };
 
   return (

@@ -33,9 +33,9 @@ export const ProfileSideNavData = () => {
       setUser(data?.user);
       setEditedData({
         name: data?.user?.user_metadata?.name || "",
-        last_name: data?.user?.user_metadata?.lastName || "",
+        last_name: data?.user?.user_metadata?.last_name || data?.user?.user_metadata?.lastName || "",
         country: data?.user?.user_metadata?.country || "",
-        main_field: data?.user?.user_metadata?.main_field || "",
+        main_field: data?.user?.user_metadata?.main_field || data?.user?.user_metadata?.mainField || "",
       });
       setIsLoading(false);
     };
@@ -51,7 +51,7 @@ export const ProfileSideNavData = () => {
     const { name, value } = e.target;
     setEditedData((prevData) => ({ ...prevData, [name]: value }));
   };
-  const handleSelectChange = (name:string,value:string) => {
+  const handleSelectChange = (value:string,name:string) => {
     setEditedData((prevData) => ({ ...prevData, [name]: value }));
   };
   
@@ -97,14 +97,14 @@ export const ProfileSideNavData = () => {
             <>
               <p className="font-semibold text-xl capitalize">
                 {user?.user_metadata.lastName && (
-                  <span>{user.user_metadata.lastName}, </span>
+                  <span>{editedData.last_name}, </span>
                 )}
-                {user?.user_metadata.name}
+                {editedData.name}
               </p>
               <div className="flex gap-2">
-                <MapPinIcon /> <p>{user?.user_metadata.country},</p>
+                <MapPinIcon /> <p>{editedData.country},</p>
               </div>
-              <p>Main interest: {user?.user_metadata.main_field}</p>
+              <p>Main interest: {editedData.main_field}</p>
               <Button
                 className="mt-2"
                 onClick={handleEditToggle}
@@ -143,12 +143,6 @@ export const ProfileSideNavData = () => {
                 Country
               </Label>
               <CountryDropdown placeholderText={editedData.country} onChange={handleSelectChange}/>
-              {/* <Input
-                value={editedData.country}
-                onChange={handleInputChange}
-                name="country"
-                placeholder="Country"
-              /> */}
               <Label htmlFor="main_field" className="text-sm">
                 Main Interest
               </Label>

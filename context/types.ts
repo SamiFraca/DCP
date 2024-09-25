@@ -6,6 +6,7 @@ interface CustomUserMetadata {
   country?: string;
   mainField?: string;
   description?: string;
+  last_name?:string;
 }
 
 export interface UserDatafromDB {

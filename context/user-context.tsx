@@ -11,6 +11,7 @@ interface CustomUserMetadata {
   mainField?:string;
   main_field?:string;
   description?:string;
+  last_name?:string;
 }
 
 export interface CustomUser extends User {

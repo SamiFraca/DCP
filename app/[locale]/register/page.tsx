@@ -17,6 +17,8 @@ import {
 } from "@/components/ui/select";
 import { LoaderCircle } from "lucide-react";
 import Link from "next/link";
+import { CountryDropdown } from "@/components/global/countries-dropdown";
+import { MainInterestDropdown } from "@/components/global/main-interest-dropdown";
 export type UserInputs = {
   email: string;
   password: string;
@@ -25,7 +27,8 @@ export type UserInputs = {
       name: string;
       lastName?: string;
       country: string;
-      mainField: string;
+      mainField?: string;
+      main_field: string;
     };
   };
 };
@@ -51,6 +54,7 @@ export default function Register() {
   const router = useRouter();
   const t = useTranslations("Register");
   const handleFormSubmitRegister: SubmitHandler<UserInputs> = async (data) => {
+    console.log(data);
     setIsLoading(true);
     const { error, success } = await signup(data);
 
@@ -119,15 +123,24 @@ export default function Register() {
         </div>
         <div className="flex gap-2">
           <div className="w-1/2 gap-2 flex flex-col">
-            <Input
-              className="p-3 "
-              type="text"
-              placeholder={`${t("country")} *`}
-              {...register("options.data.country", {
-                required: `${t("country")} ${t("required")}`,
-              })}
-              aria-invalid={errors.options?.data?.country ? "true" : "false"}
+            <Controller
+              name="options.data.country"
+              control={control}
+              rules={{ required: "Country is required" }}
+              render={({ field }) => (
+                <CountryDropdown
+                  placeholderText="Select a country"
+                  onChange={field.onChange}
+                />
+              )}
             />
+            {errors.options?.data?.country && (
+              <AlertInput
+                variant="error"
+                message={errors.options?.data?.message}
+              />
+            )}
+
             {errors.options?.data?.country && (
               <AlertInput
                 variant="error"
@@ -136,15 +149,15 @@ export default function Register() {
             )}
           </div>
           <div className="w-1/2 gap-2 flex flex-col">
-            <Controller
-              name="options.data.mainField"
+            {/* <Controller
+              name="options.data.main_field"
               control={control}
               rules={{ required: `${t("category")} ${t("required")}` }}
               render={({ field }) => (
                 <Select
                   {...field}
                   value={field.value}
-                  onValueChange={field.onChange}
+                  onValueChange={field.onChange(value)}
                 >
                   <SelectTrigger>
                     <SelectValue placeholder={t("mainInterest")} />
@@ -159,6 +172,19 @@ export default function Register() {
                     </SelectGroup>
                   </SelectContent>
                 </Select>
+              )}
+            /> */}
+            <Controller
+              name="options.data.mainField"
+              control={control}
+              rules={{ required: "Main interest is required" }}
+              render={({ field }) => (
+                <MainInterestDropdown
+                  placeholder="Select your main interest"
+                  onChange={(value) => {
+                    field.onChange(value); 
+                  }}
+                />
               )}
             />
             {errors.options?.data?.mainField && (

@@ -17,7 +17,7 @@ export default async function ProfileLayout({
   return (
     <>
       <UserProvider>
-        <div className="flex gap-20 mt-12" >
+        <div className="flex md:gap-20 md:mt-12 md:flex-row flex-col" >
           <SideNav/>
           <section className="w-full">{children}</section>
         </div>

@@ -19,7 +19,7 @@ export const Footer: React.FC = () => {
         ResearchHub
         <span className="w-1 h-auto border-r"></span>© 2024 - PRESENT
       </div>
-      <ul className="flex gap-4 w-full justify-center mt-4 mb-4">
+      <ul className="flex gap-4 w-full justify-center mt-4 mb-4 flex-wrap">
         {footerLinks.map(({ href, title }) => (
           <li key={href}>
             <Link

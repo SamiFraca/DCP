@@ -4,7 +4,7 @@ import getUser from "@/lib/getUser";
 import { LoaderCircle, MapPinIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Skeleton } from "../ui/skeleton";
-import { Input } from "../ui/input"; 
+import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Label } from "@radix-ui/react-label";
 import { updateUserSideNavData } from "@/lib/fetchSupabaseData";
@@ -12,7 +12,8 @@ import { AlertInput } from "../alert/alert-input";
 import { MainInterestDropdown } from "../global/main-interest-dropdown";
 import { CountryDropdown } from "../global/countries-dropdown";
 import { CustomUser } from "@/context/types";
-
+import CustomRegionDropdown from "../global/region-dropdown";
+import SuccessNotification from "../global/success-notification";
 
 export const ProfileSideNavData = () => {
   const [user, setUser] = useState<CustomUser | null>(null);
@@ -20,13 +21,14 @@ export const ProfileSideNavData = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [messageError, setMessageError] = useState<string | null>(null);
   const [isSendingData, setIsSendingData] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
 
   const [editedData, setEditedData] = useState({
     name: "",
     last_name: "",
     country: "",
     main_field: "",
-    region:"",
+    region: "",
   });
 
   useEffect(() => {
@@ -36,10 +38,16 @@ export const ProfileSideNavData = () => {
       setUser(data?.user);
       setEditedData({
         name: data?.user?.user_metadata?.name || "",
-        last_name: data?.user?.user_metadata?.last_name || data?.user?.user_metadata?.lastName || "",
+        last_name:
+          data?.user?.user_metadata?.last_name ||
+          data?.user?.user_metadata?.lastName ||
+          "",
         country: data?.user?.user_metadata?.country || "",
-        main_field: data?.user?.user_metadata?.main_field || data?.user?.user_metadata?.mainField || "",
-        region:data?.user?.user_metadata.region || ""
+        main_field:
+          data?.user?.user_metadata?.main_field ||
+          data?.user?.user_metadata?.mainField ||
+          "",
+        region: data?.user?.user_metadata.region || "",
       });
       setIsLoading(false);
     };
@@ -55,11 +63,10 @@ export const ProfileSideNavData = () => {
     const { name, value } = e.target;
     setEditedData((prevData) => ({ ...prevData, [name]: value }));
   };
-  const handleSelectChange = (value:string,name:string, flag?:string) => {
-    console.log(value,name,flag)
+  const handleSelectChange = (value: string, name: string, flag?: string) => {
+    console.log(value, name, flag);
     setEditedData((prevData) => ({ ...prevData, [name]: value }));
   };
-  
 
   const handleSave = async () => {
     const updatedFields: Partial<typeof editedData> = {};
@@ -79,12 +86,13 @@ export const ProfileSideNavData = () => {
           user_metadata: { ...prevUser.user_metadata, ...updatedFields },
         }));
         setToggleEditData(false);
+        setSuccess(true);
       }
       if (error) {
         setMessageError(error);
       }
       setIsSendingData(false);
-    }else{
+    } else {
       setMessageError("No field has been changed");
     }
   };
@@ -106,10 +114,12 @@ export const ProfileSideNavData = () => {
                 )}
                 {editedData.name}
               </p>
-              <div className="flex gap-2">
-                <MapPinIcon /> <p>{editedData.country}  {user?.user_metadata.region && (
-                  <>,{editedData.region}</>
-                )}</p>
+              <div className="flex gap-2 items-center">
+                <MapPinIcon />
+                <p>
+                  {editedData.country}
+                  {user?.user_metadata.region && <>, {editedData.region}</>}
+                </p>
               </div>
               <p>Main interest: {editedData.main_field}</p>
               <Button
@@ -149,11 +159,27 @@ export const ProfileSideNavData = () => {
               <Label htmlFor="country" className="text-sm">
                 Country
               </Label>
-              <CountryDropdown placeholderText={editedData.country} onChange={handleSelectChange}/>
+              <CountryDropdown
+                placeholderText={editedData.country}
+                onChange={handleSelectChange}
+              />
+              <Label htmlFor="region" className="text-sm">
+                Region
+              </Label>
+              <CustomRegionDropdown
+                placeholderText={editedData.region}
+                country={editedData.country}
+                onChange={handleSelectChange}
+              />
+
               <Label htmlFor="main_field" className="text-sm">
                 Main Interest
               </Label>
-              <MainInterestDropdown  placeholder={editedData.main_field} onChange={handleSelectChange} selectorName="main_field"   />
+              <MainInterestDropdown
+                placeholder={editedData.main_field}
+                onChange={handleSelectChange}
+                selectorName="main_field"
+              />
               <div className="flex gap-2 mt-4">
                 <Button
                   variant={"default"}
@@ -174,6 +200,9 @@ export const ProfileSideNavData = () => {
             </div>
           )}
         </>
+      )}
+      {success && (
+        <SuccessNotification successMessage="Profile updated succesfully" />
       )}
       {messageError && <AlertInput variant="error" message={messageError} />}
     </>

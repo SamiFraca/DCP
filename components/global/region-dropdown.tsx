@@ -5,20 +5,20 @@ import { RegionDropdown } from "react-country-region-selector";
 type CustomRegionDropdownProps = {
   country: string;
   placeholderText?: string;
-  onChange: (region:string) => void;
+  onChange: (region: string, selectorName: string) => void;
 };
 
 export const CustomRegionDropdown: React.FC<CustomRegionDropdownProps> = ({
   country,
   placeholderText = "Select a region",
-  onChange
+  onChange,
 }) => {
   const [region, setRegion] = useState<string>("");
 
   const handleValueChange = (value: string) => {
     console.log(value);
     setRegion(value);
-    onChange(value);
+    onChange(value, "region");
   };
 
   return (
@@ -27,6 +27,7 @@ export const CustomRegionDropdown: React.FC<CustomRegionDropdownProps> = ({
         disableWhenEmpty={true}
         country={country}
         value={region}
+        name="region"
         onChange={handleValueChange}
         classes={`w-full appearance-none bg-transparent border rounded-md px-4 py-2 h-10
             cursor-pointer
@@ -34,7 +35,6 @@ export const CustomRegionDropdown: React.FC<CustomRegionDropdownProps> = ({
           disabled:bg-gray-900 disabled:text-gray-500  disabled:border-gray-900 disabled:cursor-not-allowed disabled:opacity-50 `}
         defaultOptionLabel={placeholderText}
         blankOptionLabel={placeholderText}
-
       />
       <ChevronDownIcon className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500 pointer-events-none" />
     </div>

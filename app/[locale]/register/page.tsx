@@ -149,33 +149,8 @@ export default function Register() {
             )}
           </div>
           <div className="w-1/2 gap-2 flex flex-col">
-            {/* <Controller
-              name="options.data.main_field"
-              control={control}
-              rules={{ required: `${t("category")} ${t("required")}` }}
-              render={({ field }) => (
-                <Select
-                  {...field}
-                  value={field.value}
-                  onValueChange={field.onChange(value)}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder={t("mainInterest")} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      {interestCategories.map((category, index) => (
-                        <SelectItem key={index} value={t(category)}>
-                          {t(category)}
-                        </SelectItem>
-                      ))}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              )}
-            /> */}
             <Controller
-              name="options.data.mainField"
+              name="options.data.main_field"
               control={control}
               rules={{ required: "Main interest is required" }}
               render={({ field }) => (

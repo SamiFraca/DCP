@@ -8,6 +8,7 @@ interface CustomUserMetadata {
   name?: string;
   lastName?: string;
   country?: string;
+  region?:string;
   mainField?:string;
   main_field?:string;
   description?:string;

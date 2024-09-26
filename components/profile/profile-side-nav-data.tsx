@@ -65,6 +65,9 @@ export const ProfileSideNavData = () => {
   };
   const handleSelectChange = (value: string, name: string, flag?: string) => {
     console.log(value, name, flag);
+    if (name === "country") {
+      editedData.region = '';
+    }
     setEditedData((prevData) => ({ ...prevData, [name]: value }));
   };
 
@@ -193,7 +196,10 @@ export const ProfileSideNavData = () => {
                   )}
                   Save
                 </Button>
-                <Button onClick={handleEditToggle} variant={"destructive"}>
+                <Button
+                  onClick={() => setToggleEditData(!toggleEditData)}
+                  variant={"destructive"}
+                >
                   Cancel
                 </Button>
               </div>

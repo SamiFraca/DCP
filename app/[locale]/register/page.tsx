@@ -7,14 +7,7 @@ import { signup } from "./actions";
 import { AlertInput } from "@/components/alert/alert-input";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { useState } from "react";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { CustomRegionDropdown } from "@/components/global/region-dropdown";
 import { LoaderCircle } from "lucide-react";
 import Link from "next/link";
 import { CountryDropdown } from "@/components/global/countries-dropdown";
@@ -29,6 +22,7 @@ export type UserInputs = {
       country: string;
       mainField?: string;
       main_field: string;
+      region: string;
     };
   };
 };
@@ -45,16 +39,18 @@ export const interestCategories = [
 export default function Register() {
   const [supabaseError, setSupabaseError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [region, setRegion] = useState("");
   const {
     register,
     handleSubmit,
     control,
+    watch,
     formState: { errors },
   } = useForm<UserInputs>();
+  const selectedCountry = watch("options.data.country");
   const router = useRouter();
   const t = useTranslations("Register");
   const handleFormSubmitRegister: SubmitHandler<UserInputs> = async (data) => {
-    console.log(data);
     setIsLoading(true);
     const { error, success } = await signup(data);
 
@@ -128,10 +124,12 @@ export default function Register() {
               control={control}
               rules={{ required: "Country is required" }}
               render={({ field }) => (
-                <CountryDropdown
-                  placeholderText="Select a country"
-                  onChange={field.onChange}
-                />
+                <>
+                  <CountryDropdown
+                    placeholderText="Select a country"
+                    onChange={field.onChange}
+                  />
+                </>
               )}
             />
             {errors.options?.data?.country && (
@@ -140,13 +138,18 @@ export default function Register() {
                 message={errors.options?.data?.message}
               />
             )}
-
-            {errors.options?.data?.country && (
-              <AlertInput
-                variant="error"
-                message={errors.options.data?.country?.message}
-              />
-            )}
+            <Controller
+              name="options.data.region"
+              control={control}
+              render={({ field }) => (
+                <CustomRegionDropdown
+                  country={selectedCountry}
+                  onChange={(value) => {
+                    field.onChange(value); 
+                  }}
+                />
+              )}
+            />
           </div>
           <div className="w-1/2 gap-2 flex flex-col">
             <Controller
@@ -157,7 +160,7 @@ export default function Register() {
                 <MainInterestDropdown
                   placeholder="Select your main interest"
                   onChange={(value) => {
-                    field.onChange(value); 
+                    field.onChange(value);
                   }}
                 />
               )}

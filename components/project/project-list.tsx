@@ -18,7 +18,6 @@ const ProjectList: React.FC = () => {
   useEffect(() => {
     const loadData = async () => {
       const { data, error } = await getRandomProjectList(10);
-      console.log(data);
 
       if (error) {
         setError("Failed to fetch data");

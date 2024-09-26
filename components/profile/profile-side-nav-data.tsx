@@ -210,7 +210,7 @@ export const ProfileSideNavData = () => {
       {success && (
         <SuccessNotification successMessage="Profile updated succesfully" />
       )}
-      {messageError && <AlertInput variant="error" message={messageError} />}
+      {messageError && <AlertInput variant="info" message={messageError} />}
     </>
   );
 };

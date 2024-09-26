@@ -20,7 +20,6 @@ type CountryDropdownProps<T = string> = {
   selectorText?: string;
 };
 
-let cachedCountries: CountryProps[] | null = null;
 
 export const CountryDropdown = <T extends unknown>({
   placeholderText,
@@ -32,11 +31,6 @@ export const CountryDropdown = <T extends unknown>({
 
   useEffect(() => {
     const fetchCountries = async () => {
-      if (cachedCountries) {
-        setCountries(cachedCountries);
-        return;
-      }
-
       const response = await fetch("https://restcountries.com/v3.1/all");
       const data = await response.json();
       const countryData: CountryProps[] = data.map((country: any) => ({
@@ -45,7 +39,7 @@ export const CountryDropdown = <T extends unknown>({
       }));
 
       countryData.sort((a, b) => a.name.localeCompare(b.name));
-      cachedCountries = countryData;
+
       setCountries(countryData);
     };
 

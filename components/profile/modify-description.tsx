@@ -1,3 +1,4 @@
+'use client'
 import { FC, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import { LoaderCircle, Pencil } from "lucide-react";

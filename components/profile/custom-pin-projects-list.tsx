@@ -1,3 +1,4 @@
+'use client'
 import { useEffect } from "react";
 import { ProjectCard } from "../card/project-card";
 import { Skeleton } from "../ui/skeleton";

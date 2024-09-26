@@ -4,9 +4,10 @@ interface CustomUserMetadata {
   name?: string;
   lastName?: string;
   country?: string;
-  mainField?: string;
+  main_field?: string;
   description?: string;
-  last_name?:string;
+  last_name?: string;
+  region?: string;
 }
 
 export interface UserDatafromDB {

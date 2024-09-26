@@ -39,7 +39,6 @@ export const interestCategories = [
 export default function Register() {
   const [supabaseError, setSupabaseError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [region, setRegion] = useState("");
   const {
     register,
     handleSubmit,

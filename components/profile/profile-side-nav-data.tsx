@@ -4,16 +4,18 @@ import getUser from "@/lib/getUser";
 import { LoaderCircle, MapPinIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Skeleton } from "../ui/skeleton";
-import { Input } from "../ui/input"; // Assuming you have an Input component
+import { Input } from "../ui/input"; 
 import { Button } from "../ui/button";
 import { Label } from "@radix-ui/react-label";
 import { updateUserSideNavData } from "@/lib/fetchSupabaseData";
 import { AlertInput } from "../alert/alert-input";
 import { MainInterestDropdown } from "../global/main-interest-dropdown";
 import { CountryDropdown } from "../global/countries-dropdown";
+import { CustomUser } from "@/context/types";
+
 
 export const ProfileSideNavData = () => {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<CustomUser | null>(null);
   const [toggleEditData, setToggleEditData] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [messageError, setMessageError] = useState<string | null>(null);
@@ -24,6 +26,7 @@ export const ProfileSideNavData = () => {
     last_name: "",
     country: "",
     main_field: "",
+    region:"",
   });
 
   useEffect(() => {
@@ -36,6 +39,7 @@ export const ProfileSideNavData = () => {
         last_name: data?.user?.user_metadata?.last_name || data?.user?.user_metadata?.lastName || "",
         country: data?.user?.user_metadata?.country || "",
         main_field: data?.user?.user_metadata?.main_field || data?.user?.user_metadata?.mainField || "",
+        region:data?.user?.user_metadata.region || ""
       });
       setIsLoading(false);
     };
@@ -60,7 +64,7 @@ export const ProfileSideNavData = () => {
   const handleSave = async () => {
     const updatedFields: Partial<typeof editedData> = {};
     (Object.keys(editedData) as (keyof typeof editedData)[]).forEach((key) => {
-      if (editedData[key] !== user.user_metadata[key]) {
+      if (editedData[key] !== user?.user_metadata[key]) {
         updatedFields[key] = editedData[key];
       }
     });
@@ -103,7 +107,9 @@ export const ProfileSideNavData = () => {
                 {editedData.name}
               </p>
               <div className="flex gap-2">
-                <MapPinIcon /> <p>{editedData.country},</p>
+                <MapPinIcon /> <p>{editedData.country}  {user?.user_metadata.region && (
+                  <>,{editedData.region}</>
+                )}</p>
               </div>
               <p>Main interest: {editedData.main_field}</p>
               <Button

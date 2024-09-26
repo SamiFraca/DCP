@@ -51,7 +51,8 @@ export const ProfileSideNavData = () => {
     const { name, value } = e.target;
     setEditedData((prevData) => ({ ...prevData, [name]: value }));
   };
-  const handleSelectChange = (value:string,name:string) => {
+  const handleSelectChange = (value:string,name:string, flag?:string) => {
+    console.log(value,name,flag)
     setEditedData((prevData) => ({ ...prevData, [name]: value }));
   };
   

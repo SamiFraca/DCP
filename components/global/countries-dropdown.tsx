@@ -16,10 +16,13 @@ interface CountryProps {
 
 type CountryDropdownProps<T = string> = {
   placeholderText?: string;
-  onChange: (name: T, selectedCountry: T) => void;
+  onChange: (
+    name: T,
+    selectedCountry: T,
+    selectedCountryFlag: string | undefined
+  ) => void;
   selectorText?: string;
 };
-
 
 export const CountryDropdown = <T extends unknown>({
   placeholderText,
@@ -47,7 +50,12 @@ export const CountryDropdown = <T extends unknown>({
   }, []);
 
   const handleValueChange = (value: string) => {
-    onChange(value as unknown as T, selectorText as unknown as T );
+    const selectedCountry = countries.find((country) => country.name === value);
+    onChange(
+      value as unknown as T,
+      selectorText as unknown as T,
+      selectedCountry?.flag
+    );
   };
 
   return (

@@ -1,21 +1,14 @@
-
 import Image from "next/image";
-import defaultImageAvatar from "@/assets/img/default-profile.png";
 import { Bell, Book, Info, User } from "lucide-react";
 import Link from "next/link";
 import { ProfileSideNavData } from "./profile-side-nav-data";
+import ProfileImageEditor from "./profile-image-editor";
 export async function SideNav() {
   return (
     <aside className="md:p-4 pt-0 flex flex-col gap-2 md:w-80 w-full mt-4 mb-4 md:mt-0">
-      <Image
-        src={defaultImageAvatar.src}
-        width={120}
-        height={120}
-        alt="profile"
-        className="md:mx-auto"
-      />
+      <ProfileImageEditor />
       <div className="flex gap-4 w-full md:w-auto md:gap-2 md:flex-col flex-wrap">
-        <ProfileSideNavData/>
+        <ProfileSideNavData />
       </div>
       <span className="border-b border-gray-800 w-full my-4"></span>
       <nav>

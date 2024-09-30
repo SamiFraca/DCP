@@ -61,7 +61,7 @@ export const ModalPopup: React.FC<ModalPopupProps> = ({
             ) : (
               ""
             )}
-            {ButtonAcceptText ?? t("Accept")}
+            {ButtonAcceptText ?? t("accept")}
           </Button>
           <Button
             variant="destructive"

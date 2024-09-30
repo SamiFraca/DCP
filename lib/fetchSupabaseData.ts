@@ -1,5 +1,5 @@
 import { UserProjectDetail } from "@/components/project/project-list";
-import { supabase } from "@/lib/supabaseClient"; // Adjust the import path if necessary
+import { supabase } from "@/lib/supabaseClient"; 
 import { PostgrestError, PostgrestResponse } from "@supabase/supabase-js";
 import getUser from "./getUser";
 import { PinnedProject } from "@/components/profile/custom-pin-projects-modal";

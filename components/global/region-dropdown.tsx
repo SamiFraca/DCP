@@ -16,7 +16,6 @@ export const CustomRegionDropdown: React.FC<CustomRegionDropdownProps> = ({
   const [region, setRegion] = useState<string>("");
 
   const handleValueChange = (value: string) => {
-    console.log(value);
     setRegion(value);
     onChange(value, "region");
   };

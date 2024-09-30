@@ -266,7 +266,6 @@ export const updateUserSideNavData = async (updatedFields: {
   if (!authUserId) {
     throw new Error("User is not authenticated");
   }
-  console.log(updatedFields);
 
   const { error } = await supabase
     .from("users")
@@ -274,7 +273,6 @@ export const updateUserSideNavData = async (updatedFields: {
     .eq("auth_user_id", authUserId);
 
   if (error) {
-    console.log(error);
     return { error: error.message, success: false };
   }
   

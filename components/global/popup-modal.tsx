@@ -52,13 +52,6 @@ export const ModalPopup: React.FC<ModalPopupProps> = ({
         {children}
         <div className="flex gap-4" role="group">
           <Button
-            variant="destructive"
-            onClick={onClose}
-            aria-describedby="cancel-logout"
-          >
-            {t("cancel")}
-          </Button>
-          <Button
             variant={"default"}
             onClick={handleAcceptClick}
             disabled={isDisabled}
@@ -69,6 +62,13 @@ export const ModalPopup: React.FC<ModalPopupProps> = ({
               ""
             )}
             {ButtonAcceptText ?? t("Accept")}
+          </Button>
+          <Button
+            variant="destructive"
+            onClick={onClose}
+            aria-describedby="cancel-logout"
+          >
+            {t("cancel")}
           </Button>
         </div>
       </DialogContent>

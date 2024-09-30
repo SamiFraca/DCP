@@ -8,6 +8,7 @@ interface CustomUserMetadata {
   description?: string;
   last_name?: string;
   region?: string;
+  flag?:string;
 }
 
 export interface UserDatafromDB {

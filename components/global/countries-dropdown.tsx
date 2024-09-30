@@ -16,7 +16,7 @@ interface CountryProps {
 }
 
 type CountryDropdownProps<T = string> = {
-  placeholderText?: string;
+  placeholderText?: React.ReactNode;
   onChange: (
     name: T,
     selectedCountry: T,

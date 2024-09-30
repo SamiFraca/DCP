@@ -14,6 +14,7 @@ import { CountryDropdown } from "../global/countries-dropdown";
 import { CustomUser } from "@/context/types";
 import CustomRegionDropdown from "../global/region-dropdown";
 import SuccessNotification from "../global/success-notification";
+import Image from "next/image";
 
 export const ProfileSideNavData = () => {
   const [user, setUser] = useState<CustomUser | null>(null);
@@ -29,6 +30,7 @@ export const ProfileSideNavData = () => {
     country: "",
     main_field: "",
     region: "",
+    flag: "",
   });
 
   useEffect(() => {
@@ -48,6 +50,7 @@ export const ProfileSideNavData = () => {
           data?.user?.user_metadata?.mainField ||
           "",
         region: data?.user?.user_metadata.region || "",
+        flag: data?.user?.user_metadata.flag || "",
       });
       setIsLoading(false);
     };
@@ -63,25 +66,26 @@ export const ProfileSideNavData = () => {
     setEditedData({
       name: user?.user_metadata.name || "",
       last_name:
-      user?.user_metadata.last_name ||
-      user?.user_metadata.lastName ||
-        "",
+        user?.user_metadata.last_name || user?.user_metadata.lastName || "",
       country: user?.user_metadata.country || "",
-      main_field:
-      user?.user_metadata.main_field ||
-        "",
+      main_field: user?.user_metadata.main_field || "",
       region: user?.user_metadata.region || "",
+      flag: user?.user_metadata.flag || "",
     });
     setToggleEditData(!toggleEditData);
-  }
+  };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setEditedData((prevData) => ({ ...prevData, [name]: value }));
   };
   const handleSelectChange = (value: string, name: string, flag?: string) => {
-    console.log(value, name, flag);
     if (name === "country") {
-      editedData.region = '';
+      setEditedData((prevData) => ({
+        ...prevData,
+        region: "",
+        country: value,
+        flag: flag || "",
+      }));
     }
     setEditedData((prevData) => ({ ...prevData, [name]: value }));
   };
@@ -134,7 +138,13 @@ export const ProfileSideNavData = () => {
               </p>
               <div className="flex gap-2 items-center">
                 <MapPinIcon />
-                <p>
+                <p className="flex gap-2">
+                  <Image
+                    src={editedData.flag}
+                    alt="country flag"
+                    width={20}
+                    height={20}
+                  />
                   {editedData.country}
                   {user?.user_metadata.region && <>, {editedData.region}</>}
                 </p>
@@ -178,7 +188,17 @@ export const ProfileSideNavData = () => {
                 Country
               </Label>
               <CountryDropdown
-                placeholderText={editedData.country}
+                placeholderText={
+                  <span className="flex items-center gap-2">
+                    <Image
+                      src={editedData.flag}
+                      width={20}
+                      height={20}
+                      alt="country flag"
+                    />
+                    {editedData.country}
+                  </span>
+                }
                 onChange={handleSelectChange}
               />
               <Label htmlFor="region" className="text-sm">

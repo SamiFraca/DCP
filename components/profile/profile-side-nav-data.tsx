@@ -59,6 +59,21 @@ export const ProfileSideNavData = () => {
     setToggleEditData(!toggleEditData);
   };
 
+  const handleCancelButtonToggle = () => {
+    setEditedData({
+      name: user?.user_metadata.name || "",
+      last_name:
+      user?.user_metadata.last_name ||
+      user?.user_metadata.lastName ||
+        "",
+      country: user?.user_metadata.country || "",
+      main_field:
+      user?.user_metadata.main_field ||
+        "",
+      region: user?.user_metadata.region || "",
+    });
+    setToggleEditData(!toggleEditData);
+  }
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setEditedData((prevData) => ({ ...prevData, [name]: value }));
@@ -197,7 +212,7 @@ export const ProfileSideNavData = () => {
                   Save
                 </Button>
                 <Button
-                  onClick={() => setToggleEditData(!toggleEditData)}
+                  onClick={handleCancelButtonToggle}
                   variant={"destructive"}
                 >
                   Cancel

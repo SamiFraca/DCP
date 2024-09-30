@@ -1,6 +1,7 @@
 {
   "cancel": "Cancel",
   "save":"Save",
+  "accept":"Accept",
   "Login": {
     "login": "Log In",
     "newAccount": "Don't have an account?",

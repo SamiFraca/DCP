@@ -23,6 +23,7 @@ export type UserInputs = {
       mainField?: string;
       main_field: string;
       region: string;
+      flag: string;
     };
   };
 };
@@ -44,12 +45,14 @@ export default function Register() {
     handleSubmit,
     control,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<UserInputs>();
   const selectedCountry = watch("options.data.country");
   const router = useRouter();
   const t = useTranslations("Register");
   const handleFormSubmitRegister: SubmitHandler<UserInputs> = async (data) => {
+
     setIsLoading(true);
     const { error, success } = await signup(data);
 
@@ -126,7 +129,10 @@ export default function Register() {
                 <>
                   <CountryDropdown
                     placeholderText="Select a country"
-                    onChange={field.onChange}
+                    onChange={(value, _, flag) => {
+                      field.onChange(value);
+                      setValue("options.data.flag", flag || "");
+                    }}
                   />
                 </>
               )}
@@ -144,7 +150,7 @@ export default function Register() {
                 <CustomRegionDropdown
                   country={selectedCountry}
                   onChange={(value) => {
-                    field.onChange(value); 
+                    field.onChange(value);
                   }}
                 />
               )}

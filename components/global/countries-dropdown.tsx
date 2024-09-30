@@ -51,9 +51,10 @@ export const CountryDropdown = <T extends unknown>({
   }, []);
 
   const handleValueChange = (value: string) => {
+
     const selectedCountry = countries.find((country) => country.name === value);
     onChange(
-      value as unknown as T,
+      value as T,
       selectorText as unknown as T,
       selectedCountry?.flag
     );

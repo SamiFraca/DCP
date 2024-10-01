@@ -9,17 +9,16 @@ import {
   DialogTitle,
 } from "../ui/dialog";
 import { useTranslations } from "next-intl";
-import { Loader } from "../loader/loader";
 import { LoaderCircle } from "lucide-react";
 
 type ModalPopupProps<T = void> = {
   isOpen: boolean;
-  onClose: () => T | void;
+  onClose: () => T ;
   children: React.ReactNode;
   dialogTitle?: string;
   dialogDescription?: string;
   ButtonAcceptText?: string;
-  onAccept?: () => T | void;
+  onAccept?: () => Promise<boolean> | boolean | void;
 };
 
 export const ModalPopup: React.FC<ModalPopupProps> = ({
@@ -37,11 +36,20 @@ export const ModalPopup: React.FC<ModalPopupProps> = ({
   const handleAcceptClick = async () => {
     if (onAccept) {
       setIsDisabled(true);
-      await onAccept();
-      onClose();
-      setIsDisabled(false);
+
+      try {
+        const result = await onAccept();
+        if (result !== false) {
+          onClose();
+        }
+      } catch (error) {
+        console.error("Error in onAccept function:", error);
+      } finally {
+        setIsDisabled(false);
+      }
     }
   };
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
@@ -65,7 +73,9 @@ export const ModalPopup: React.FC<ModalPopupProps> = ({
           </Button>
           <Button
             variant="destructive"
-            onClick={onClose}
+            onClick={() => {
+              onClose();
+            }}
             aria-describedby="cancel-logout"
           >
             {t("cancel")}

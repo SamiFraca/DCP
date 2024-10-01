@@ -9,6 +9,7 @@ import { HeaderMobile } from "@/components/header/mobile/header-mobile";
 import { Loader } from "@/components/loader/loader";
 import Loading from "./loading";
 import { Footer } from "@/components/footer/footer";
+import { UserProvider } from "@/context/user-context";
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -40,9 +41,11 @@ export function ClientLayout({ children, locale }: ClientLayoutProps) {
     <NextIntlClientProvider locale={locale} messages={messages}>
       {width >= 768 ? <Header /> : <HeaderMobile />}
       <Suspense fallback={<Loading />}>
-        <main className=" mx-4 md:mx-12  max-w-[1440px] big-desktop:mx-auto grow">{children}</main>
+        <main className=" mx-4 md:mx-12  max-w-[1440px] big-desktop:mx-auto grow">
+          {children}
+        </main>
       </Suspense>
-      <Footer/>
+      <Footer />
     </NextIntlClientProvider>
   );
 }

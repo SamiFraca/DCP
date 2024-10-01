@@ -22,13 +22,13 @@ export interface CustomUser extends User {
 }
 
 interface UserContextType {
-  user: CustomUser | null;
+  contextUser: CustomUser | null;
   isLoading: boolean;
   error: string | null;
 }
 
 const defaultContext: UserContextType = {
-  user: null,
+  contextUser: null,
   isLoading: true,
   error: null,
 };
@@ -38,7 +38,7 @@ const UserContext = createContext<UserContextType>(defaultContext);
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [user, setUser] = useState<CustomUser | null>(null);
+  const [contextUser, setUser] = useState<CustomUser | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -47,6 +47,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
     const fetchUser = async () => {
       try {
         const { user, error } = await getUser();
+        console.log(user);
         if (error || !user) {
           setError("Unable to fetch user");
           window.location.href = "/login";
@@ -64,7 +65,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, isLoading, error }}>
+    <UserContext.Provider value={{ contextUser, isLoading, error }}>
       {children}
     </UserContext.Provider>
   );

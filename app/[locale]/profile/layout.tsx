@@ -5,7 +5,6 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Profile | Research Hub",
-
 };
 
 export default async function ProfileLayout({
@@ -13,15 +12,12 @@ export default async function ProfileLayout({
 }: {
   children: ReactNode;
 }) {
-
   return (
     <>
-      <UserProvider>
-        <div className="flex md:gap-20 md:mt-12 md:flex-row flex-col" >
-          <SideNav/>
-          <section className="w-full">{children}</section>
-        </div>
-      </UserProvider>
+      <div className="flex md:gap-20 md:mt-12 md:flex-row flex-col">
+        <SideNav />
+        <section className="w-full">{children}</section>
+      </div>
     </>
   );
 }

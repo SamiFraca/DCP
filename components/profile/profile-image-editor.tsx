@@ -14,7 +14,7 @@ const ProfileImageEditor = () => {
   const [userProfileImage, setUserProfileImage] = useState<{
     profile_image?: string;
   }>({});
-  const profileImageUser = useUserContext().user?.user_metadata.profile_image;
+  const profileImageUser = useUserContext().contextUser?.user_metadata.profile_image;
 
   const [profileUpdateErrorMessage, setProfileUpdateErrorMessage] = useState<
     string | null

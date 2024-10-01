@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ClientLayout } from "@/app/[locale]/clientLayout";
 import React from "react";
 import { AuthProvider } from "@/components/providers/auth-provider";
+import { UserProvider } from "@/context/user-context";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -27,8 +28,14 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children, params }: RootLayoutProps) {
   return (
-    <html lang={params.locale} suppressHydrationWarning={true} className="h-full">
-      <body className={`${spaceGrotesk.variable} ${roboto.variable} h-full flex flex-col `}>
+    <html
+      lang={params.locale}
+      suppressHydrationWarning={true}
+      className="h-full"
+    >
+      <body
+        className={`${spaceGrotesk.variable} ${roboto.variable} h-full flex flex-col `}
+      >
         <Provider store={store}>
           <AuthProvider>
             <ThemeProvider
@@ -36,7 +43,9 @@ export default function RootLayout({ children, params }: RootLayoutProps) {
               defaultTheme="dark"
               disableTransitionOnChange
             >
-              <ClientLayout locale={params.locale}>{children}</ClientLayout>
+              <UserProvider >
+                <ClientLayout locale={params.locale}>{children}</ClientLayout>
+              </UserProvider>
             </ThemeProvider>
           </AuthProvider>
         </Provider>

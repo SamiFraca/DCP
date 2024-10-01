@@ -16,6 +16,7 @@ import { LogOutModalPopup } from "@/components/header/log-out-popup";
 import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import defaultProfileImage from "@/assets/img/default-profile.png"
+import { useUserContext } from "@/context/user-context";
 export const UserAccountDropdown: React.FC = () => {
   const t = useTranslations("Header");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,6 +24,9 @@ export const UserAccountDropdown: React.FC = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  const profileImage = useUserContext().contextUser?.user_metadata.profile_image;
+
+
 
   return (
     <>
@@ -30,7 +34,7 @@ export const UserAccountDropdown: React.FC = () => {
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="p-0">
             <Avatar className="w-8 h-8">
-              <AvatarImage src={defaultProfileImage.src}  alt="User image"/>
+              <AvatarImage src={profileImage}  alt="User image"/>
               <AvatarFallback><User/></AvatarFallback>
             </Avatar>
           </Button>

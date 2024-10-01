@@ -14,6 +14,7 @@ interface CustomUserMetadata {
   description?:string;
   last_name?:string;
   flag?:string;
+  profile_image?:string;
 }
 
 export interface CustomUser extends User {
@@ -69,4 +70,4 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 };
 
-export const useUser = () => useContext(UserContext);
+export const useUserContext = () => useContext(UserContext);

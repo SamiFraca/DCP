@@ -3,35 +3,56 @@ import getUser from "./getUser";
 import { supabase } from "./supabaseClient";
 
 export const uploadProfileImage = async (file: File) => {
-  const authUserId = (await getUser()).user?.id;
-  console.log(authUserId);
-
-  const filePath = `private/${authUserId}/${file.name}`;
-  console.log(filePath);
-  const { data, error } = await supabase.storage
-    .from("profile-images")
-    .upload(filePath, file, {
-      cacheControl: "3600",
-      upsert: true,
-    });
-  if (error) {
-    console.error("Error uploading file:", error.message);
-    return null;
-  }
-
-  const { data: signedURL, error: urlError } = await supabase.storage
-    .from("profile-images")
-    .createSignedUrl(filePath, 60 * 60);
-
-  if (urlError) {
-    console.error("Error creating signed URL:", urlError.message);
-    return null;
-  }
-
-  await updateUserProfile(signedURL?.signedUrl);
-
-  return signedURL?.signedUrl;
-};
+    const authUser = (await getUser()).user;
+    const authUserId = authUser?.id;
+    
+    if (!authUserId) {
+      console.error("User not authenticated");
+      return null;
+    }
+  
+    const filePath = `private/${authUserId}/${file.name}`;
+  
+    const currentProfileImage = authUser?.user_metadata?.profile_image;
+  
+    if (currentProfileImage) {
+      const currentFileName = currentProfileImage.split('/').pop()?.split('?')[0];
+  
+      const { error: deleteError } = await supabase.storage
+        .from("profile-images")
+        .remove([`private/${authUserId}/${currentFileName}`]);
+      
+      if (deleteError) {
+        console.error("Error deleting existing profile image:", deleteError.message);
+        return null; 
+      }
+    }
+  
+    const { data, error: uploadError } = await supabase.storage
+      .from("profile-images")
+      .upload(filePath, file, {
+        cacheControl: "3600",
+        upsert: true,
+      });
+  
+    if (uploadError) {
+      console.error("Error uploading file:", uploadError.message);
+      return null;
+    }
+  
+    const { data: signedURL, error: urlError } = await supabase.storage
+      .from("profile-images")
+      .createSignedUrl(filePath, 60 * 60);
+  
+    if (urlError) {
+      console.error("Error creating signed URL:", urlError.message);
+      return null;
+    }
+  
+    await updateUserProfile(signedURL?.signedUrl);
+  
+    return signedURL?.signedUrl;
+  };
 
 export const updateUserProfile = async (imageUrl: string) => {
   const authUserId = (await getUser()).user?.id;

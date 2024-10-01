@@ -1,11 +1,12 @@
 "use client";
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import defaultImageAvatar from "@/assets/img/default-profile.png";
-import { getUserProfileImage, uploadProfileImage } from "@/lib/profileImages";
+import { uploadProfileImage } from "@/lib/profileImages";
 import { ModalPopup } from "../global/popup-modal";
 import { Edit } from "lucide-react";
 import { AlertInput } from "../alert/alert-input";
+import { useUserContext } from "@/context/user-context";
 
 const ProfileImageEditor = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -13,15 +14,21 @@ const ProfileImageEditor = () => {
   const [userProfileImage, setUserProfileImage] = useState<{
     profile_image?: string;
   }>({});
-  const [profileUpdateErrorMessage, setProfileUpdateErrorMessage] =
-    useState<string | null>(null);
+  const profileImageUser = useUserContext().user?.user_metadata.profile_image;
+
+  const [profileUpdateErrorMessage, setProfileUpdateErrorMessage] = useState<
+    string | null
+  >(null);
+  
   useEffect(() => {
-    const fetchUserProfileImage = async () => {
-      const profileImage = await getUserProfileImage();
-      setUserProfileImage(profileImage || {});
-    };
-    fetchUserProfileImage();
-  }, []);
+    if (profileImageUser) {
+      setUserProfileImage({ profile_image: profileImageUser });
+    } else {
+      setUserProfileImage({ profile_image: defaultImageAvatar.src });
+    }
+  }, [profileImageUser]);
+
+
 
   const handleFileSubmit = async () => {
     const file = fileInputRef.current?.files?.[0];
@@ -72,13 +79,13 @@ const ProfileImageEditor = () => {
             accept="image/*"
           />
           {profileUpdateErrorMessage && (
-            <AlertInput variant="error" message={profileUpdateErrorMessage}/>
+            <AlertInput variant="error" message={profileUpdateErrorMessage} />
           )}
         </ModalPopup>
       )}
 
       <Image
-        src={userProfileImage?.profile_image ?? defaultImageAvatar.src}
+        src={userProfileImage.profile_image ?? defaultImageAvatar.src}
         width={200}
         height={200}
         alt="profile"

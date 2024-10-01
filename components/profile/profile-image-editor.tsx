@@ -14,12 +14,13 @@ const ProfileImageEditor = () => {
   const [userProfileImage, setUserProfileImage] = useState<{
     profile_image?: string;
   }>({});
-  const profileImageUser = useUserContext().contextUser?.user_metadata.profile_image;
-
+  const profileImageUser =
+    useUserContext().contextUser?.user_metadata.profile_image;
+  const { updateUserContextMetadata } = useUserContext();
   const [profileUpdateErrorMessage, setProfileUpdateErrorMessage] = useState<
     string | null
   >(null);
-  
+
   useEffect(() => {
     if (profileImageUser) {
       setUserProfileImage({ profile_image: profileImageUser });
@@ -27,8 +28,6 @@ const ProfileImageEditor = () => {
       setUserProfileImage({ profile_image: defaultImageAvatar.src });
     }
   }, [profileImageUser]);
-
-
 
   const handleFileSubmit = async () => {
     const file = fileInputRef.current?.files?.[0];
@@ -42,6 +41,7 @@ const ProfileImageEditor = () => {
 
       if (newProfileImage) {
         setUserProfileImage({ profile_image: newProfileImage });
+        updateUserContextMetadata({ profile_image: newProfileImage });
       } else {
         console.error("Failed to upload profile image");
         setProfileUpdateErrorMessage("Failed to upload profile image");

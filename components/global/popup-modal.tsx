@@ -18,7 +18,7 @@ type ModalPopupProps<T = void> = {
   dialogTitle?: string;
   dialogDescription?: string;
   ButtonAcceptText?: string;
-  onAccept?: () => Promise<boolean> | boolean | void;
+  onAccept?: () => Promise<boolean | T> | boolean | void ;
 };
 
 export const ModalPopup: React.FC<ModalPopupProps> = ({

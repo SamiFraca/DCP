@@ -7,6 +7,7 @@ import { createClient } from "@/utils/supabase/client";
 
 import { updateUserDescriptionUserTable } from "@/lib/fetchSupabaseData";
 import dynamic from "next/dynamic";
+import { useTranslations } from "next-intl";
 
 type ModifyDescriptionProps = {
   descriptionValue: string;
@@ -61,11 +62,12 @@ export const ModifyDescription: FC<ModifyDescriptionProps> = ({
       setIsLoadingCustomDescription(false);
     }
   };
+  const t = useTranslations();
   return (
     <div className="mb-8">
       <div className="flex gap-4 items-center mb-4">
         <p className="text-xl" id="description-header">
-          About yourself
+          {t('Profile.aboutYourself')}
         </p>
         <Button
           variant={"ghost"}
@@ -97,7 +99,7 @@ export const ModifyDescription: FC<ModifyDescriptionProps> = ({
               disabled={isLoadingCustomDescription}
               aria-label="Save new description"
             >
-              Save
+              {t('save')}
               {isLoadingCustomDescription ? (
                 <LoaderCircle className="w-6 h-6 animate-rotate mr-2" />
               ) : (
@@ -110,7 +112,7 @@ export const ModifyDescription: FC<ModifyDescriptionProps> = ({
               onClick={() => setIsShowAreaDescriptionEnabled(false)}
               aria-label="Cancel editing description"
             >
-              Cancel
+              {t('cancel')}
             </Button>
           </div>
 

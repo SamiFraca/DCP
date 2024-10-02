@@ -1,7 +1,8 @@
 {
   "cancel": "Cancel",
-  "save":"Save",
-  "accept":"Accept",
+  "save": "Save",
+  "accept": "Accept",
+
   "Login": {
     "login": "Log In",
     "newAccount": "Don't have an account?",
@@ -64,7 +65,14 @@
     "profile": "Profile",
     "logout": "Logout"
   },
-  "Profile":{
-    "editPinned": "Edit your pinned projects"
+  "Profile": {
+    "editPinned": "Edit your pinned projects",
+    "profile": "Profile",
+    "greetings": "Hi",
+    "pinnedProjects":"Pinned projects",
+    "aboutYourself":"About yourself",
+    "yourProyects":"Your proyects",
+    "notifications":"Notifications",
+    "personalInformation":"Personal information"
   }
 }

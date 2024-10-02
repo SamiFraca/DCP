@@ -5,13 +5,16 @@ import { ModifyDescription } from "@/components/profile/modify-description";
 import { Pin } from "lucide-react";
 import withUser from "@/components/hocs/with-user"; 
 import { CustomUser } from "@/context/user-context";
+import { useTranslations } from "next-intl";
+
 
 function Profile({ user }: { user: CustomUser }) { 
+  const t = useTranslations("Profile");
   return (
     <div>
-      <h1 className="text-6xl font-bold sm:text-4xl text-start mb-6">Profile</h1>
+      <h1 className="text-6xl font-bold sm:text-4xl text-start mb-6">{t('profile')}</h1>
       <p className="text-3xl">
-        Hi, <span className="capitalize">{user?.user_metadata.name}</span>
+        {t('greetings')}, <span className="capitalize">{user?.user_metadata.name}</span>
       </p>
       <Divider className="my-4" />
       <ModifyDescription descriptionValue={user?.user_metadata.description ?? 'No description provided'} />
@@ -20,7 +23,7 @@ function Profile({ user }: { user: CustomUser }) {
           <div className="flex grow">
             <p className="flex gap-2 items-center grow">
               <Pin width={20} height={20} />
-              Pinned projects
+              {t('pinnedProjects')}
             </p>
           </div>
           <CustomPinProjectsList />

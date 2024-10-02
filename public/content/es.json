@@ -1,7 +1,7 @@
 {
   "cancel": "Cancelar",
-  "save":"Guardar",
-  "accept":"Aceptar",
+  "save": "Guardar",
+  "accept": "Aceptar",
   "Login": {
     "signIn": "Registrate",
     "register": "Registrarse",
@@ -65,7 +65,14 @@
     "profile": "Perfil",
     "logout": "Cerrar sesión"
   },
-  "Profile":{
-    "editPinned": "Edita tus projectos anclados "
+  "Profile": {
+    "editPinned": "Edita tus proyectos anclados",
+    "profile": "Perfil",
+    "greetings": "Hola",
+    "pinnedProjects": "Proyectos anclados",
+    "aboutYourself": "Sobre ti",
+    "yourProyects":"Tus proyectos",
+    "notifications":"Notificaciones",
+    "personalInformation":"Información personal"
   }
 }

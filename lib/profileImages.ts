@@ -31,7 +31,6 @@ export const uploadProfileImage = async (file: File) => {
     const { data, error: uploadError } = await supabase.storage
       .from("profile-images")
       .upload(filePath, file, {
-        cacheControl: "3600",
         upsert: true,
       });
   

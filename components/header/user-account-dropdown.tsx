@@ -8,15 +8,14 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { useTranslations } from "next-intl";
-import { useSelector } from "react-redux";
-import { User } from "lucide-react";
 import Link from "next/link";
-import { RootState } from "@/store";
 import { LogOutModalPopup } from "@/components/header/log-out-popup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import defaultProfileImage from "@/assets/img/default-profile.png"
+import defaultProfileImage from "@/assets/img/default-profile.png";
 import { useUserContext } from "@/context/user-context";
+import Image from "next/image";
+import { User } from "lucide-react";
 export const UserAccountDropdown: React.FC = () => {
   const t = useTranslations("Header");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,9 +23,8 @@ export const UserAccountDropdown: React.FC = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-  const profileImage = useUserContext().contextUser?.user_metadata.profile_image;
-
-
+  const profileImageUser =
+    useUserContext().contextUser?.user_metadata.profile_image;
 
   return (
     <>
@@ -34,8 +32,13 @@ export const UserAccountDropdown: React.FC = () => {
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="p-0">
             <Avatar className="w-8 h-8">
-              <AvatarImage src={profileImage}  alt="User image"/>
-              <AvatarFallback><User/></AvatarFallback>
+              <Image
+                src={profileImageUser ?? defaultProfileImage.src}
+                width={200}
+                height={200}
+                alt="profile"
+                className="md:mx-auto rounded-full"
+              />
             </Avatar>
           </Button>
         </DropdownMenuTrigger>

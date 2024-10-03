@@ -10,12 +10,11 @@ import {
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { LogOutModalPopup } from "@/components/header/log-out-popup";
-import { useEffect, useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { useState } from "react";
+import { Avatar } from "../ui/avatar";
 import defaultProfileImage from "@/assets/img/default-profile.png";
 import { useUserContext } from "@/context/user-context";
 import Image from "next/image";
-import { User } from "lucide-react";
 export const UserAccountDropdown: React.FC = () => {
   const t = useTranslations("Header");
   const [isModalOpen, setIsModalOpen] = useState(false);

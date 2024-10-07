@@ -20,8 +20,8 @@ export type editedDataProps = {
   main_field: string;
   region: string;
   flag: string;
-  linkedin:string;
-  github:string;
+  linkedin: string;
+  github: string;
 };
 export const ProfileSideNavData = () => {
   const [user, setUser] = useState<CustomUser | null>(null);
@@ -150,24 +150,34 @@ export const ProfileSideNavData = () => {
           </div>
           <p>Main interest: {editedData.main_field}</p>
           <ul className="flex gap-2">
-            <li>
-              <a title={`go to ${editedData.name} github`}>
-                <Github
-                  width={30}
-                  height={30}
-                  className="rounded-md hover:bg-accent hover:text-accent-foreground dark:text-gray-300 cursor-pointer p-1"
-                />
-              </a>
-            </li>
-            <li>
-              <a title={`go to ${editedData.name} linkedin`}>
-                <Linkedin
-                  width={30}
-                  height={30}
-                  className="rounded-md hover:bg-accent hover:text-accent-foreground dark:text-gray-300 cursor-pointer p-1"
-                />
-              </a>
-            </li>
+            {editedData.github && (
+              <li>
+                <a
+                  title={`go to ${editedData.name} github`}
+                  href={`${editedData.github}`}
+                >
+                  <Github
+                    width={30}
+                    height={30}
+                    className="rounded-md hover:bg-accent hover:text-accent-foreground dark:text-gray-300 cursor-pointer p-1"
+                  />
+                </a>
+              </li>
+            )}
+            {editedData.linkedin && (
+              <li>
+                <a
+                  title={`go to ${editedData.name} linkedin`}
+                  href={`${editedData.linkedin}`}
+                >
+                  <Linkedin
+                    width={30}
+                    height={30}
+                    className="rounded-md hover:bg-accent hover:text-accent-foreground dark:text-gray-300 cursor-pointer p-1"
+                  />
+                </a>
+              </li>
+            )}
           </ul>
 
           <Button

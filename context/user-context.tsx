@@ -15,6 +15,8 @@ interface CustomUserMetadata {
   last_name?: string;
   flag?: string;
   profile_image?: string;
+  linkedin?:string;
+  github?:string;
 }
 
 export interface CustomUser extends User {

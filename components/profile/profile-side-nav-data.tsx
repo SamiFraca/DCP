@@ -1,7 +1,7 @@
 "use client";
 
 import getUser from "@/lib/getUser";
-import { LoaderCircle, MapPinIcon } from "lucide-react";
+import { Github, Linkedin, LoaderCircle, MapPinIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Skeleton } from "../ui/skeleton";
 import { Button } from "../ui/button";
@@ -20,6 +20,8 @@ export type editedDataProps = {
   main_field: string;
   region: string;
   flag: string;
+  linkedin:string;
+  github:string;
 };
 export const ProfileSideNavData = () => {
   const [user, setUser] = useState<CustomUser | null>(null);
@@ -36,6 +38,8 @@ export const ProfileSideNavData = () => {
     main_field: "",
     region: "",
     flag: "",
+    linkedin: "",
+    github: "",
   });
 
   useEffect(() => {
@@ -51,6 +55,8 @@ export const ProfileSideNavData = () => {
         main_field: userData?.user_metadata?.main_field ?? "",
         region: userData?.user_metadata?.region ?? "",
         flag: userData?.user_metadata?.flag ?? "",
+        linkedin: userData?.user_metadata?.linkedin ?? "",
+        github: userData?.user_metadata?.github ?? "",
       });
       setIsLoading(false);
     };
@@ -69,13 +75,13 @@ export const ProfileSideNavData = () => {
         main_field: user?.user_metadata.main_field ?? "",
         region: user?.user_metadata.region ?? "",
         flag: user?.user_metadata.flag ?? "",
+        linkedin: user?.user_metadata?.linkedin ?? "",
+        github: user?.user_metadata?.github ?? "",
       });
     }
     setToggleEditData(false);
     setMessageError(null);
   };
-
-
 
   const handleSave = async () => {
     if (!user) return;
@@ -143,6 +149,27 @@ export const ProfileSideNavData = () => {
             </p>
           </div>
           <p>Main interest: {editedData.main_field}</p>
+          <ul className="flex gap-2">
+            <li>
+              <a title={`go to ${editedData.name} github`}>
+                <Github
+                  width={30}
+                  height={30}
+                  className="rounded-md hover:bg-accent hover:text-accent-foreground dark:text-gray-300 cursor-pointer p-1"
+                />
+              </a>
+            </li>
+            <li>
+              <a title={`go to ${editedData.name} linkedin`}>
+                <Linkedin
+                  width={30}
+                  height={30}
+                  className="rounded-md hover:bg-accent hover:text-accent-foreground dark:text-gray-300 cursor-pointer p-1"
+                />
+              </a>
+            </li>
+          </ul>
+
           <Button
             className="mt-2"
             onClick={handleEditToggle}

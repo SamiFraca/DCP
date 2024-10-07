@@ -153,13 +153,13 @@ export const ProfileSideNavData = () => {
             {editedData.github && (
               <li>
                 <a
-                  title={`go to ${editedData.name} github`}
+                  title={`go to ${editedData.name}'s github`}
                   href={`${editedData.github}`}
                 >
                   <Github
                     width={30}
                     height={30}
-                    className="rounded-md hover:bg-accent hover:text-accent-foreground dark:text-gray-300 cursor-pointer p-1"
+                    className="rounded-full bg-accent hover:text-accent-foreground dark:text-gray-300 cursor-pointer p-1"
                   />
                 </a>
               </li>
@@ -167,13 +167,13 @@ export const ProfileSideNavData = () => {
             {editedData.linkedin && (
               <li>
                 <a
-                  title={`go to ${editedData.name} linkedin`}
+                  title={`go to ${editedData.name}'s linkedin`}
                   href={`${editedData.linkedin}`}
                 >
                   <Linkedin
                     width={30}
                     height={30}
-                    className="rounded-md hover:bg-accent hover:text-accent-foreground dark:text-gray-300 cursor-pointer p-1"
+                    className="rounded-md bg-accent hover:text-accent-foreground dark:text-gray-300 cursor-pointer p-1"
                   />
                 </a>
               </li>

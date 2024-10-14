@@ -5,7 +5,7 @@ type ProjectCardProps = {
   title: string;
   author?: string;
   category?: string;
-  description: string;
+  description?: string | null;
   className?: string; 
 };
 

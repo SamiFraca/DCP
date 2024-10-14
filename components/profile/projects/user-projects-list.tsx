@@ -13,7 +13,7 @@ export const UserProjectList = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
     async function userProjects() {
-      const { data, error } = await fetchUserProjects(true);
+      const { data, error } = await fetchUserProjects();
       data ? setUserProjects(data[0]) : setError(error?.message);
       setIsLoading(false);
     }

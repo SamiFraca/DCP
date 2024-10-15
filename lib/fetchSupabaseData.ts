@@ -88,7 +88,7 @@ export type UserSpecificProject = {
   }[];
 };
 
-export const fetchUserProjects = async (): Promise<{
+export const fetchUserPinnedProjects = async (): Promise<{
   data: UserSpecificProject[] | null;
   error: PostgrestError | null;
 }> => {
@@ -278,3 +278,4 @@ export const updateUserSideNavData = async (updatedFields: {
   
   return { success: true };
 };
+

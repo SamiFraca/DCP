@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import { Link, LoaderCircle, Pin } from "lucide-react";
 import { useTranslations } from "next-intl";
 import {
-  fetchUserProjects,
+  fetchUserPinnedProjects,
   getPinnedProjectsFromUser,
   saveUserPinnedProjects,
   UserSpecificProject,
@@ -57,7 +57,7 @@ export const CustomPinProjectsModal: React.FC = () => {
     setLoading(true);
     setError(null);
 
-    const { data, error } = await fetchUserProjects();
+    const { data, error } = await fetchUserPinnedProjects();
 
     if (error) {
       setError("Failed to fetch projects");

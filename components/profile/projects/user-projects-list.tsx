@@ -11,7 +11,6 @@ export const UserProjectList = () => {
   );
 
   if (error) return <div>Error loading projects</div>;
-  if (!userProjects) return <div>Loading...</div>;
 
   if (!userProjects) {
     return (

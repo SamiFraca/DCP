@@ -1,3 +1,6 @@
+
+import { ProjectDetails } from "@/components/project/project-details";
+
 export async function generateMetadata({
   params,
 }: {
@@ -22,9 +25,7 @@ const ProjectDetail = async ({
 
   return (
     <div>
-      <h1 className="text-6xl font-bold sm:text-4xl text-start mb-6">
-        {decodedName}
-      </h1>
+      <ProjectDetails name={decodedName} id={params.id} mode="private" />
     </div>
   );
 };

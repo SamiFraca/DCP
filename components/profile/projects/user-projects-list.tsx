@@ -1,4 +1,5 @@
 "use client";
+import { UserProjectListData } from "@/app/api/profile/user/projects/route";
 import { ProjectCard } from "@/components/card/project-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useLayout } from "@/context/profile/projects/toggle-layout-projects";
@@ -7,7 +8,7 @@ import Link from "next/link";
 import useSWR from "swr";
 
 export const UserProjectList = () => {
-  const { data: userProjects, error } = useSWR(
+  const { data: userProjects, error } = useSWR<UserProjectListData>(
     "/api/profile/user/projects",
     useFetcher
   );

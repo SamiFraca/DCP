@@ -9,7 +9,7 @@ interface LayoutContextType {
 const LayoutContext = createContext<LayoutContextType | undefined>(undefined);
 
 export const ToggleLayoutProvider = ({ children }: { children: ReactNode }) => {
-  const [isGrid, setIsGrid] = useState(true);
+  const [isGrid, setIsGrid] = useState(false);
 
   const toggleLayout = () => {
     setIsGrid((prev) => !prev);

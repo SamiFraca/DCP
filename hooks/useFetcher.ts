@@ -1,7 +1,5 @@
-import { UserProjectListData } from '@/app/api/profile/user/projects/route';
 
-
-export const useFetcher: (url: string) => Promise<UserProjectListData> = async (url) => {
+export const useFetcher = async <T>(url: string): Promise<T> => {
   const response = await fetch(url, {
     method: 'GET',
     headers: {
@@ -13,5 +11,5 @@ export const useFetcher: (url: string) => Promise<UserProjectListData> = async (
     throw new Error('Network response was not ok');
   }
 
-  return response.json(); 
+  return response.json() as Promise<T>; 
 };

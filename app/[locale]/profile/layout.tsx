@@ -1,5 +1,4 @@
 import { ReactNode, Suspense } from "react";
-import { UserProvider } from "@/context/user-context";
 import { SideNav } from "@/components/profile/side-nav";
 import { Metadata } from "next";
 import Loading from "../loading";

@@ -3,6 +3,7 @@ import { ProjectCard } from "@/components/card/project-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useLayout } from "@/context/profile/projects/toggle-layout-projects";
 import { useFetcher } from "@/hooks/useFetcher";
+import Link from "next/link";
 import useSWR from "swr";
 
 export const UserProjectList = () => {
@@ -28,13 +29,18 @@ export const UserProjectList = () => {
       {userProjects ? (
         <ul className={isGrid ? "flex gap-4" : "flex-col flex gap-4"}>
           {userProjects.map((project) => (
-            <ProjectCard
+            <Link
               key={project.projects.id}
-              title={project.projects.name}
-              category={project.projects.category}
-              description={project.projects.description}
-              users={project.userData}
-            />
+              href={`/profile/projects/${project.projects.id}/${project.projects.name}`}
+            >
+              <ProjectCard
+                key={project.projects.id}
+                title={project.projects.name}
+                category={project.projects.category}
+                description={project.projects.description}
+                users={project.userData}
+              />
+            </Link>
           ))}
         </ul>
       ) : (

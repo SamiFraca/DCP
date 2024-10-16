@@ -71,8 +71,9 @@
     "greetings": "Hola",
     "pinnedProjects": "Proyectos anclados",
     "aboutYourself": "Sobre ti",
-    "yourProyects":"Tus proyectos",
-    "notifications":"Notificaciones",
-    "personalInformation":"Información personal"
+    "yourProyects": "Tus proyectos",
+    "notifications": "Notificaciones",
+    "personalInformation": "Información personal",
+    "yourProjects": "Tus proyectos"
   }
 }

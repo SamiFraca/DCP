@@ -26,9 +26,9 @@ export const UserProjectList = () => {
     <div>
       {userProjects ? (
         <ul>
-          {userProjects.map((project, index) => (
+          {userProjects.map((project) => (
             <ProjectCard
-              key={index}
+              key={project.projects.id}
               title={project.projects.name}
               category={project.projects.category}
               description={project.projects.description}

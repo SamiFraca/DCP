@@ -32,7 +32,7 @@ const CustomPinProjectsList = () => {
           dispatch(setUserPinnedProjects(data));
         }
       } catch (err) {
-        dispatch(setUserPinnedProjectsError("Failed to fetch projects"));
+        dispatch(setUserPinnedProjectsError("Failed to fetch projcts"));
       } finally {
         dispatch(setUserPinnedProjectsLoading(false));
       }

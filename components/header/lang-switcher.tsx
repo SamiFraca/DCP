@@ -48,6 +48,7 @@ const LangSwitcher: React.FC = () => {
     }
     const newPathname = pathSegments.join("/");
     router.push(newPathname);
+    location.reload();
   };
   return (
     <div className="">

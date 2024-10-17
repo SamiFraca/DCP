@@ -7,6 +7,9 @@ import { IndividualProjectData } from "@/app/api/profile/user/project/[id]/route
 import { Skeleton } from "../ui/skeleton";
 import Image from "next/image";
 import { Button } from "../ui/button";
+import { format } from "date-fns";
+import { enUS, es } from "date-fns/locale";
+import store from "@/store";
 
 type ProjectDetailsProps = {
   id: string;
@@ -23,7 +26,22 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({
     `/api/profile/user/project/${id}`,
     useFetcher
   );
+  const language = store.getState().language.code;
+  const currentLocale = language === "en" ? enUS : es;
 
+  if (userProject?.created_at) {
+    const createdAtDate = new Date(userProject.created_at);
+
+    if (!isNaN(createdAtDate.getTime())) {
+      try {
+        userProject.created_at = format(createdAtDate, "PPPP", {
+          locale: currentLocale,
+        });
+      } catch (error) {
+        console.error("Error in date formatting:", error);
+      }
+    }
+  }
   if (error) {
     return <p>{error}</p>;
   }
@@ -63,6 +81,7 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({
         )}
       </div>
       <Divider className="mb-6" />
+      <p className="mb-6">Created at: {userProject.created_at}</p>
       <p className="flex gap-2 mb-4 text-lg">
         Category:
         <span>

@@ -10,6 +10,7 @@ export type IndividualProjectData = {
   category: string;
   userData: userProjectData[];
   users:string[];
+  created_at: string;
 };
 
 export async function GET(
@@ -31,7 +32,8 @@ export async function GET(
           name,
           description,
           category,
-          users
+          users,
+          created_at
     `
     )
     .eq("id", id)

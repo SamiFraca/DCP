@@ -6,6 +6,7 @@ import { useFetcher } from "@/hooks/useFetcher";
 import { IndividualProjectData } from "@/app/api/profile/user/project/[id]/route";
 import { Skeleton } from "../ui/skeleton";
 import Image from "next/image";
+import { Button } from "../ui/button";
 
 type ProjectDetailsProps = {
   id: string;
@@ -33,7 +34,7 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({
         <h1 className="text-6xl font-bold sm:text-4xl text-start mb-6">
           {name}
         </h1>
-        <Divider className="mb-6"/>
+        <Divider className="mb-6" />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4">
             <Skeleton className="h-20 w-full" />
@@ -51,10 +52,17 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({
 
   return (
     <div>
-      <h1 className="text-6xl font-bold sm:text-4xl text-start mb-6">
-        {userProject.name ?? name}
-      </h1>
-      <Divider className="mb-6"/>
+      <div className="flex items-center mb-6">
+        <h1 className="text-6xl font-bold sm:text-4xl text-start">
+          {userProject.name ?? name}
+        </h1>
+        {mode === "private" && (
+          <Button variant={"default"} className="ml-auto">
+            Edit Project
+          </Button>
+        )}
+      </div>
+      <Divider className="mb-6" />
       <p className="flex gap-2 mb-4 text-lg">
         Category:
         <span>

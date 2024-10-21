@@ -1,10 +1,11 @@
 import { useTranslations } from "next-intl";
 import { Metadata } from "next";
 
-
 import GridHome from "@/components/grid/grid-home";
 import SliderListHome from "@/components/slider/slider-list-home";
 import ProjectListHome from "@/components/card/project-list-home";
+import RetroGrid from "@/components/ui/retro-grid";
+import { FadeText } from "@/components/ui/fade-text";
 
 export const metadata: Metadata = {
   title: "Research Hub",
@@ -31,18 +32,28 @@ export default function Home({
             {successMessage}
           </div>
         )}
-        <div className="relative flex items-center justify-center w-full h-[300px] mt-12">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="bg-gradient-to-bl from-purple-500/50 via-purple-500/30 to-transparent blur-2xl rounded-full w-[400px] h-[200px]" />
-          </div>
-          <div className="relative p-8 rounded-full z-10 space-grotesk">
-            <h1 className="text-6xl font-bold text-center sm:text-7xl ">
-              {t("title")}
-            </h1>
-            <h2 className="text-center text-[2rem] sm:text-[2.75rem] mt-4 text-md">
-              Research Hub
-            </h2>
-          </div>
+        <div className="relative p-8 z-10 space-grotesk  flex h-[400px] w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background   ">
+          <h1>
+            <FadeText
+              className="sm:text-7xl pointer-events-none z-10 whitespace-pre-wrap bg-gradient-to-r  text-center text-7xl font-bold leading-none tracking-tighter text-transparent relative bg-clip-text  bg-no-repeat  from-purple-500 via-violet-500 to-pink-500 py-4 "
+              text={t("title")}
+              direction="up"
+              framerProps={{
+                show: { transition: { delay: 0.3 } },
+              }}
+            />
+          </h1>
+          <h2 className="text-center">
+            <FadeText
+              text="Research hub"
+              className="text-[2rem] sm:text-[2.75rem] mt-4 text-md"
+              direction="right"
+              framerProps={{
+                show: { transition: { delay: 0.7 } },
+              }}
+            />
+          </h2>
+          <RetroGrid />
         </div>
         <SliderListHome />
         <h3 className="text-center mt-20 text-3xl space-grotesk">

@@ -32,7 +32,7 @@ export default function Home({
             {successMessage}
           </div>
         )}
-        <div className="relative p-8 z-10 space-grotesk  flex h-[400px] w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background   ">
+        <div className="relative p-8 z-10 space-grotesk  flex h-[400px] w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background text-center  ">
           <h1>
             <FadeText
               className="sm:text-7xl pointer-events-none z-10 whitespace-pre-wrap bg-gradient-to-r  text-center text-7xl font-bold leading-none tracking-tighter text-transparent relative bg-clip-text  bg-no-repeat  from-purple-500 via-violet-500 to-pink-500 py-4 "

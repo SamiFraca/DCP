@@ -10,6 +10,7 @@ import { Button } from "../ui/button";
 import { format } from "date-fns";
 import { enUS, es } from "date-fns/locale";
 import store from "@/store";
+import Link from "next/link";
 
 type ProjectDetailsProps = {
   id: string;
@@ -67,6 +68,10 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({
       </div>
     );
   }
+   const editUrl = {
+    pathname: `/en/profile/projects/${id}/${name}/edit`,
+    query: { project: JSON.stringify(userProject) },
+  };
 
   return (
     <div>
@@ -75,9 +80,11 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({
           {userProject.name ?? name}
         </h1>
         {mode === "private" && (
-          <Button variant={"default"} className="ml-auto">
-            Edit Project
-          </Button>
+          <Link href={editUrl} passHref legacyBehavior>
+            <Button variant={"default"} className="ml-auto">
+              Edit Project
+            </Button>
+          </Link>
         )}
       </div>
       <Divider className="mb-6" />

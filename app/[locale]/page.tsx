@@ -7,6 +7,7 @@ import ProjectListHome from "@/components/card/project-list-home";
 import RetroGrid from "@/components/ui/retro-grid";
 import { FadeText } from "@/components/ui/fade-text";
 import { BentoWrapper } from "@/components/home/bento";
+import { ThreeDPhotoCarousel } from "@/components/ui/three-d-carousel";
 
 export const metadata: Metadata = {
   title: "Research Hub",
@@ -56,11 +57,18 @@ export default function Home({
           </h2>
           <RetroGrid />
         </div>
-        <SliderListHome  />
-        <BentoWrapper  />
+        <SliderListHome />
+        <BentoWrapper />
         <h3 className="text-center mt-20 text-3xl space-grotesk">
           {t("gridTitle")}
         </h3>
+        <div className="w-full">
+          <div className="min-h-[500px]  flex flex-col justify-center  rounded-lg space-y-4">
+            <div className="p-2">
+              <ThreeDPhotoCarousel />
+            </div>
+          </div>
+        </div>
         <GridHome />
         <h3 className="text-3xl space-grotesk mt-20 mb-2">
           {t("featuredProjects")}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlaskConical, Cpu, Trophy, Palette, BriefcaseBusiness, Calculator, Cog, Megaphone } from 'lucide-react'; // Update the import path as needed
+import { FlaskConical, Cpu, Trophy, Palette, BriefcaseBusiness, Calculator, Cog, Megaphone } from 'lucide-react'; 
 import { useTranslations } from 'next-intl';
 import { GridCard } from './grid-card';
 import { GridWrapper } from './grid-wrapper';

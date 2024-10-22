@@ -112,7 +112,7 @@ export function BentoWrapper() {
       variants={{
         hidden: {
           opacity: 0,
-          x: 50,
+          x: 160,
         },
         visible: {
           opacity: 1,

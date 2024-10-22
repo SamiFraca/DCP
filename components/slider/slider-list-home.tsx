@@ -1,47 +1,39 @@
-import React from 'react';
-import { Handshake, Lightbulb, Network, Rocket } from 'lucide-react'; 
-import { useTranslations } from 'next-intl';
-import { SliderWrapper } from './slider-wrapper';
-import { SliderCard } from './slider-card';
+import React from "react";
+import { Handshake, Lightbulb, Network, Rocket } from "lucide-react";
+import { InfiniteMovingCards } from "../ui/infinite-moving-cards";
 
 const sliderData = [
   {
     textKey: "cooperationTitle",
     descriptionKey: "cooperation",
-    icon: <Handshake />
+    icon: <Handshake />,
   },
   {
     textKey: "ideasExpertiseTitle",
     descriptionKey: "ideasExpertise",
-    icon: <Lightbulb />
+    icon: <Lightbulb />,
   },
   {
     textKey: "contactNetworkTitle",
     descriptionKey: "contactNetwork",
-    icon: <Network />
+    icon: <Network />,
   },
   {
     textKey: "existingProjectTitle",
     descriptionKey: "existingProject",
-    icon: <Rocket />
-  }
+    icon: <Rocket />,
+  },
 ];
 
-
 const SliderListHome = () => {
-  const t  = useTranslations('Home');
-
   return (
-    <SliderWrapper>
-      {sliderData.map((slide, index) => (
-        <SliderCard
-          key={index}
-          text={t(slide.textKey)}
-          description={t(slide.descriptionKey)}
-          icon={slide.icon}
-        />
-      ))}
-    </SliderWrapper>
+    <div className="rounded-md flex flex-col antialiased bg-white dark:bg-background dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+      <InfiniteMovingCards
+        items={sliderData}
+        direction="right"
+        speed="slow"
+      />
+    </div>
   );
 };
 

@@ -6,6 +6,7 @@ import SliderListHome from "@/components/slider/slider-list-home";
 import ProjectListHome from "@/components/card/project-list-home";
 import RetroGrid from "@/components/ui/retro-grid";
 import { FadeText } from "@/components/ui/fade-text";
+import { BentoWrapper } from "@/components/home/bento";
 
 export const metadata: Metadata = {
   title: "Research Hub",
@@ -55,7 +56,8 @@ export default function Home({
           </h2>
           <RetroGrid />
         </div>
-        <SliderListHome />
+        <SliderListHome  />
+        <BentoWrapper  />
         <h3 className="text-center mt-20 text-3xl space-grotesk">
           {t("gridTitle")}
         </h3>

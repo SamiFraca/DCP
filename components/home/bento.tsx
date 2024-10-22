@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { CalendarIcon, FileTextIcon } from "@radix-ui/react-icons";
 import { BellIcon, Share2Icon } from "lucide-react";
 
@@ -8,7 +8,7 @@ import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
 import Marquee from "@/components/ui/marquee";
 import { AnimatedListNotifications } from "./animated-list-notifications";
 import { AnimatedBeamWrapper } from "./animated-beam-wrapper";
-
+import InView from "../transitions/in-view";
 
 const projects = [
   {
@@ -85,7 +85,9 @@ const features = [
     href: "#",
     cta: "Learn more",
     className: "col-span-3 lg:col-span-2 relative w-full ",
-    background: <AnimatedBeamWrapper className="absolute right-2 top-4 h-[300px] border-none transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] group-hover:scale-105"  />,
+    background: (
+      <AnimatedBeamWrapper className="absolute right-2 top-4 h-[300px] border-none transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] group-hover:scale-105" />
+    ),
   },
   {
     Icon: CalendarIcon,
@@ -106,10 +108,25 @@ const features = [
 
 export function BentoWrapper() {
   return (
-    <BentoGrid className="mt-24">
-      {features.map((feature, idx) => (
-        <BentoCard key={idx} {...feature} />
-      ))}
-    </BentoGrid>
+    <InView
+      variants={{
+        hidden: {
+          opacity: 0,
+          x: 50,
+        },
+        visible: {
+          opacity: 1,
+          x: 0,
+        },
+      }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+      viewOptions={{ margin: "0px 0px -350px 0px" }}
+    >
+      <BentoGrid className="mt-24">
+        {features.map((feature, idx) => (
+          <BentoCard key={idx} {...feature} />
+        ))}
+      </BentoGrid>
+    </InView>
   );
 }

@@ -81,7 +81,7 @@ const features = [
   {
     Icon: Share2Icon,
     name: "Communication",
-    description: "Centralize communication for each project",
+    description: "Centralized communication for each project",
     href: "#",
     cta: "Learn more",
     className: "col-span-3 lg:col-span-2 relative w-full ",
@@ -89,8 +89,8 @@ const features = [
   },
   {
     Icon: CalendarIcon,
-    name: "Calendar",
-    description: "Use the calendar to set milestones.",
+    name: "Time management",
+    description: "Use our tools to set milestones.",
     className: "col-span-3 lg:col-span-1",
     href: "#",
     cta: "Learn more",

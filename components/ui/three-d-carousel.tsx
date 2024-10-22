@@ -151,8 +151,16 @@ const Carousel = memo(
             isCarouselActive &&
             rotation.set(rotation.get() + info.offset.x * 0.01)
           }
-          onDragEnd={() => {
-            controls.stop();
+          onDragEnd={(_, info) => {
+            if (isCarouselActive) {
+              controls.start({
+                rotateY: rotation.get() + info.velocity.x * 0.01, 
+                transition: {
+                  type: "spring",
+                  mass: 0.3, 
+                },
+              });
+            }
           }}
           animate={controls}
         >

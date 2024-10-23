@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProjectCard } from './project-card';
+import { HoverEffect } from '../ui/card-hover-effect';
 
 const projectData = [
   {
@@ -38,26 +38,12 @@ const projectData = [
     category: "Food & Drink",
     description: "Discover and share delicious recipes with other food enthusiasts"
   },
-  {
-    title: "Online Event Management System",
-    author: "EventPlanner",
-    category: "Event Planning",
-    description: "Organize and manage events with ease using this platform"
-  }
 ];
 
 
 const ProjectListHome = () => (
   <ul className="flex flex-wrap gap-4 mt-10">
-    {projectData.map((project, index) => (
-      <ProjectCard
-        key={index}
-        title={project.title}
-        author={project.author}
-        category={project.category}
-        description={project.description}
-      />
-    ))}
+     <HoverEffect items={projectData} />
   </ul>
 );
 

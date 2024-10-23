@@ -70,42 +70,38 @@ export function useMediaQuery(
 
 const categories = [
   {
-    icon: <FlaskConical width={100} height={100} />,
+    icon: <FlaskConical width={100} height={100} aria-hidden="true" />,
     textKey: "CategoryGrid.Science",
   },
   {
-    icon: <Cpu width={100} height={100} />,
+    icon: <Cpu width={100} height={100} aria-hidden="true" />,
     textKey: "CategoryGrid.IT",
   },
   {
-    icon: <Trophy width={100} height={100} />,
+    icon: <Trophy width={100} height={100} aria-hidden="true" />,
     textKey: "CategoryGrid.Sports",
   },
   {
-    icon: <Palette width={100} height={100} />,
+    icon: <Palette width={100} height={100} aria-hidden="true" />,
     textKey: "CategoryGrid.Arts",
   },
   {
-    icon: <BriefcaseBusiness width={100} height={100} />,
+    icon: <BriefcaseBusiness width={100} height={100} aria-hidden="true" />,
     textKey: "CategoryGrid.Business",
   },
   {
-    icon: <Calculator width={100} height={100} />,
+    icon: <Calculator width={100} height={100} aria-hidden="true" />,
     textKey: "CategoryGrid.Mathematics",
   },
   {
-    icon: <Cog width={100} height={100} />,
+    icon: <Cog width={100} height={100} aria-hidden="true" />,
     textKey: "CategoryGrid.Engineering",
   },
   {
-    icon: <Megaphone width={100} height={100} />,
+    icon: <Megaphone width={100} height={100} aria-hidden="true" />,
     textKey: "CategoryGrid.Communication",
   },
 ];
-
-const duration = 0.15;
-const transition = { duration, ease: [0.32, 0.72, 0, 1], filter: "blur(4px)" };
-const transitionOverlay = { duration: 0.5, ease: [0.32, 0.72, 0, 1] };
 
 const Carousel = memo(
   ({
@@ -131,6 +127,8 @@ const Carousel = memo(
 
     return (
       <div
+        role="region"
+        aria-label="Category Carousel"
         className="flex h-full items-center justify-center bg-mauve-dark-2"
         style={{
           perspective: "1000px",
@@ -175,13 +173,13 @@ const Carousel = memo(
                 }deg) translateZ(${radius}px)`,
               }}
             >
-              <Link href={"./test"}>
+              <Link href={"./test"} tabIndex={0} aria-label={category.textKey.split(".")[1]}>
                 <motion.div
                   layoutId={`category-${category.textKey}`}
                   className="flex flex-col items-center bg-background border p-5 rounded-md hover:card-hover"
                 >
                   {category.icon}
-                  <h2 className="mt-2 text-center">
+                  <h2 className="mt-2 text-center" id={`category-title-${i}`}>
                     {category.textKey.split(".")[1]}
                   </h2>
                 </motion.div>

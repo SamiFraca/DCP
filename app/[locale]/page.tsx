@@ -1,13 +1,12 @@
 import { useTranslations } from "next-intl";
 import { Metadata } from "next";
 
-import GridHome from "@/components/grid/grid-home";
-import SliderListHome from "@/components/slider/slider-list-home";
 import ProjectListHome from "@/components/card/project-list-home";
 import RetroGrid from "@/components/ui/retro-grid";
 import { FadeText } from "@/components/ui/fade-text";
 import { BentoWrapper } from "@/components/home/bento";
 import { ThreeDPhotoCarousel } from "@/components/ui/three-d-carousel";
+import { CarouselHome } from "@/components/home/cards-carousel";
 
 export const metadata: Metadata = {
   title: "Research Hub",
@@ -57,7 +56,8 @@ export default function Home({
           </h2>
           <RetroGrid />
         </div>
-        <SliderListHome />
+        {/* <SliderListHome /> */}
+        <CarouselHome />
         <BentoWrapper />
         <h3 className="text-center mt-20 text-3xl space-grotesk">
           {t("gridTitle")}

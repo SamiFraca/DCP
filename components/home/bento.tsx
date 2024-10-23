@@ -108,25 +108,10 @@ const features = [
 
 export function BentoWrapper() {
   return (
-    <InView
-      variants={{
-        hidden: {
-          opacity: 0,
-          x: 160,
-        },
-        visible: {
-          opacity: 1,
-          x: 0,
-        },
-      }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
-      viewOptions={{ margin: "0px 0px -350px 0px" }}
-    >
-      <BentoGrid className="mt-24">
-        {features.map((feature, idx) => (
-          <BentoCard key={idx} {...feature} />
-        ))}
-      </BentoGrid>
-    </InView>
+    <BentoGrid className="mt-24">
+      {features.map((feature, idx) => (
+        <BentoCard key={idx} {...feature} />
+      ))}
+    </BentoGrid>
   );
 }

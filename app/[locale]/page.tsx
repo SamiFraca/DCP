@@ -69,7 +69,7 @@ export default function Home({
             </div>
           </div>
         </div>
-        <GridHome />
+        {/* <GridHome /> */}
         <h3 className="text-3xl space-grotesk mt-20 mb-2">
           {t("featuredProjects")}
         </h3>

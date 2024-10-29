@@ -97,6 +97,7 @@
     );
     z-index: 10;
   }
+
   .card-hover {
     box-shadow: 0 0 20px #c084fc80, 0 16px 30px #c084fc80;
     transition: transform 0.3s;
@@ -104,9 +105,15 @@
     cursor: pointer;
     border: 1px solid rgb(192, 132, 252);
   }
+
   .animate-border {
     animation: border 4s linear infinite;
   }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
 
   .border-animation {
     background: linear-gradient(45deg, #172033, #1e293b 50%, #172033)
@@ -124,8 +131,8 @@
   header {
     position: relative;
   }
-  .underline-animation{
-    @apply relative before:absolute before:bottom-[-2px] before:left-0 before:right-0 before:h-[2px] before:bg-[#c084fc80] before:origin-bottom-right before:scale-x-0 before:transition-transform before:duration-500 hover:before:origin-bottom-left hover:before:scale-x-100
+  .underline-animation {
+    @apply relative before:absolute before:bottom-[-2px] before:left-0 before:right-0 before:h-[2px] before:bg-[#c084fc80] before:origin-bottom-right before:scale-x-0 before:transition-transform before:duration-500 hover:before:origin-bottom-left hover:before:scale-x-100;
   }
 
   header::after {
@@ -166,7 +173,7 @@
   .notification {
     animation: slideIn 0.5s ease-in-out, fadeOut 0.5s ease-in-out 3s forwards;
   }
-  .alert-notification{
+  .alert-notification {
     animation: slideIn 0.5s ease-in-out;
   }
 

@@ -11,17 +11,18 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Image, { ImageProps } from "next/image";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
+import { useTranslations } from "next-intl";
 
 interface CarouselProps {
   items: JSX.Element[];
   initialScroll?: number;
 }
 
-type Card = {
-  src: string;
-  title: string;
-  category: string;
-  content: React.ReactNode;
+export type CarouselCard = {
+  titleKey: string;
+  descriptionKey: string;
+  gifSrc:string;
+  imgSrc:string;
 };
 
 export const CarouselContext = createContext<{
@@ -100,7 +101,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
 
           <div
             className={cn(
-              "flex flex-row justify-start gap-4 pl-4",
+              "flex flex-row justify-start gap-4 pl-4 no-scrollbar ",
               "max-w-7xl mx-auto" // remove max-w-4xl if you want the carousel to span the full width of its container
             )}
           >
@@ -121,7 +122,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
                   },
                 }}
                 key={"card" + index}
-                className="last:pr-[5%] md:last:pr-[33%]  rounded-3xl"
+                className="last:pr-[5%]  rounded-3xl"
               >
                 {item}
               </motion.div>
@@ -154,13 +155,14 @@ export const Card = ({
   index,
   layout = false,
 }: {
-  card: Card;
+  card: CarouselCard;
   index: number;
   layout?: boolean;
 }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const { onCardClose, currentIndex } = useContext(CarouselContext);
+  const t = useTranslations("Home");
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -168,12 +170,14 @@ export const Card = ({
         handleClose();
       }
     }
+    
 
     if (open) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
+
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
@@ -204,25 +208,31 @@ export const Card = ({
           </div>
         )}
       </AnimatePresence>
-        <div className="max-w-xs  rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10">
+        <div className="max-w-xs bg-opacity-50  rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10">
           <div
             className={cn(
-              "group w-full cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl mx-auto flex flex-col justify-end p-4 border border-transparent dark:border-neutral-800",
-              "bg-[url(https://images.unsplash.com/photo-1476842634003-7dcca8f832de?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80)] bg-cover",
-              // Preload hover image by setting it in a pseudo-element
-              "before:bg-[url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNWlodTF3MjJ3NnJiY3Rlc2J0ZmE0c28yeWoxc3gxY2VtZzA5ejF1NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/syEfLvksYQnmM/giphy.gif)] before:fixed before:inset-0 before:opacity-0 before:z-[-1]",
-              "hover:bg-[url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNWlodTF3MjJ3NnJiY3Rlc2J0ZmE0c28yeWoxc3gxY2VtZzA5ejF1NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/syEfLvksYQnmM/giphy.gif)]",
-              "hover:after:content-[''] hover:after:absolute hover:after:inset-0 hover:after:bg-black hover:after:opacity-50",
+              "group w-full   overflow-hidden relative card h-96 rounded-md shadow-xl mx-auto flex flex-col justify-end p-4 border border-transparent dark:border-neutral-800",
+              `bg-cover `,
+              "hover:after:content-[''] hover:after:absolute hover:after:inset-0 hover:after:bg-black hover:after:opacity-0",
               "transition-all duration-500"
             )}
+            style={{
+              backgroundImage: `url(${card.imgSrc})`,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundImage = `url(${card.gifSrc})`;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundImage = `url(${card.imgSrc})`;
+            }}
           >
+            <div className="absolute inset-0 bg-black opacity-40"></div>
             <div className="text relative z-50">
               <h1 className="font-bold text-xl md:text-3xl text-gray-50 relative">
-                Background Overlays
+               {t(card.titleKey)}
               </h1>
               <p className="font-normal text-base text-gray-50 relative my-4">
-                This card is for some special elements, like displaying
-                background gifs on hover only.
+               {t(card.descriptionKey)}
               </p>
             </div>
           </div>

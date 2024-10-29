@@ -14,7 +14,7 @@ export function CarouselHome() {
 
   return (
     <div className="w-full h-full py-20">
-      <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
+      <h2 className="max-w-7xl  mx-auto  ml-0 text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
         Together we grow.
       </h2>
       <Carousel items={cards} />
@@ -42,6 +42,12 @@ const data: CarouselCard[] = [
     descriptionKey:"ideasExpertise"
   },
 
+  {
+    titleKey: "existingProjectTitle",
+    gifSrc:
+      "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWFhZ3R2ODRtOW5seDBkY2g1Mzd3bjc0OXhlYW81MDV4NW55OTE4diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TOTUxpxgTz7KRxJPn8/giphy.gif",
+    descriptionKey:"existingProject"
+  },
   {
     titleKey: "existingProjectTitle",
     gifSrc:

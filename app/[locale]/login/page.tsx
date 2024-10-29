@@ -34,7 +34,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex flex-col justify-center gap-4 items-center max-w-screen-sm mx-auto mt-12">
+    <div className="flex flex-col justify-center gap-4 items-center md:w-96 mx-4 md:mx-0  mt-12">
       <h1 className="text-5xl mb-4">{t("login")}</h1>
       <form className="flex flex-col gap-4 w-full" onSubmit={handleFormSubmitLogin}>
         <Input

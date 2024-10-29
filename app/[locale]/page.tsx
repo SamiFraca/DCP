@@ -26,7 +26,7 @@ export default function Home({
     ? t("loginSuccess")
     : null;
   return (
-    <>
+    <section className="mx-12">
       <div className="flex flex-col  w-full relative">
         {successMessage && (
           <div className="fixed top-30 bg-green-500  text-white text-center p-2 rounded-b-md transition-transform duration-500 notification w-max z-20 ">
@@ -76,6 +76,6 @@ export default function Home({
         <span className="h-1 w-12 bg-purple-500"></span>
         <ProjectListHome />
       </div>
-    </>
+    </section>
   );
 }

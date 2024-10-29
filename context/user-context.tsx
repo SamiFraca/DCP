@@ -65,7 +65,6 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
         const { user, error } = await getUser();
         if (error || !user) {
           setError("Unable to fetch user");
-          window.location.href = "/login";
         } else {
           setUser(user);
         }

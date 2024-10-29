@@ -14,7 +14,7 @@ export default async function ProfileLayout({
 }) {
   return (
     <>
-      <div className="flex md:gap-20 md:mt-12 md:flex-row flex-col">
+      <div className="flex md:gap-20 md:mt-12 md:flex-row flex-col w-full px-4">
         <SideNav />
         <Suspense fallback={<Loading />}>
           <section className="w-full">{children}</section>

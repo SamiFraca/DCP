@@ -1,5 +1,6 @@
 import React from 'react';
 import { HoverEffect } from '../ui/card-hover-effect';
+import { randomUUID } from 'crypto';
 
 const projectData = [
   {
@@ -42,9 +43,9 @@ const projectData = [
 
 
 const ProjectListHome = () => (
-  <ul className="flex flex-wrap gap-4 mt-10">
-     <HoverEffect items={projectData} />
-  </ul>
+  <div className="flex flex-wrap gap-4 mt-10">
+     <HoverEffect items={projectData} key={randomUUID()}  />
+  </div>
 );
 
 export default ProjectListHome;

@@ -41,7 +41,7 @@ export function ClientLayout({ children, locale }: ClientLayoutProps) {
     <NextIntlClientProvider locale={locale} messages={messages}>
       {width >= 768 ? <Header /> : <HeaderMobile />}
       <Suspense fallback={<Loading />}>
-        <main className=" mx-4 md:mx-12  max-w-[1440px] big-desktop:mx-auto grow">
+        <main className="max-w-[1440px] md:mx-auto grow w-full px-4 ">
           {children}
         </main>
       </Suspense>

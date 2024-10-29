@@ -1,16 +1,12 @@
 "use client";
 import React, {
   useEffect,
-  useRef,
   useState,
   createContext,
-  useContext,
 } from "react";
-import { ArrowLeft, ArrowRight, XIcon } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import Image, { ImageProps } from "next/image";
-import { useOutsideClick } from "@/hooks/useOutsideClick";
 import { useTranslations } from "next-intl";
 
 interface CarouselProps {
@@ -21,8 +17,7 @@ interface CarouselProps {
 export type CarouselCard = {
   titleKey: string;
   descriptionKey: string;
-  gifSrc:string;
-  imgSrc:string;
+  gifSrc: string;
 };
 
 export const CarouselContext = createContext<{
@@ -102,7 +97,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
           <div
             className={cn(
               "flex flex-row justify-start gap-4 pl-4 no-scrollbar ",
-              "max-w-7xl mx-auto" // remove max-w-4xl if you want the carousel to span the full width of its container
+              "max-w-7xl mx-auto" 
             )}
           >
             {items.map((item, index) => (
@@ -152,47 +147,15 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
 
 export const Card = ({
   card,
-  index,
-  layout = false,
 }: {
   card: CarouselCard;
   index: number;
   layout?: boolean;
 }) => {
   const [open, setOpen] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { onCardClose, currentIndex } = useContext(CarouselContext);
   const t = useTranslations("Home");
 
-  useEffect(() => {
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        handleClose();
-      }
-    }
-    
 
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [open]);
-
-  useOutsideClick(containerRef, () => handleClose());
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-    onCardClose(index);
-  };
 
   return (
     <>
@@ -208,64 +171,35 @@ export const Card = ({
           </div>
         )}
       </AnimatePresence>
-        <div className="max-w-xs bg-opacity-50  rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10">
-          <div
-            className={cn(
-              "group w-full   overflow-hidden relative card h-96 rounded-md shadow-xl mx-auto flex flex-col justify-end p-4 border border-transparent dark:border-neutral-800",
-              `bg-cover `,
-              "hover:after:content-[''] hover:after:absolute hover:after:inset-0 hover:after:bg-black hover:after:opacity-0",
-              "transition-all duration-500"
-            )}
-            style={{
-              backgroundImage: `url(${card.imgSrc})`,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundImage = `url(${card.gifSrc})`;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundImage = `url(${card.imgSrc})`;
-            }}
-          >
-            <div className="absolute inset-0 bg-black opacity-40"></div>
-            <div className="text relative z-50">
-              <h1 className="font-bold text-xl md:text-3xl text-gray-50 relative">
-               {t(card.titleKey)}
-              </h1>
-              <p className="font-normal text-base text-gray-50 relative my-4">
-               {t(card.descriptionKey)}
-              </p>
-            </div>
+      <div
+        className="max-w-xs bg-opacity-50  rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10"
+
+      >
+        <div
+          className={cn(
+            "group w-full   overflow-hidden relative card h-96 rounded-md shadow-xl mx-auto flex flex-col justify-end p-4 border border-transparent dark:border-neutral-800",
+            `bg-cover `,
+            "hover:after:content-[''] hover:after:absolute hover:after:inset-0 hover:after:bg-black hover:after:opacity-0",
+            "transition-all duration-500"
+          )}
+          style={{
+            backgroundImage: `url(${card.gifSrc})` ,
+            opacity: open ? 0 : 1,
+          }}
+        >
+          <div className="absolute inset-0 bg-black opacity-40"></div>
+          <div className="text relative z-50">
+            <h1 className="font-bold text-xl md:text-3xl text-gray-50 relative">
+              {t(card.titleKey)}
+            </h1>
+            <p className="font-normal text-base text-gray-50 relative my-4">
+              {t(card.descriptionKey)}
+            </p>
           </div>
         </div>
+      </div>
     </>
   );
 };
 
-export const BlurImage = ({
-  height,
-  width,
-  src,
-  className,
-  alt,
-  ...rest
-}: ImageProps) => {
-  const [isLoading, setLoading] = useState(true);
-  return (
-    <Image
-      className={cn(
-        "transition duration-300",
-        isLoading ? "blur-sm" : "blur-0",
-        className
-      )}
-      onLoad={() => setLoading(false)}
-      src={src}
-      width={width}
-      height={height}
-      loading="lazy"
-      decoding="async"
-      blurDataURL={typeof src === "string" ? src : undefined}
-      alt={alt ? alt : "Background of a beautiful view"}
-      {...rest}
-    />
-  );
-};
+

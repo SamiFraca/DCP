@@ -49,9 +49,9 @@ const data: CarouselCard[] = [
     descriptionKey:"existingProject"
   },
   {
-    titleKey: "existingProjectTitle",
+    titleKey: "realWorldExperienceTitle",
     gifSrc:
-      "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWFhZ3R2ODRtOW5seDBkY2g1Mzd3bjc0OXhlYW81MDV4NW55OTE4diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TOTUxpxgTz7KRxJPn8/giphy.gif",
-    descriptionKey:"existingProject"
+      "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGhyZWg4emt1Nnk4b3I0MHV5MWx1dzFwaGF0dG1naG5nc3A5ajFkYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qfridHRcLlMLMtWueu/giphy.gif",
+    descriptionKey:"realWorldExperience"
   },
 ];

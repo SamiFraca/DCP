@@ -42,6 +42,8 @@
     "contactNetwork": "Expand your network of contacts and collaborate with experts to create your dream project.",
     "existingProjectTitle": "Boost an existing project",
     "existingProject": "Revitalize your current project with fresh ideas and enhancements to existing features.",
+    "realWorldExperienceTitle": "Gain Real-World Experience",
+    "realWorldExperience": "Work on impactful projects that mirror real-world scenarios",
     "gridTitle": "What are you interested in?",
     "registerSuccess": "Registered succesfully!",
     "loginSuccess": "Welcome back!",
@@ -69,11 +71,11 @@
     "editPinned": "Edit your pinned projects",
     "profile": "Profile",
     "greetings": "Hi",
-    "pinnedProjects":"Pinned projects",
-    "aboutYourself":"About yourself",
-    "yourProyects":"Your projects",
-    "notifications":"Notifications",
-    "personalInformation":"Personal information",
-    "yourProjects":"Your projects"
+    "pinnedProjects": "Pinned projects",
+    "aboutYourself": "About yourself",
+    "yourProyects": "Your projects",
+    "notifications": "Notifications",
+    "personalInformation": "Personal information",
+    "yourProjects": "Your projects"
   }
 }

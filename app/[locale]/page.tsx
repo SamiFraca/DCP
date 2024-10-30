@@ -8,7 +8,8 @@ import { BentoWrapper } from "@/components/home/bento";
 import { ThreeDPhotoCarousel } from "@/components/ui/three-d-carousel";
 import { CarouselHome } from "@/components/home/cards-carousel";
 import TextRevealByWord from "@/components/ui/text-reveal";
-
+import { Chart } from "@/components/ui/chart";
+import InView from "@/components/transitions/in-view";
 
 export const metadata: Metadata = {
   title: "Research Hub",
@@ -76,6 +77,27 @@ export default function Home({
         <span className="h-1 w-12 bg-purple-500"></span>
         <ProjectListHome />
         <TextRevealByWord text="Uniting people throghout the world." />
+        <div className="flex flex-row  items-center w-full max-w-7xl mx-auto">
+          <InView
+             variants={{
+              hidden: { opacity: 0, y: 150, filter: "blur(4px)" },
+              visible: { opacity: 1, y: 0, filter: "blur(0px)" },
+            }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+          >
+            <div className="flex flex-col gap-4 w-1/2">
+              <h2 className="text-xl  font-sans font-bold">Dynamic Growth</h2>
+              <p>
+                Working on diverse projects is one of the best ways to build
+                real-world skills, as each project brings unique challenges and
+                requires a fresh approach. Every new technology learned is an
+                opportunity to broaden one’s knowledge and tackle problems with
+                different perspectives.
+              </p>
+            </div>
+          </InView>
+          <Chart />
+        </div>
       </div>
     </section>
   );

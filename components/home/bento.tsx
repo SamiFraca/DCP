@@ -8,7 +8,6 @@ import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
 import Marquee from "@/components/ui/marquee";
 import { AnimatedListNotifications } from "./animated-list-notifications";
 import { AnimatedBeamWrapper } from "./animated-beam-wrapper";
-import InView from "../transitions/in-view";
 
 const projects = [
   {

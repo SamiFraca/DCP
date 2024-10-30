@@ -7,6 +7,8 @@ import { FadeText } from "@/components/ui/fade-text";
 import { BentoWrapper } from "@/components/home/bento";
 import { ThreeDPhotoCarousel } from "@/components/ui/three-d-carousel";
 import { CarouselHome } from "@/components/home/cards-carousel";
+import TextRevealByWord from "@/components/ui/text-reveal";
+
 
 export const metadata: Metadata = {
   title: "Research Hub",
@@ -56,7 +58,6 @@ export default function Home({
           </h2>
           <RetroGrid />
         </div>
-        {/* <SliderListHome /> */}
         <CarouselHome />
         <BentoWrapper />
         <h3 className="text-center mt-20 text-3xl space-grotesk">
@@ -69,12 +70,12 @@ export default function Home({
             </div>
           </div>
         </div>
-        {/* <GridHome /> */}
         <h3 className="text-3xl space-grotesk mt-20 mb-2">
           {t("featuredProjects")}
         </h3>
         <span className="h-1 w-12 bg-purple-500"></span>
         <ProjectListHome />
+        <TextRevealByWord text="Uniting people throghout the world." />
       </div>
     </section>
   );

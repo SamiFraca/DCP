@@ -5,7 +5,7 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['aljdxodkiftsvecuscfp.supabase.co','mighty.tools','images.unsplash.com'], 
+        domains: ['aljdxodkiftsvecuscfp.supabase.co','mighty.tools','images.unsplash.com','plus.unsplash.com'], 
       },
 };
 

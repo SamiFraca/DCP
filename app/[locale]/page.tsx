@@ -10,6 +10,7 @@ import { CarouselHome } from "@/components/home/cards-carousel";
 import TextRevealByWord from "@/components/ui/text-reveal";
 import { Chart } from "@/components/ui/chart";
 import InView from "@/components/transitions/in-view";
+import HoverGallery from "@/components/ui/gallery-hover";
 
 export const metadata: Metadata = {
   title: "Research Hub",
@@ -77,26 +78,57 @@ export default function Home({
         <span className="h-1 w-12 bg-purple-500"></span>
         <ProjectListHome />
         <TextRevealByWord text="Uniting people throghout the world." />
-        <div className="flex flex-row  items-center w-full max-w-7xl mx-auto">
-          <InView
-             variants={{
-              hidden: { opacity: 0, y: 150, filter: "blur(4px)" },
-              visible: { opacity: 1, y: 0, filter: "blur(0px)" },
-            }}
-            transition={{ duration: 1, ease: "easeInOut" }}
-          >
-            <div className="flex flex-col gap-4 md:w-1/2 w-full">
-              <h2 className="text-xl  font-sans font-bold">Dynamic Growth</h2>
-              <p>
-                Working on diverse projects is one of the best ways to build
-                real-world skills, as each project brings unique challenges and
-                requires a fresh approach. Every new technology learned is an
-                opportunity to broaden one’s knowledge and tackle problems with
-                different perspectives.
-              </p>
-            </div>
-          </InView>
-          <Chart />
+        <div>
+          <div className="flex flex-row  items-center w-full ">
+            <InView
+              variants={{
+                hidden: { opacity: 0, y: 150, filter: "blur(4px)" },
+                visible: { opacity: 1, y: 0, filter: "blur(0px)" },
+              }}
+              transition={{ duration: 1, ease: "easeInOut" }}
+            >
+              <div className="flex flex-col gap-4  w-full">
+                <h2 className="text-xl  font-sans font-bold">Dynamic Growth</h2>
+                <p>
+                  Working on diverse projects is one of the best ways to build
+                  real-world skills, as each project brings unique challenges
+                  and requires a fresh approach. Every new technology learned is
+                  an opportunity to broaden one’s knowledge and tackle problems
+                  with different perspectives.
+                </p>
+              </div>
+            </InView>
+            <Chart />
+          </div>
+          <div className="flex md:flex-row flex-col  gap-4  w-full items-center mt-20">
+            <InView
+              variants={{
+                hidden: { opacity: 0, x: 150 },
+                visible: { opacity: 1, x: 0 },
+              }}
+              transition={{ duration: 1, ease: "backIn" }}
+            >
+              <HoverGallery />
+            </InView>
+            <InView
+              variants={{
+                hidden: { opacity: 0, },
+                visible: { opacity: 1, },
+              }}
+              transition={{ duration: 1, ease: "linear" }}
+            >
+              <div className="text-right  ml-auto ">
+                <h2 className="text-xl   font-sans font-bold">Resilience</h2>
+                <p className="ml-auto  ">
+                  Project work cultivates resilience, as navigating through
+                  roadblocks and learning from failures is part of the process.
+                  Each setback builds the persistence needed to overcome future
+                  challenges, ensuring steady growth in both skills and
+                  confidence.
+                </p>
+              </div>
+            </InView>
+          </div>
         </div>
       </div>
     </section>

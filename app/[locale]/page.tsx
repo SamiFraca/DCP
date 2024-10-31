@@ -85,7 +85,7 @@ export default function Home({
             }}
             transition={{ duration: 1, ease: "easeInOut" }}
           >
-            <div className="flex flex-col gap-4 w-1/2">
+            <div className="flex flex-col gap-4 md:w-1/2 w-full">
               <h2 className="text-xl  font-sans font-bold">Dynamic Growth</h2>
               <p>
                 Working on diverse projects is one of the best ways to build

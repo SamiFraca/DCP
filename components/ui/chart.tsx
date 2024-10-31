@@ -13,7 +13,7 @@ export const Chart = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: isInView ? 1 : 0 }}
       transition={{ duration: 0.6 }}
-      className="dark:shadow-none shadow-xl overflow-hidden rounded-lg w-[60rem] grow"
+      className="dark:shadow-none shadow-xl overflow-hidden rounded-lg md:w-[60rem] w-[20rem] grow"
     >
       <div className="absolute p-4 dark:text-neutral-100 text-neutral-900"></div>
       <div>

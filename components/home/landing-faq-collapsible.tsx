@@ -14,18 +14,18 @@ export interface FaqItem {
 
 export const faqItems = [
   {
-    question: "Can I get a refund?",
+    question: "How do I join or create a project?",
     answer:
-      "Yes, you can get a refund within 30 days of your purchase. No questions asked.",
+      "After signing up, browse through available projects to join, or create your own by specifying project goals, technologies, and the skills you’re looking for in collaborators.",
   },
   {
-    question: "What technologies are used?",
-    answer: "We use Next.js, Tailwind CSS, and Vercel for the deployment.",
+    question: "Can I collaborate on multiple projects at the same time?",
+    answer: "Absolutely! You can contribute to as many projects as you can manage. Just ensure you stay in touch with each project’s team to meet expectations and deadlines.",
   },
   {
-    question: "What do I get if I pre-order?",
+    question: "How do I find collaborators with specific skills?",
     answer:
-      "With the pre-order, you get a 50% discount on the final price and a lifetime license for the generated code.",
+      "Use the platform’s search and filtering options to find developers by skills, experience level, or project type. You can also post collaboration requests in project listings.",
   },
 ];
 

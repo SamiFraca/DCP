@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Metadata } from "next";
-import { LandingFaqCollapsibleSection } from "@/components/home/lading-faq-collapsible";
+import { LandingFaqCollapsibleSection } from "@/components/home/landing-faq-collapsible";
 import ProjectListHome from "@/components/card/project-list-home";
 import RetroGrid from "@/components/ui/retro-grid";
 import { FadeText } from "@/components/ui/fade-text";
@@ -11,7 +11,7 @@ import TextRevealByWord from "@/components/ui/text-reveal";
 import { Chart } from "@/components/ui/chart";
 import InView from "@/components/transitions/in-view";
 import HoverGallery from "@/components/ui/gallery-hover";
-import { faqItems } from "@/components/home/lading-faq-collapsible";
+import { faqItems } from "@/components/home/landing-faq-collapsible";
 
 export const metadata: Metadata = {
   title: "Research Hub",

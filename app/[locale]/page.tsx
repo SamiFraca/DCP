@@ -88,7 +88,7 @@ export default function Home({
               transition={{ duration: 1, ease: "easeInOut" }}
             >
               <div className="flex flex-col gap-4  w-full">
-                <h2 className="text-xl  font-sans font-bold">Dynamic Growth</h2>
+                <h2 className="text-6xl   font-sans font-bold">Dynamic Growth</h2>
                 <p>
                   Working on diverse projects is one of the best ways to build
                   real-world skills, as each project brings unique challenges
@@ -118,7 +118,7 @@ export default function Home({
               transition={{ duration: 1, ease: "linear" }}
             >
               <div className="text-right  ml-auto ">
-                <h2 className="text-xl   font-sans font-bold">Resilience</h2>
+                <h2 className="text-6xl   font-sans font-bold mb-6">Resilience</h2>
                 <p className="ml-auto  ">
                   Project work cultivates resilience, as navigating through
                   roadblocks and learning from failures is part of the process.

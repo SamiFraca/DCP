@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Metadata } from "next";
-
+import { LandingFaqCollapsibleSection } from "@/components/home/lading-faq-collapsible";
 import ProjectListHome from "@/components/card/project-list-home";
 import RetroGrid from "@/components/ui/retro-grid";
 import { FadeText } from "@/components/ui/fade-text";
@@ -11,6 +11,7 @@ import TextRevealByWord from "@/components/ui/text-reveal";
 import { Chart } from "@/components/ui/chart";
 import InView from "@/components/transitions/in-view";
 import HoverGallery from "@/components/ui/gallery-hover";
+import { faqItems } from "@/components/home/lading-faq-collapsible";
 
 export const metadata: Metadata = {
   title: "Research Hub",
@@ -88,7 +89,9 @@ export default function Home({
               transition={{ duration: 1, ease: "easeInOut" }}
             >
               <div className="flex flex-col gap-4  w-full">
-                <h2 className="text-6xl   font-sans font-bold">Dynamic Growth</h2>
+                <h2 className="text-6xl   font-sans font-bold">
+                  Dynamic Growth
+                </h2>
                 <p>
                   Working on diverse projects is one of the best ways to build
                   real-world skills, as each project brings unique challenges
@@ -100,7 +103,7 @@ export default function Home({
             </InView>
             <Chart />
           </div>
-          <div className="flex md:flex-row flex-col  gap-4  w-full items-center mt-20">
+          <div className="flex md:flex-row flex-col  gap-4  w-full items-center mt-52">
             <InView
               variants={{
                 hidden: { opacity: 0, x: 150 },
@@ -112,13 +115,15 @@ export default function Home({
             </InView>
             <InView
               variants={{
-                hidden: { opacity: 0, },
-                visible: { opacity: 1, },
+                hidden: { opacity: 0 },
+                visible: { opacity: 1 },
               }}
               transition={{ duration: 1, ease: "linear" }}
             >
               <div className="text-right  ml-auto ">
-                <h2 className="text-6xl   font-sans font-bold mb-6">Resilience</h2>
+                <h2 className="text-6xl   font-sans font-bold mb-6">
+                  Resilience
+                </h2>
                 <p className="ml-auto  ">
                   Project work cultivates resilience, as navigating through
                   roadblocks and learning from failures is part of the process.
@@ -129,6 +134,14 @@ export default function Home({
               </div>
             </InView>
           </div>
+          <LandingFaqCollapsibleSection
+            withBackgroundGlow
+            backgroundGlowVariant="primary"
+            title="FAQ"
+            description="Looking to learn more about our product? Here are some of the most common
+            questions."
+            faqItems={faqItems}
+          />
         </div>
       </div>
     </section>

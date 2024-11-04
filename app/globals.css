@@ -29,8 +29,14 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    --primary-lighter-hex: theme('colors.primary.DEFAULT');
+    --secondary-lighter-hex: theme('colors.secondary.DEFAULT');
+    --primary-dark-hex: theme('colors.primary.DEFAULT');
+    --secondary-dark-hex: theme('colors.secondary.DEFAULT');
+    
     --font-roboto: "Roboto", sans-serif;
     --font-space-grotesk: "Space Grotesk", sans-serif;
+
   }
 
   .dark {

@@ -78,7 +78,7 @@ export default function Home({
         </h3>
         <span className="h-1 w-16 bg-purple-500"></span>
         <ProjectListHome />
-        <TextRevealByWord text="Uniting people throghout the world." />
+        <TextRevealByWord text="Uniting people throghout the world. TEST" />
         <div>
           <div className="flex flex-row  items-center w-full ">
             <InView

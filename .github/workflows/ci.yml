@@ -22,7 +22,7 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies
-        run: bun install
+        run: npm install
 
       - name: Run e2e tests
         run: bun test:playwright

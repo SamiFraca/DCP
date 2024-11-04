@@ -63,7 +63,7 @@ export default function Home({
         </div>
         <CarouselHome />
         <BentoWrapper />
-        <h3 className="text-center mt-20 text-3xl space-grotesk">
+        <h3 className="max-w-7xl  mx-auto   text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans text-center mt-20">
           {t("gridTitle")}
         </h3>
         <div className="w-full">
@@ -73,10 +73,10 @@ export default function Home({
             </div>
           </div>
         </div>
-        <h3 className="text-3xl space-grotesk mt-20 mb-2">
+        <h3 className="max-w-7xl  mx-auto  ml-0 text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans mb-2">
           {t("featuredProjects")}
         </h3>
-        <span className="h-1 w-12 bg-purple-500"></span>
+        <span className="h-1 w-16 bg-purple-500"></span>
         <ProjectListHome />
         <TextRevealByWord text="Uniting people throghout the world." />
         <div>

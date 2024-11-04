@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { memo, useEffect, useLayoutEffect, useState } from "react";
 import {
   AnimatePresence,
   motion,
@@ -152,10 +152,10 @@ const Carousel = memo(
           onDragEnd={(_, info) => {
             if (isCarouselActive) {
               controls.start({
-                rotateY: rotation.get() + info.velocity.x * 0.01, 
+                rotateY: rotation.get() + info.velocity.x * 0.01,
                 transition: {
                   type: "spring",
-                  mass: 0.3, 
+                  mass: 0.3,
                 },
               });
             }
@@ -173,7 +173,11 @@ const Carousel = memo(
                 }deg) translateZ(${radius}px)`,
               }}
             >
-              <Link href={"./test"} tabIndex={0} aria-label={category.textKey.split(".")[1]}>
+              <Link
+                href={"./test"}
+                tabIndex={0}
+                aria-label={category.textKey.split(".")[1]}
+              >
                 <motion.div
                   layoutId={`category-${category.textKey}`}
                   className="flex flex-col items-center bg-background border p-5 rounded-md hover:card-hover"
@@ -191,6 +195,7 @@ const Carousel = memo(
     );
   }
 );
+Carousel.displayName = "Carousel";
 
 function ThreeDPhotoCarousel() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);

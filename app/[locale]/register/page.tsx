@@ -28,15 +28,7 @@ export type UserInputs = {
   };
 };
 
-export const interestCategories = [
-  "interestCategories.sports",
-  "interestCategories.science",
-  "interestCategories.arts",
-  "interestCategories.engineering",
-  "interestCategories.computer-it",
-  "interestCategories.business",
-  "interestCategories.communication",
-];
+
 export default function Register() {
   const [supabaseError, setSupabaseError] = useState("");
   const [isLoading, setIsLoading] = useState(false);

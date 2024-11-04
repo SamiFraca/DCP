@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { interestCategories } from "@/app/[locale]/register/page";
+
 import {
   Select,
   SelectContent,
@@ -15,7 +15,15 @@ interface MainInterestDropdownProps<T> {
   onChange: (name:T,value: T) => void;
   selectorName?: string;
 }
-
+const interestCategories = [
+  "interestCategories.sports",
+  "interestCategories.science",
+  "interestCategories.arts",
+  "interestCategories.engineering",
+  "interestCategories.computer-it",
+  "interestCategories.business",
+  "interestCategories.communication",
+];
 export const MainInterestDropdown = <T,>({
   placeholder,
   selectorName,

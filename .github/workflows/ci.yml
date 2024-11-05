@@ -13,8 +13,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Install bun
+        uses: oven-sh/setup-bun@v2
+        
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
@@ -22,10 +27,10 @@ jobs:
           node-version: '22'
 
       - name: Install dependencies
-        run: npm install
+        run: bun install
 
       - name: Run e2e tests
-        run: npm run test:playwright
+        run: bun run test:playwright
 
       - name: Build Next.js
-        run: npm run build
+        run: bun run build

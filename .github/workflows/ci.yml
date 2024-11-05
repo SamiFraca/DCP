@@ -22,10 +22,10 @@ jobs:
           node-version: '22'
 
       - name: Install dependencies
-        run: bun install
+        run: npm install
 
       - name: Run e2e tests
-        run: bun test:playwright
+        run: npm test:playwright
 
       - name: Build Next.js
-        run: bun run build
+        run: npm run build

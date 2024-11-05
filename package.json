@@ -8,7 +8,6 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "install":"bun install",
     "test:playwright": "BASE_URL=http://test2.com bun  playwright test"
   },
   "dependencies": {
